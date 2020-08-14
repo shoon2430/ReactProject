@@ -1,4 +1,4 @@
-[
+export default [
   {
     id: 200,
     category: "패션의류/잡화",

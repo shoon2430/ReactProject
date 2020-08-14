@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import SearchContainer from "./container/SearchContainer";
 
 class Header extends Component {
   render() {
     return (
       <header>
-        <category></category>
-        <search></search>
-        <login></login>
+        <SearchContainer />
+        <search>1</search>
+        <login>2</login>
       </header>
     );
   }
