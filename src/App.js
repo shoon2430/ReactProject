@@ -5,20 +5,22 @@ import MainPage from "./mainPage/MainPage";
 import ListPage from "./listPage/view/ListPage";
 import DetailPage from "./detailPage/DetailPage";
 import Footer from "./footer/Footer";
-import allData from "./data/allData";
+// import allData from "./data/allData";
 
 import { Container } from "semantic-ui-react";
 
 function App() {
-  console.log(allData);
   return (
-    <Container className="Conatainer">
-      <Header />
-      <MainPage />
-      <ListPage />
-      {/* <DetailPage /> */}
-      <Footer />
-    </Container>
+    <div>
+      <div className="monpang__banner"></div>
+      <Container className="Conatainer">
+        <Header />
+        <MainPage />
+        {/* <ListPage /> */}
+        {/* <DetailPage /> */}
+        <Footer />
+      </Container>
+    </div>
   );
 }
 
