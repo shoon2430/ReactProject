@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import CategoryContainer from "./container/CategoryContainer";
 import SearchContainer from "./container/SearchContainer";
 import LoginContainer from "./container/LoginContainer";
-import { Image, Grid } from "semantic-ui-react";
+import { Image, Button } from "semantic-ui-react";
+import { observer, inject } from "mobx-react";
 
 const headerMain = {
   margin: "2px",
@@ -15,7 +16,6 @@ const headerMain = {
 
 const headerSub = {
   background: "NAVY",
-  height: "25px",
   textAlign: "center",
 };
 
@@ -24,7 +24,14 @@ const headerLogo = {
   height: "50px",
 };
 
+@inject("Store")
 class Header extends Component {
+  // 페이지 이동 함수
+  movePage = (e) => {
+    const page = e.target.textContent;
+    this.props.Store.page.moveToPage(page);
+  };
+
   render() {
     return (
       <div>
@@ -34,7 +41,13 @@ class Header extends Component {
           <SearchContainer />
           <LoginContainer />
         </div>
-        <div style={headerSub}>Sub Header</div>
+        <div style={headerSub}>
+          <Button.Group style={{ margin: "5px" }}>
+            <Button onClick={this.movePage}>MAIN</Button>
+            <Button onClick={this.movePage}>LIST</Button>
+            <Button onClick={this.movePage}>DETAIL</Button>
+          </Button.Group>
+        </div>
       </div>
     );
   }

@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 
+const example = {
+  background: "honeydew",
+  height: "30vh",
+};
+
 class DetailPage extends Component {
   render() {
-    return <div>Datail Page</div>;
+    return <div style={example}>Datail Page</div>;
   }
 }
 
