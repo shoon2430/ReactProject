@@ -8,16 +8,23 @@ const options = [
 ];
 
 const headerInput = {
-  width: "55%",
+  width: "64%",
+  height: "50px",
+};
+
+const headerInputDropbox = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
 
 const headerSearchButton = {
   marginLeft: "-2px",
+  width: "50px",
 };
 
 class SearchView extends Component {
   render() {
-    // return <input className="header__input" />;
     return (
       <Input
         labelPosition="right"
@@ -28,7 +35,7 @@ class SearchView extends Component {
           console.log("검색어가 입력되고 있습니다.");
         }}
       >
-        <Label>
+        <Label style={headerInputDropbox}>
           <Dropdown text="All" options={options} floating />
         </Label>
         <input />

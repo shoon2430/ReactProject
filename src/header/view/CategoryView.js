@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import { Dropdown } from "semantic-ui-react";
 
 const headerDropdown = {
-  width: "30px",
-  height: "30px",
+  marginRight: "30px",
+  width: "120px",
+  height: "115px",
+  background: "#ffb74d",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
 
 // 시멘틱 ui 아이콘 정보
 const hearDropdownicon = {
-  name: "bars",
+  name: "sidebar",
   size: "big",
   color: "grey",
 };
