@@ -30,4 +30,32 @@ export default class Item {
   @computed get getItems() {
     return this.items ? this.items.splice("") : [];
   }
+
+  // 할인률이 가장 높은 아이템 조회
+  @computed get getBestDiscounteItems() {
+    const MAX_COUNT = 8;
+    let bestDiscountItems = [];
+
+    bestDiscountItems = this.items.sort((a, b) => {
+      const r1 = a["rating"];
+      const r2 = b["rating"];
+      const s1 = a["sale"];
+      const s2 = b["sale"];
+      const d1 = a["discount"];
+      const d2 = b["discount"];
+
+      // rating 내림차순
+      if (r1 < r2) return 1;
+      if (r1 > r2) return -1;
+      // discount 내림차순
+      if (d1 < d2) return 1;
+      if (d1 > d2) return -1;
+      // sale 내림차순
+      if (s1 < s2) return 1;
+      if (s1 > s2) return -1;
+      return 0;
+    });
+
+    return bestDiscountItems.slice(0, MAX_COUNT);
+  }
 }
