@@ -13,7 +13,7 @@ const categoryItemImage = {
 class CategoryBestItem extends Component {
   render() {
     return (
-      <div style={{ margin: "10px" }}>
+      <div style={{ margin: "5px" }}>
         <Table celled structured style={categoryItemTable}>
           <Table.Body>
             <Table.Row>

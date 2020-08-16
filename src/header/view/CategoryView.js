@@ -55,17 +55,13 @@ const options = [
 class CategoryView extends Component {
   render() {
     return (
-      <Dropdown icon={hearDropdownicon} style={headerDropdown}>
-        <Dropdown.Menu>
-          <Dropdown.Divider />
-          <Dropdown.Header icon={hearDropdownicon} content="category" />
-          <Dropdown.Menu scrolling>
-            {options.map((option) => (
-              <Dropdown.Item key={option.value} {...option} />
-            ))}
-          </Dropdown.Menu>
-        </Dropdown.Menu>
-      </Dropdown>
+      <Dropdown
+        icon={hearDropdownicon}
+        style={headerDropdown}
+        simple
+        item
+        options={options}
+      ></Dropdown>
     );
   }
 }
