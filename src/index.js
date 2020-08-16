@@ -4,6 +4,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import CommonStore from "./stores/common";
+import { Provider } from "mobx-react";
+
+ReactDOM.render(
+  <Provider Store={new CommonStore()}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 serviceWorker.unregister();

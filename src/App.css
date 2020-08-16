@@ -1,24 +1,4 @@
-.Conatainer {
-  background-color: #252839 !important;
-}
-
-header,
 footer {
   background: darkcyan;
   height: 200px;
-}
-
-.main {
-  background: goldenrod;
-  height: 70vh;
-}
-
-.sub1 {
-  background: honeydew;
-  height: 30vh;
-}
-
-.sub2 {
-  background: wheat;
-  height: 30vh;
 }
