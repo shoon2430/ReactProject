@@ -12,16 +12,17 @@ class BestDiscountContainer extends Component {
   };
 
   render() {
-    const { main } = this.props.Store;
+    const { main, item } = this.props.Store;
+    const bestDiscountItems = item.getBestDiscounteItems;
     return (
-      <div style={{ background: "#e9e9e9" }}>
+      <div>
         <BestDiscountImage
           Background={main.getDiscountMainImageUrl}
           changeBackground={this.changeBackground}
           left={main.getLeftPage}
           right={main.getRightPage}
         />
-        <BestDiscountItem />
+        <BestDiscountItem bestDiscountItems={bestDiscountItems} />
       </div>
     );
   }
