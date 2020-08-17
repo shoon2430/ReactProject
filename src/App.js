@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./header/Header";
 import MainPage from "./mainPage/MainPage";
-<<<<<<< HEAD
 import ListPage from "./listPage/view/ListPage";
-=======
-import ListPage from "./listPage/ListPage";
->>>>>>> d5b3b63fa323316fb72757942c742285593a5781
 import DetailPage from "./detailPage/DetailPage";
 import Footer from "./footer/Footer";
 import { Container } from "semantic-ui-react";

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import CategoryView from "../view/CategoryView";
+import MainCategoryView from "../view/MainCategoryView";
 
 class CategoryContainer extends Component {
   render() {
-    return <CategoryView />;
+    return <MainCategoryView />;
   }
 }
 
