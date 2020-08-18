@@ -20,7 +20,7 @@ export default [
     name:
       "대한컴퓨터 게이밍컴퓨터 94001650 조립PC (9세대 i5-9400F WIN미포함 8GB SSD240GB GTX1650)",
     imgUrl: "images/elec/101.png",
-    stock: 1,
+    stock: 3,
     discount: 50,
     price: 1940000,
     rating: 4,

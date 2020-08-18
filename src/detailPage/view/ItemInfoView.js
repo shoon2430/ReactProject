@@ -12,7 +12,8 @@ import {
 
 class ItemInfoContainer extends Component {
   render() {
-    const { selectItem, star, goHome } = this.props;
+    const { selectItem, star, goHome, onPlus, onMinus, count } = this.props;
+
     return (
       <Grid style={{ marginTop: "10px" }}>
         <Grid.Row>
@@ -142,7 +143,7 @@ class ItemInfoContainer extends Component {
                       style={{
                         color: "grey",
                         fontSize: "16px",
-                        marginTop: "35px",
+                        marginTop: "30px",
                         fontWeight: "normal",
                       }}
                     >
@@ -186,30 +187,68 @@ class ItemInfoContainer extends Component {
                 </Item.Content>
               </Item>
               <Item>
-                <Item.Content style={{ marginTop: "20px" }}>
-                  <Icon name="minus square outline" color="orange" size="big" />
-                  <Input 
-                  type="number"
-                    placeholder="0"
-                    size="small"
-                    // min="0"
-                    // max={selectItem.stock}
-                  />
-                  <Icon name="plus square outline" color="orange" size="big" />
-                  <Item.Description
-                    style={{ marginTop: "20px", fontSize: "16px" }}
+                <Item.Content style={{ marginTop: "10px", fontSize: "16px" }}>
+                  <Item.Description>제품 구매수량</Item.Description>
+                  <Item.Description 
+                    style={{
+                      marginTop:"-15px",
+                      textAlignLast: "right",
+                      color: "#FF6600",
+                      fontWeight: "bold",
+                    }}
                   >
-                    총 상품금액
+                    {count === 0 ? (
+                      <Icon
+                        onClick={onMinus}
+                        name="minus square outline"
+                        color="grey"
+                        size="big"
+                      />
+                    ) : (
+                      <Icon
+                        onClick={onMinus}
+                        name="minus square outline"
+                        color="orange"
+                        size="big"
+                      />
+                    )}
+
+                    <Input type="number" defaultValue={count} size="huge">
+                      &emsp;{count}&emsp;
+                    </Input>
+                    {selectItem.stock === count ? (
+                      <Icon
+                        onClick={onPlus}
+                        name="plus square outline"
+                        color="grey"
+                        size="big"
+                      />
+                    ) : (
+                      <Icon
+                        onClick={onPlus}
+                        name="plus square outline"
+                        color="orange"
+                        size="big"
+                      />
+                    )}
                   </Item.Description>
+                  
+                  <Item.Description style={{marginTop:"20px"}}>총 상품금액</Item.Description>
                   <Item.Description
                     style={{
+                      marginTop:"-10px",
                       textAlignLast: "right",
                       color: "#FF6600",
                       fontWeight: "bold",
                     }}
                   >
                     <span style={{ fontSize: "40px" }}>
-                      {(selectItem.price * (100 - selectItem.discount) * 0.01)
+                      {(
+                        selectItem.price *
+                        (100 - selectItem.discount) *
+                        0.01 *
+                        count
+                      )
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </span>
