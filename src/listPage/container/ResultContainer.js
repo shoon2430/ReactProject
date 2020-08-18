@@ -52,6 +52,26 @@ class ResultContainer extends Component {
               </Card.Header>
 
               <Image src={item.imgUrl} style={imageSize} />
+              <Card.Meta>
+                <span
+                  style={{
+                    textDecoration: "line-through",
+                    textDecorationColor: "black",
+                    fontSize: "15px",
+                  }}
+                >
+                  {(item.price * (100 - item.discount) * 0.01)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  &nbsp;원
+                </span>
+              </Card.Meta>
+              <Card.Content>
+                <span style={{ color: "black", fontWeight: "bold" }}>
+                  {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </span>
+              </Card.Content>
 
               <Rail
                 attached

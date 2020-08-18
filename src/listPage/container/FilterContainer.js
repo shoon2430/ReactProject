@@ -39,6 +39,18 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
+  freeChange = (e) => {
+    this.setState({
+      delivery: e.target.value,
+    });
+    //alert(this.state.max);
+  };
+  nofreeChange = (e) => {
+    this.setState({
+      deliver: e.target.value,
+    });
+    //alert(this.state.max);
+  };
 
   //
   filterPrice = (min, max) => {
@@ -75,20 +87,18 @@ class FilterContainer extends Component {
           <Header as="h5">배송방법</Header>
           <Checkbox
             label={{ children: "무료배송" }}
-            name="delivery"
-            value="1"
+            onChange={this.freeChange}
           />
           <br />
           <Checkbox
             label={{ children: "유료배송" }}
-            name="delivery"
-            value="0"
+            onChange={this.noFreeChange}
           />
           <Divider section />
           <Header as="h5">상품 상태</Header>
-          <Checkbox label={{ children: "새상품" }} name="status" value="1" />
+          <Checkbox label={{ children: "새상품" }} onChange={this.itemNewChange}/>
           <br />
-          <Checkbox label={{ children: "중고상품" }} name="status" value="0" />
+          <Checkbox label={{ children: "중고상품" }} onChange={this.itmeoldChange} />
           <Divider section />
           <Header as="h5">품절된 상품 보지않기</Header>
           <Checkbox toggle name="stockZero" value="1" />
