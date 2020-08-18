@@ -14,7 +14,7 @@ import {
 
 const imageSize = {
   width: "100%",
-  height: "180px",
+  height: "170px",
 };
 
 const railDiscount = {
@@ -34,12 +34,12 @@ class ResultContainer extends Component {
     return start;
   };
   render() {
-    const { resultList } = this.props.Store.list;
-    console.log("------------------", resultList);
+    const resultList = this.props.Store.list.getResultList;
+
     const results = resultList.map((item) => {
       return (
         <Grid.Column key={item.id}>
-          <Card color="orange" as="a">
+          <Card color="#f5e5d5" as="a">
             <Card.Content>
               <Card.Header
                 style={{
@@ -56,20 +56,21 @@ class ResultContainer extends Component {
                 <span
                   style={{
                     textDecoration: "line-through",
-                    textDecorationColor: "black",
+                    textDecorationColor: "gray",
                     fontSize: "15px",
+                    fontColor: "gray",
                   }}
                 >
-                  {(item.price * (100 - item.discount) * 0.01)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  &nbsp;원
+                  {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
                 </span>
               </Card.Meta>
               <Card.Content>
                 <span style={{ color: "black", fontWeight: "bold" }}>
-                  {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  원
+                  {(item.price * (100 - item.discount) * 0.01)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  &nbsp;원
                 </span>
               </Card.Content>
 
@@ -93,9 +94,9 @@ class ResultContainer extends Component {
     });
 
     return (
-      <Grid style={{ margin: "0px" }}>
+      <Grid style={{ marginTop: "19px" }}>
         <Header
-          as="h4"
+          as="h5"
           icon="search"
           content="검색결과"
           style={{ marginTop: "10px" }}

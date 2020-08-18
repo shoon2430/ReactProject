@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import ItemInfoView from "../view/ItemInfoView";
 import { Icon } from "semantic-ui-react";
+import sub from "../../data/category/sub";
 
 import qs from "qs";
 import { withRouter } from "react-router-dom";

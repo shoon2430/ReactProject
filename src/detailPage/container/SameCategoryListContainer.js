@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import SameCategoryListView from "../view/RecommendListView";
+import RecommendListView from "../view/RecommendListView";
+import { Icon } from "semantic-ui-react";
 
 @inject("Store")
 @observer
 class SameCategoryItemContainer extends Component {
-    render() {
-        const { detail } = this.props.Store;
-        return (
-            <SameCategoryListView selectItem={detail.selectItem}/>
-        );
-    }
+  render() {
+    const { detail, item } = this.props.Store;
+    const bestDiscount = item.getCateDiscountItems;
+    return (
+      <RecommendListView
+        selectItem={detail.selectItem}
+        bestDiscount={bestDiscount}
+        items={item.items}
+      />
+    );
+  }
 }
 
 export default SameCategoryItemContainer;
