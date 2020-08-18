@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Input, Dropdown, Button, Label, Icon } from "semantic-ui-react";
+import { Input, Dropdown, Button, Label } from "semantic-ui-react";
 
 const options = [
   { key: "all", text: "All", value: "all" },
