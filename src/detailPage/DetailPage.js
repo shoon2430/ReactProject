@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ItemInfoContainer from "./container/ItemInfoContainer";
-import SameCategoryItemContainer from "./container/SameCategoryItemContainer";
+import SameCategoryListContainer from "./container/SameCategoryListContainer";
 
 // const example = {
 //   background: "honeydew",
@@ -13,7 +13,7 @@ class DetailPage extends Component {
       <div>
         {/* <div style={example} /> */}
         <ItemInfoContainer/> 
-        <SameCategoryItemContainer />
+        <SameCategoryListContainer />
         
       </div>
     );

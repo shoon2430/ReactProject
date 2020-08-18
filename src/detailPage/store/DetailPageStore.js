@@ -2,6 +2,8 @@ import { observable, action } from "mobx";
 import allData from "../../data/allData";
 import foodData from "../../data/foodData";
 import elecData from "../../data/elecData";
+import main from "../../data/category/main";
+import sub from "../../data/category/sub";
 
 // Detail Page Mobx Store 클래스 선언
 export default class DetailPageStore {
@@ -11,4 +13,10 @@ export default class DetailPageStore {
 
   @observable
   selectItem = elecData[1];
+
+  @observable
+  count = 0;  
+
+  @observable
+  sub = {};
 }   
