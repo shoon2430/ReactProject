@@ -26,7 +26,7 @@ class BestDiscountImage extends Component {
       this.setState({
         animate: false,
       });
-    }, 500);
+    }, 1000);
     return;
   }
 
@@ -34,6 +34,9 @@ class BestDiscountImage extends Component {
     const { Background, changeBackground, left, right } = this.props;
     const { animate } = this.state;
     const animation = animate ? "fadeIn" : "fadeOut";
+    setTimeout(() => {
+      changeBackground(right);
+    }, 3000);
     return (
       <div
         style={{

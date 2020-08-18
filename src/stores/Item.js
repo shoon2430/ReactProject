@@ -58,4 +58,60 @@ export default class Item {
 
     return bestDiscountItems.slice(0, MAX_COUNT);
   }
+
+  categoryBestItemSort(items) {
+    return items.sort((a, b) => {
+      const r1 = a["rating"];
+      const r2 = b["rating"];
+      const s1 = a["sale"];
+      const s2 = b["sale"];
+
+      // rating 내림차순
+      if (r1 < r2) return 1;
+      if (r1 > r2) return -1;
+      // sale 내림차순
+      if (s1 < s2) return 1;
+      if (s1 > s2) return -1;
+      return 0;
+    });
+  }
+
+  // 카테고리별 추천 아이템
+  @computed get getCategoryBestItems() {
+    // 이걸 적용하려면 카테고리가 코드로 관리되어야 할듯
+    // categoryBestItems = this.items.sort((a, b) => {
+    //   const c1 = a["category"];
+    //   const c2 = b["category"];
+    //   const r1 = a["rating"];
+    //   const r2 = b["rating"];
+    //   const s1 = a["sale"];
+    //   const s2 = b["sale"];
+
+    //   // category 오름차순
+    //   if (c1 < c2) return -1;
+    //   if (c1 > c2) return 1;
+    //   // rating 내림차순
+    //   if (r1 < r2) return 1;
+    //   if (r1 > r2) return -1;
+    //   // sale 내림차순
+    //   if (s1 < s2) return 1;
+    //   if (s1 > s2) return -1;
+    //   return 0;
+    // });
+
+    let foodItems = this.categoryBestItemSort(this.items.slice(0, 41));
+    let elecItems = this.categoryBestItemSort(this.items.slice(41, 81));
+    let clotheItems = this.categoryBestItemSort(this.items.slice(81, 121));
+
+    return [
+      foodItems.slice(0, 18),
+      elecItems.slice(0, 18),
+      clotheItems.slice(0, 18),
+    ];
+  }
+
+  // 카테고리별 색상 가져오기 위함
+  @computed get getCategoryColorList() {
+    return ["orange", "blue", "green"];
+  }
 }

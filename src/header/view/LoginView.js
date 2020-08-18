@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Label, Icon, Menu } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 
 const headerIconBox = {
   display: "flex",
