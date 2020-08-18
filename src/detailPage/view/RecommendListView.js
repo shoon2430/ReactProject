@@ -1,41 +1,66 @@
 import React, { Component } from "react";
-import { Grid, Card, Image, Item } from "semantic-ui-react";
+import {
+  Grid,
+  Card,
+  Image,
+  Item,
+  ItemDescription,
+  Pagination,
+} from "semantic-ui-react";
 import RecommendItemView from "./RecommendItemView";
 
 class RecommendListView extends Component {
   render() {
-    const { selectItem } = this.props;
-    
+    const { selectItem, bestDiscount, items } = this.props;
+
+    const subitems = items.filter(
+      (item) => selectItem.subCategory === item.subCategory
+    );
+
     return (
-      <Grid >
+      <Grid>
         <Grid.Row>
-          <div style={{fontWeight:"bold", fontSize:"20px"}}>
-            <span style={{ color: "orange" }}>{selectItem.category}</span>
-            <span>특가상품</span>
+          <div
+            style={{ fontWeight: "bold", fontSize: "20px", marginTop: "20px" }}
+          >
+            <span style={{ color: "orange", fontSize: "21px" }}>
+              {selectItem.category === "CATFOO"
+                ? "식품"
+                : selectItem.category === "CATELE"
+                ? "가전디지털"
+                : "패션의류/잡화"}
+            </span>
+            <span>&nbsp;특가 상품</span>
           </div>
         </Grid.Row>
         <Grid.Row>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
+          {selectItem.category === "CATFOO"
+            ? bestDiscount[0].map((item) => {
+                return <RecommendItemView selectItem={item} />;
+              })
+            : selectItem.category === "CATELE"
+            ? bestDiscount[1].map((item) => {
+                return <RecommendItemView selectItem={item} />;
+              })
+            : bestDiscount[2].map((item) => {
+                return <RecommendItemView selectItem={item} />;
+              })}
         </Grid.Row>
 
         <Grid.Row>
-          <div style={{fontWeight:"bold", fontSize:"20px"}}>
+          <div
+            style={{ fontWeight: "bold", fontSize: "20px", marginTop: "10px" }}
+          >
             <span style={{ color: "orange" }}>{selectItem.subCategory}</span>
-            <span>특가상품</span>
+            <span>&nbsp;연관 상품</span>
           </div>
         </Grid.Row>
 
         <Grid.Row>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-            <RecommendItemView selectItem={selectItem}/>
-        </Grid.Row> 
+          {subitems.slice(0, 5).map((item) => (
+            <RecommendItemView selectItem={item} />
+          ))}
+        </Grid.Row>
       </Grid>
     );
   }
