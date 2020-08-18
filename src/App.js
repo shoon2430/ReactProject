@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
+import { Route } from "react-router-dom";
+
 import Header from "./header/Header";
 import MainPage from "./mainPage/MainPage";
 import ListPage from "./listPage/view/ListPage";
@@ -25,9 +27,9 @@ class App extends Component {
   render() {
     const { page } = this.props.Store;
 
-    let pageComponent = <MainPage />;
-    if (page.getPage === "LIST") pageComponent = <ListPage />;
-    if (page.getPage === "DETAIL") pageComponent = <DetailPage />;
+    // let pageComponent = <MainPage />;
+    // if (page.getPage === "LIST") pageComponent = <ListPage />;
+    // if (page.getPage === "DETAIL") pageComponent = <DetailPage />;
 
     return (
       <>
@@ -40,7 +42,9 @@ class App extends Component {
         </div>
         <Container>
           <Header />
-          {pageComponent}
+          <Route path="/" component={MainPage} exact={true} />
+          <Route path="/list" component={ListPage} exact={true} />
+          <Route path="/detail" component={DetailPage} exact={true} />
           <Footer />
         </Container>
       </>
