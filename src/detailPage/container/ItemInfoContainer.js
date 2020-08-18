@@ -37,13 +37,16 @@ class ItemInfoContainer extends Component {
     }
   };
 
-  render() {
+  componentDidMount() {
     const searchObj = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
-
     const { detail } = this.props.Store;
     detail.setSelectItem(searchObj.id);
+  }
+
+  render() {
+    const { detail } = this.props.Store;
 
     // const { selectItem } = this.props.DetailPageStore;
     return (

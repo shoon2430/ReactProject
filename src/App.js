@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
+import { Label } from "semantic-ui-react";
 
 import Header from "./header/Header";
 import MainPage from "./mainPage/MainPage";
@@ -38,8 +39,22 @@ class App extends Component {
           X
         </div>
         <div className="monpangBanner" style={monpangBanner}>
+          <Container
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <Label as="a" href="/login">
+              로그인
+            </Label>
+            <Label as="a" href="/signup">
+              회원가입
+            </Label>
+          </Container>
           {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
         </div>
+
         <Container>
           <Header />
           <Route path="/" component={MainPage} exact={true} />
