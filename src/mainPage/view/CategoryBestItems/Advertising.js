@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { Grid, Image } from "semantic-ui-react";
+
+const advertisingList = [
+  "foodAdvertising",
+  "elecAdvertising",
+  "clotheAdvertising",
+];
+
 class Advertising extends Component {
   render() {
+    const { category } = this.props;
     return (
       <Grid>
         <Grid.Column
@@ -12,7 +20,7 @@ class Advertising extends Component {
           }}
         >
           <Image
-            src="./images/mainPage/elecAdvertising.png"
+            src={`./images/mainPage/${advertisingList[category]}.png`}
             style={{ width: "100%", height: "100%" }}
           />
         </Grid.Column>

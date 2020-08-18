@@ -30,7 +30,7 @@ export default class User {
     window.location = "/login";
   }
 
-  @action signUp(id, password, name) {
+  @action signUp(password, name) {
     const newUser = {
       key: this.users.length + 1,
       id: `student${this.users.length + 1}`,
