@@ -1,7 +1,5 @@
 import { observable, computed, action } from "mobx";
 import allData from "../../data/allData";
-import main from "../../data/category/main";
-import sub from "../../data/category/sub";
 import clothe from "../../data/clotheData";
 
 export default class ListStore {
@@ -9,7 +7,10 @@ export default class ListStore {
   allData = allData;
 
   @observable
-  mainCategory = "CATCLO";
+  urlParams = [];
+
+  @observable
+  mainCategory = "";
 
   @observable
   subCategory = "";
@@ -20,11 +21,11 @@ export default class ListStore {
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 전체 그릇[]
   @observable
-  resultList = clothe;
+  resultList = [];
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 하나의 그릇{}
   @observable
-  result = clothe[0];
+  result = {};
 
   @computed
   get getResult() {
@@ -38,12 +39,12 @@ export default class ListStore {
 
   @computed
   get getResultList() {
-    console.log("resultlist");
-    return this.resultLIst ? this.resultList.slice("") : [];
+    console.log("resultlist = ", this.resultList.slice(""));
+    return this.resultList ? this.resultList.slice("") : [];
   }
   @computed
   get getMainCategory() {
-    return this.mainCategory ? this.mainCategory : "CATCLO";
+    return this.mainCategory ? this.mainCategory : "";
   }
 
   @computed
@@ -51,12 +52,28 @@ export default class ListStore {
     return this.subCategory ? this.subCategory : "";
   }
 
+  @action
+  setMainCategory(main) {
+    this.mainCategory = main;
+  }
+  @action
+  setSubCategory(sub) {
+    this.subCategory = sub;
+  }
+
   @action //카테고리를 따로 떼는 작업을 하는 함수.
-  setCategoryObject() {
-    console.log("setCategoryObject--", this.mainCategory);
-    this.categoryObject = this.allData.filter((data) => {
-      console.log(`${data.category}-----------categroy:${this.mainCategory}`);
+  setMainCategoryMakeList() {
+    this.resultList = this.allData.filter((data) => {
       if (data.category === this.mainCategory) {
+        return data;
+      }
+    });
+  }
+  @action
+  setSubCategoryMakeList() {
+    console.log("store makelist sub before", this.resultList);
+    this.resultList = this.allData.filter((data) => {
+      if (data.subCategory === this.subCategory) {
         return data;
       }
     });
@@ -68,19 +85,19 @@ export default class ListStore {
     //아직 url로 안받아와서 작동 잘 안함.
     let temp = [];
     let list = [];
-    console.log("filterCategory---!!!!!!", this.categoryObject);
-    temp = this.categoryObject.map((object) =>
-      object[key]===value ? list.push(object) : temp
+    console.log("filterCategory---", this.resultList);
+    temp = this.reulstList.map((object) =>
+      object[key].match(value) ? list.push(object) : temp
     );
     this.resultList = list;
   }
 
   @action
   filterPrice(min, max) {
-    console.log("Store--filterPrice", min, max, this.categoryObject);
+    console.log("Store--filterPrice", min, max, this.resultList);
     let temp = [];
     let list = [];
-    temp = this.categoryObject.map((object) =>
+    temp = this.resultList.map((object) =>
       object.price >= min && object.price <= max ? list.push(object) : temp
     );
     console.log("listStore---filterPrice", list);

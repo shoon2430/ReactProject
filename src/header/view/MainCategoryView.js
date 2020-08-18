@@ -3,6 +3,8 @@ import { Dropdown, Menu } from "semantic-ui-react";
 import main from "../../data/category/main";
 import sub from "../../data/category/sub";
 
+//import MainCategoryBox from "./MainSubCategoryView";
+
 const headerDropdown = {
   marginRight: "30px",
   width: "120px",
@@ -21,18 +23,34 @@ const hearDropdownicon = {
 };
 
 class CategoryView extends Component {
+  innerDrop = () => {
+    let list = [];
+    let subList = [];
+    for (let i = 0; i < main.length; i++) {
+      subList = sub.filter((data) => data.main === main[i].value);
+      console.log("------sublist---", subList);
+      list = list.concat(
+        <Dropdown.Item>
+          {main[i].text}
+          <Dropdown
+            pointing="left"
+            className="link item"
+            options={subList[i].text}
+          />
+        </Dropdown.Item>
+      );
+      return list;
+    }
+  };
   render() {
-    // const mainCategoryList = this.props.mainCategoryList.map(main, key)=>{
-    //   return <Dropdown
-    // }
     return (
       <Dropdown
         icon={hearDropdownicon}
         style={headerDropdown}
-        simple
-        item
-        options={main}
-      ></Dropdown>
+        className="link item"
+      >
+        <Dropdown.Menu>{this.innerDrop()}</Dropdown.Menu>
+      </Dropdown>
     );
   }
 }

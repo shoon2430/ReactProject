@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import StarBox from "../view/StarBox";
+import SubCategoryBox from "../view/SubCategoryBox";
 
 import {
   Input,
@@ -58,14 +59,14 @@ class FilterContainer extends Component {
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
-      this.props.Store.list.setCategoryObject();
+      this.props.Store.list.set();
       this.props.Store.list.filterPrice(min, max);
     }
   };
 
   filterCategory = (rating, i) => {
     console.log("filter!", rating, i);
-    this.props.Store.list.setCategoryObject();
+    this.props.Store.list.setSubCategoryMakeList();
     this.props.Store.list.filterCategory(rating, i);
   };
 
@@ -82,8 +83,13 @@ class FilterContainer extends Component {
 
   render() {
     return (
-      <Container style={{ border: "1px solid black" }}>
+      <Container style={{ marginTop: "20px" }}>
         <Segment>
+          <Header as="h5" style={{ marginTop: "15px" }}>
+            카테고리
+          </Header>
+          <SubCategoryBox main={this.props.Store.list.getMainCategory} />
+          <Divider section />
           <Header as="h5">배송방법</Header>
           <Checkbox
             label={{ children: "무료배송" }}
@@ -96,9 +102,15 @@ class FilterContainer extends Component {
           />
           <Divider section />
           <Header as="h5">상품 상태</Header>
-          <Checkbox label={{ children: "새상품" }} onChange={this.itemNewChange}/>
+          <Checkbox
+            label={{ children: "새상품" }}
+            onChange={this.itemNewChange}
+          />
           <br />
-          <Checkbox label={{ children: "중고상품" }} onChange={this.itmeoldChange} />
+          <Checkbox
+            label={{ children: "중고상품" }}
+            onChange={this.itmeoldChange}
+          />
           <Divider section />
           <Header as="h5">품절된 상품 보지않기</Header>
           <Checkbox toggle name="stockZero" value="1" />
