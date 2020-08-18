@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
+import StarBox from "../view/StarBox";
 
 import {
   Input,
@@ -17,7 +18,7 @@ import {
 @observer
 class FilterContainer extends Component {
   //router 적용시 바꿔줘야할 부분
-  mainCategory = "CATCLO";
+  //mainCategory = "CATCLO";
 
   //
   state = {
@@ -50,26 +51,23 @@ class FilterContainer extends Component {
     }
   };
 
+  filterCategory = (rating, i) => {
+    console.log("filter!", rating, i);
+    this.props.Store.list.setCategoryObject();
+    this.props.Store.list.filterCategory(rating, i);
+  };
+
   filterRating = () => {
     let stars = [];
 
     for (var i = 5; i > 0; i--) {
-      for (var j = 0; j < 5; j++) {
-        stars =
-          i > j
-            ? stars.concat(<Icon name="star" color="yellow" />)
-            : stars.concat(<Icon name="star" color="grey" />);
-      }
-      stars = stars.concat(
-        <span onClick={this.props.Store.list.filterCategory("rating", i)}>
-          {i}점
-        </span>
+      stars.push(
+        <StarBox starFilterCategory={this.filterCategory} starCount={i} />
       );
-      stars = stars.concat(<br />);
     }
-
     return stars;
   };
+
   render() {
     return (
       <Container style={{ border: "1px solid black" }}>

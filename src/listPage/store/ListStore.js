@@ -9,7 +9,7 @@ export default class ListStore {
   allData = allData;
 
   @observable
-  mainCategory = "clothe";
+  mainCategory = "CATCLO";
 
   @observable
   subCategory = "";
@@ -68,9 +68,9 @@ export default class ListStore {
     //아직 url로 안받아와서 작동 잘 안함.
     let temp = [];
     let list = [];
-    console.log("filterCategory---", this.categoryObject);
+    console.log("filterCategory---!!!!!!", this.categoryObject);
     temp = this.categoryObject.map((object) =>
-      object[key].mathch(value) ? list.push(object) : temp
+      object[key]===value ? list.push(object) : temp
     );
     this.resultList = list;
   }
