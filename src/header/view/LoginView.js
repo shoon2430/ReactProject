@@ -24,8 +24,8 @@ class LoginView extends Component {
     return (
       <div style={headerIconBox}>
         <Link style={iconLabel} to="/my">
-          {login !== null && <Icon name="user" size="big" />}
-          {login !== null && (
+          {login !== "null" && <Icon name="user" size="big" />}
+          {login !== "null" && (
             <p style={{ fontSize: "12px", marginTop: "3px" }}>마이몬팡</p>
           )}
         </Link>

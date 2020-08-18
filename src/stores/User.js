@@ -24,6 +24,12 @@ export default class User {
     localStorage.LOGIN = id;
   }
 
+  @action logOut() {
+    this.loginUser = null;
+    localStorage.LOGIN = null;
+    window.location = "/login";
+  }
+
   @action signUp(id, password, name) {
     const newUser = {
       key: this.users.length + 1,

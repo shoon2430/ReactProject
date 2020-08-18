@@ -15,7 +15,11 @@ ReactDOM.render(
     <Provider Store={new CommonStore()}>
       <Route path="/login" component={Login} exact={true} />
       <Route path="/signup" component={SignUp} exact={true} />
-      <Route path={["/", "/detail", "/list"]} component={App} exact={true} />
+      <Route
+        path={["/", "/detail", "/list", "/my"]}
+        component={App}
+        exact={true}
+      />
     </Provider>
   </BrowserRouter>,
   document.getElementById("root")

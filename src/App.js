@@ -22,15 +22,34 @@ const monpangAdvertising = {
   height: "40px",
 };
 
+const loginContainerStyle = {
+  display: "flex",
+  justifyContent: "flex-end",
+};
+
 @inject("Store")
 @observer
 class App extends Component {
   render() {
-    const { page } = this.props.Store;
+    const { user } = this.props.Store;
 
-    // let pageComponent = <MainPage />;
-    // if (page.getPage === "LIST") pageComponent = <ListPage />;
-    // if (page.getPage === "DETAIL") pageComponent = <DetailPage />;
+    const nomalState = (
+      <Container style={loginContainerStyle}>
+        <Label as="a" href="/login">
+          로그인
+        </Label>
+        <Label as="a" href="/signup">
+          회원가입
+        </Label>
+      </Container>
+    );
+
+    const loginState = (
+      <Container style={loginContainerStyle}>
+        <Label>{user.getLoginUser}(님)</Label>
+        <Label onClick={() => user.logOut()}>로그아웃</Label>
+      </Container>
+    );
 
     return (
       <>
@@ -39,24 +58,13 @@ class App extends Component {
           X
         </div>
         <div className="monpangBanner" style={monpangBanner}>
-          <Container
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            <Label as="a" href="/login">
-              로그인
-            </Label>
-            <Label as="a" href="/signup">
-              회원가입
-            </Label>
-          </Container>
+          {user.getLoginUser !== "null" ? loginState : nomalState}
           {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
         </div>
 
         <Container>
           <Header />
+          <Route path="/my" component={MainPage} exact={true} />
           <Route path="/" component={MainPage} exact={true} />
           <Route path="/list" component={ListPage} exact={true} />
           <Route path="/detail" component={DetailPage} exact={true} />

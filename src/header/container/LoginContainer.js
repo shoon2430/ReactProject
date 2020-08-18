@@ -7,9 +7,8 @@ import { observer, inject } from "mobx-react";
 class LoginContainer extends Component {
   render() {
     const { user } = this.props.Store;
-    console.log(user);
     const loginUser = user.getLoginUser;
-    console.log(loginUser);
+
     return <LoginView login={loginUser} />;
   }
 }
