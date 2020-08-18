@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Icon } from "semantic-ui-react";
+// import { Slide } from "react-slideshow-image";
+// import "react-slideshow-image/dist/styles.css";
 import "./BestDiscountItem.css";
+
+// const slideImages = [
+//   "images/mainPage/page1.png",
+//   "images/mainPage/page2.png",
+//   "images/mainPage/page3.png",
+//   "images/mainPage/page4.png",
+// ];
 
 const angle = {
   display: "flex",
@@ -34,6 +43,7 @@ class BestDiscountImage extends Component {
     const { Background, changeBackground, left, right } = this.props;
     const { animate } = this.state;
     const animation = animate ? "fadeIn" : "fadeOut";
+
     setTimeout(() => {
       changeBackground(right);
     }, 3000);

@@ -24,7 +24,7 @@ class Item extends Component {
     const { item } = this.props;
     return (
       <Table.Cell textAlign="center">
-        <Card style={{ width: "190px" }} as="a">
+        <Card style={{ width: "190px" }} as="a" href={`/detail?id=${item.id}`}>
           <Image src={item.imgUrl} style={imageStyle} />
           <Card.Content>
             <Card.Description style={cardStyle}>

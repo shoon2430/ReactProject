@@ -12,9 +12,8 @@ class DetailPage extends Component {
     return (
       <div>
         {/* <div style={example} /> */}
-        <ItemInfoContainer/> 
+        <ItemInfoContainer />
         <SameCategoryItemContainer />
-        
       </div>
     );
   }

@@ -3,31 +3,44 @@ import { inject, observer } from "mobx-react";
 import ItemInfoView from "../view/ItemInfoView";
 import { Icon } from "semantic-ui-react";
 
+import qs from "qs";
+import { withRouter } from "react-router-dom";
+
 @inject("Store")
 @observer
 class ItemInfoContainer extends Component {
   starCount = (rating) => {
     let start = [];
     for (var i = 0; i < rating; i++) {
-      start = start.concat(<Icon name="star" color="yellow" size="large"/>);
+      start = start.concat(<Icon name="star" color="yellow" size="large" />);
     }
     for (var j = 0; j < 5 - rating; j++) {
-      start = start.concat(<Icon name="star" color="grey" size="large"/>);
+      start = start.concat(<Icon name="star" color="grey" size="large" />);
     }
     return start;
   };
 
   movePage = (e) => {
     this.props.Store.page.moveToPage(e);
-  };  
+  };
 
   render() {
+    const searchObj = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+
     const { detail } = this.props.Store;
+    detail.setSelectItem(searchObj.id);
+
     // const { selectItem } = this.props.DetailPageStore;
     return (
-      <ItemInfoView selectItem={detail.selectItem} star={this.starCount} goHome={this.movePage}/>
+      <ItemInfoView
+        selectItem={detail.selectItem}
+        star={this.starCount}
+        goHome={this.movePage}
+      />
     );
   }
 }
 
-export default ItemInfoContainer;
+export default withRouter(ItemInfoContainer);
