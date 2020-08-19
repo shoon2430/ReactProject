@@ -42,7 +42,6 @@ const Login = inject("Store")(
     const login = () => {
       if (validCheck()) {
         Store.user.login(id);
-        alert("로그인 성공");
         window.location = "/";
       }
     };

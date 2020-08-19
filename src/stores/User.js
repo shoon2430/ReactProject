@@ -19,6 +19,13 @@ export default class User {
     return this.loginUser ? this.loginUser : null;
   }
 
+  @computed get loginUserInfo() {
+    const userInfo = this.users.find(
+      (user) => String(user.id) === String(this.loginUser)
+    );
+    return { ...userInfo };
+  }
+
   @action login(id) {
     this.loginUser = id;
     localStorage.LOGIN = id;
