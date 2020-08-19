@@ -48,19 +48,21 @@ class NewItems extends Component {
 
     return (
       <div>
-        <Message style={{ width: "200px" }}>
-          <Message.Header
-            style={{
-              textAlign: "center",
-              fontSize: "23px",
-              marginTop: "10px",
-              marginBottom: "20px",
-            }}
-          >
-            최근 본 항목
-          </Message.Header>
-          {newItemListComponent}
-        </Message>
+        {newItemListComponent !== "" && (
+          <Message style={{ width: "200px" }}>
+            <Message.Header
+              style={{
+                textAlign: "center",
+                fontSize: "23px",
+                marginTop: "10px",
+                marginBottom: "20px",
+              }}
+            >
+              최근 본 항목
+            </Message.Header>
+            {newItemListComponent}
+          </Message>
+        )}
       </div>
     );
   }

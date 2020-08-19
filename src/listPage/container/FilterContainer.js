@@ -20,6 +20,14 @@ import {
 @inject("Store")
 @observer
 class FilterContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      suirChecked: false,
+    };
+  }
+
   //카테고리 파라미터 체크
   setCategory = () => {
     const paramObj = qs.parse(this.props.location.search, {
@@ -74,10 +82,22 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
+<<<<<<< HEAD
+
+  // 토클값 변화
+  stockZero = (e) => {
+    const toggleState = this.state.suirChecked;
+    this.setState({ suirChecked: !toggleState });
+
+    if (!toggleState) this.filterNotCategory("stock", 0);
+    else this.filterNotCategory("stock", -1); //전체
+  };
+
+=======
   stockZero = (e) => {};
+>>>>>>> c8ee4fee1041a0316f5de1e4dc9ff4c6932801b5
   //
   filterPrice = (min, max) => {
-    console.log("filterPrice", min, max);
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
@@ -87,10 +107,13 @@ class FilterContainer extends Component {
     }
   };
 
-  filterCategory = (rating, i) => {
-    console.log("filter!", rating, i);
-    console.log(this.props.Store.getMainCategory);
+  filterNotCategory = (rating, i) => {
+    this.setCategory();
+    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
+    this.props.Store.list.filterNotCategory(rating, i);
+  };
 
+  filterCategory = (rating, i) => {
     this.setCategory();
     // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterCategory(rating, i);
@@ -108,6 +131,8 @@ class FilterContainer extends Component {
   };
 
   render() {
+    const sideFilters = this.props.Store.list.getSideFilterList;
+    console.log(sideFilters);
     return (
       <Container style={{ marginTop: "20px" }}>
         <Segment>
@@ -139,7 +164,11 @@ class FilterContainer extends Component {
           />
           <Divider section />
           <Header as="h5">품절된 상품 보지않기</Header>
-          <Checkbox toggle name="stockZero" value="1" />
+          <Checkbox
+            toggle
+            checked={this.state.suirChecked}
+            onChange={this.stockZero}
+          />
           <Divider section />
           <Header as="h5">가격 범위</Header>
           최소 :

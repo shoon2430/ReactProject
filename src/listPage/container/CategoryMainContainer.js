@@ -62,6 +62,23 @@ class CategoryMainContainer extends Component {
 
   resultbox = (objectlist) => {
     const result = objectlist.map((item) => {
+
+  render() {
+    let items = this.props.Store.list.getResultList;
+
+    
+    const resultList = items.slice(
+      (this.state.page - 1) * 16,
+      this.state.page * 16
+    );
+
+    let totalPage = Math.floor(items.length / 16);
+
+    if (items.length % 16) {
+      totalPage += 1;
+    }
+
+    const results = resultList.map((item) => {
       return (
         <Grid.Column key={item.id}>
           <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
