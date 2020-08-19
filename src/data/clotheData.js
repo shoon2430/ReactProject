@@ -1,4 +1,5 @@
-export default [{"id":200,"category":"CATCLO","subCategory":"CLOWOM","name":"델라왕 여성용 엔젤 자수레이스 긴팔 블라우스","imgUrl":"images/clothe/200.png","stock":60,"discount":20,"price":56900,"rating":3,"sale":253,"delivery":0,"status":1},
+export default [
+    {"id":200,"category":"CATCLO","subCategory":"CLOWOM","name":"델라왕 여성용 엔젤 자수레이스 긴팔 블라우스","imgUrl":"images/clothe/200.png","stock":60,"discount":20,"price":56900,"rating":3,"sale":253,"delivery":0,"status":1},
 {"id":201,"category":"CATCLO","subCategory":"CLOWOM","name":"뉴욕멋쟁이 리버 브이 플리츠 롱원피스","imgUrl":"images/clothe/201.png","stock":30,"discount":70,"price":62400,"rating":5,"sale":283,"delivery":1,"status":0},
 {"id":202,"category":"CATCLO","subCategory":"CLOWOM","name":"엔비룩 단추 에코 반팔 원피스","imgUrl":"images/clothe/202.png","stock":8,"discount":40,"price":8500,"rating":2,"sale":209,"delivery":1,"status":1},
 {"id":203,"category":"CATCLO","subCategory":"CLOWOM","name":"하늘바라기 A라인 뷔스티에 롱 원피스","imgUrl":"images/clothe/203.png","stock":79,"discount":30,"price":47500,"rating":1,"sale":204,"delivery":0,"status":1},

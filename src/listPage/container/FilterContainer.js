@@ -51,7 +51,9 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
+stockZero=(e)=>{
 
+}
   //
   filterPrice = (min, max) => {
     console.log("filterPrice", min, max);
