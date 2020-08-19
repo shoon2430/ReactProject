@@ -90,7 +90,6 @@ class FilterContainer extends Component {
     else this.filterNotCategory("stock", -1); //전체
   };
 
-  stockZero = (e) => {};
   //
   filterPrice = (min, max) => {
     if (min === "" || max === "") {
