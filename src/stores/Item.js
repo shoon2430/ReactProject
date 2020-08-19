@@ -1,6 +1,8 @@
 import { observable, computed, action } from "mobx";
 import allData from "../data/allData";
 
+localStorage.NEW = localStorage.NEW ? localStorage.NEW : JSON.stringify([]);
+
 export default class Item {
   /*
   아이템 관련 Store
@@ -25,6 +27,28 @@ export default class Item {
 
   // 검색어
   @observable searchWord = null;
+
+  @observable newSearchItems = localStorage.NEW
+    ? JSON.parse(localStorage.NEW)
+    : JSON.stringify([]);
+
+  @computed get getNewSearchItems() {
+    console.log(this.newSearchItems);
+    return this.newSearchItems ? this.newSearchItems.slice("") : [];
+  }
+
+  @action addNewSearchItems(newItem) {
+    const itemCheck = this.newSearchItems.find(
+      (item) => item.id === newItem.id
+    );
+
+    // 동일한 아이템이없으면
+    if (!itemCheck) {
+      this.newSearchItems.unshift(newItem);
+      this.newSearchItems = this.newSearchItems.slice(0, 3);
+      localStorage.NEW = JSON.stringify(this.newSearchItems);
+    }
+  }
 
   // 전체 아이템 조회
   @computed get getItems() {

@@ -10,6 +10,7 @@ import DetailPage from "./detailPage/DetailPage";
 import Footer from "./footer/Footer";
 import MyMonpang from "./user/container/MyMonpangContainer";
 import BasketList from "./user/container/BasketListContainer";
+import NewItems from "./header/NewItems";
 
 import { Container } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
@@ -56,6 +57,18 @@ class App extends Component {
         <div className="monpangBanner" style={monpangBanner}>
           {user.getLoginUser !== "null" ? loginState : nomalState}
           {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
+        </div>
+        <div
+          style={{
+            width: "150px",
+            position: "fixed",
+
+            top: "13%",
+            left: "81%",
+            zIndex: "10",
+          }}
+        >
+          <NewItems />
         </div>
 
         <Container>
