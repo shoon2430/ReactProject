@@ -8,12 +8,15 @@ class SearchContainer extends Component {
   state = {
     inputText: "",
     selectOption: "",
+    optName: "전체",
   };
 
-  selectOpt = (value) => {
+  selectOpt = (value, name) => {
     this.setState({
       selectOption: value,
+      optName: name,
     });
+    console.log(">>>>", this.state.selectOption, this.state.optName);
   };
 
   onInputText = (e) => {
@@ -38,6 +41,8 @@ class SearchContainer extends Component {
         onSearch={this.onSearch}
         onInputText={this.onInputText}
         selectOpt={this.selectOpt}
+        optName={this.state.optName}
+        // selectOption={this.state.selectOption}
       />
     );
   }
