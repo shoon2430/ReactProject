@@ -39,7 +39,7 @@ class ResultContainer extends Component {
     const results = resultList.map((item) => {
       return (
         <Grid.Column key={item.id}>
-          <Card color="#f5e5d5" as="a">
+          <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
             <Card.Content>
               <Image src={item.imgUrl} style={imageSize} />
               <Card.Header
@@ -85,7 +85,7 @@ class ResultContainer extends Component {
                 attached
                 internal
                 position="left"
-                style={{ top: "2%", left: "-8px" }}
+                style={{ top: "3%", left: "-8px" }}
               >
                 <Label style={railDiscount}>{item.discount}%</Label>
               </Rail>
@@ -108,8 +108,7 @@ class ResultContainer extends Component {
           content="검색결과"
           style={{ marginTop: "10px" }}
         />
-        <Grid.Row columns={4}>{results.slice(0, 4)}</Grid.Row>
-        <Grid.Row columns={4}>{results.slice(4, 8)}</Grid.Row>
+        <Grid.Row columns={4}>{results}</Grid.Row>
       </Grid>
     );
   }

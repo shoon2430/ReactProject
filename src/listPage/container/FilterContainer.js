@@ -47,7 +47,7 @@ class FilterContainer extends Component {
   };
   nofreeChange = (e) => {
     this.setState({
-      deliver: e.target.value,
+      delivery: e.target.value,
     });
     //alert(this.state.max);
   };
@@ -85,7 +85,7 @@ class FilterContainer extends Component {
       <Container style={{ marginTop: "20px" }}>
         <Segment>
           <Header as="h5" style={{ marginTop: "15px" }}>
-            카테고리
+            카테고리 상세
           </Header>
           <SubCategoryBox main={this.props.Store.list.getMainCategory} />
           <Divider section />
