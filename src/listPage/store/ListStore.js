@@ -14,13 +14,9 @@ export default class ListStore {
   @observable
   subCategory = "";
 
-  //카테고리가 선택됐을때 따로 빼놓는 object
-  @observable
-  categoryObject = [];
-
   //필터를 거쳐서 뷰에 뿌려질때 담는 전체 그릇[]
   @observable
-  resultList = allData;
+  resultList = [];
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 하나의 그릇{}
   @observable
@@ -94,7 +90,7 @@ export default class ListStore {
   filterPrice(min, max) {
     let temp = [];
     let list = [];
-    temp = this.resultList.map((item) => {
+    temp = this.getResultList.map((item) => {
       const fixPrice = item.price * (100 - item.discount) * 0.01;
       return fixPrice >= min && fixPrice <= max ? list.push(item) : temp;
     });
