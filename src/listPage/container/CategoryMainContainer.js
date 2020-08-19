@@ -56,8 +56,22 @@ class CategoryMainContainer extends Component {
     this.setState({ page: e.target.getAttribute("value") });
   };
 
+  sideFilterCategory(items, key, value) {
+    return items.filter((object) => object[key] === value);
+  }
+
   render() {
-    const items = this.props.Store.list.getResultList;
+    let items = this.props.Store.list.getResultList;
+
+    // 적용된 사이드 필터 가져오기
+    const sideFilters = this.props.Store.list.getSideFilterList;
+    console.log(sideFilters);
+    // 필터가 적용된 경우
+    if (sideFilters.length > 0) {
+      items = sideFilters.map((filter) =>
+        this.sideFilterCategory(items, filter.key, filter.value)
+      );
+    }
 
     console.log(items);
     const resultList = items.slice(

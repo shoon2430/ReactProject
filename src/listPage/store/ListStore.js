@@ -26,6 +26,24 @@ export default class ListStore {
   @observable
   result = {};
 
+  @observable
+  sideFilterList = [];
+
+  @computed
+  get getSideFilterList() {
+    return this.sideFilterList ? this.sideFilterList.slice("") : [];
+  }
+
+  @action
+  addSideFilterList(filter) {
+    this.sideFilterList = this.sideFilterList.concat(filter);
+  }
+
+  @action
+  removeSideFilterList(filter) {
+    this.sideFilterList = this.sideFilterList.filter((chk) => chk !== filter);
+  }
+
   @computed
   get getResult() {
     return this.result ? { ...this.result } : {};
@@ -41,6 +59,12 @@ export default class ListStore {
     console.log("resultlist = ", this.resultList.slice(""));
     return this.resultList ? this.resultList.slice("") : [];
   }
+
+  @action
+  setResultList(list) {
+    this.resultList = list;
+  }
+
   @computed
   get getMainCategory() {
     return this.mainCategory ? this.mainCategory : "";
@@ -86,6 +110,18 @@ export default class ListStore {
     let list = [];
     temp = this.getResultList.map((object) =>
       object[key] === value ? list.push(object) : temp
+    );
+    this.resultList = list;
+  }
+
+  @action
+  filterNotCategory(key, value) {
+    //멤인카테고리를 먼저 스테터스에 저장을 해야 돌아가는 함수임..
+    //아직 url로 안받아와서 작동 잘 안함.
+    let temp = [];
+    let list = [];
+    temp = this.getResultList.map((object) =>
+      object[key] !== value ? list.push(object) : temp
     );
     this.resultList = list;
   }
