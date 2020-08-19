@@ -43,6 +43,9 @@ class FilterContainer extends Component {
     max: "",
   };
   //
+
+
+
   minChange = (e) => {
     this.setState({
       min: e.target.value,
@@ -71,9 +74,7 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
-stockZero=(e)=>{
-
-}
+  stockZero = (e) => {};
   //
   filterPrice = (min, max) => {
     console.log("filterPrice", min, max);
