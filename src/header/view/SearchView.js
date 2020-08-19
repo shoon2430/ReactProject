@@ -4,12 +4,6 @@ import main from "../../data/category/main";
 import sub from "../../data/category/sub";
 import { Link } from "react-router-dom";
 
-// const options = [
-//   { key: "all", text: "All", value: "all" },
-//   { key: "articles", text: "Articles", value: "articles" },
-//   { key: "products", text: "Products", value: "products" },
-// ];
-
 const headerInput = {
   width: "64%",
   height: "50px",
@@ -27,20 +21,20 @@ const headerSearchButton = {
 };
 
 class SearchView extends Component {
-  
-
-  
   render() {
-    const { onInputText, onSearch,selectOpt } = this.props;
+    const { onInputText, onSearch, selectOpt, optName } = this.props;
 
-
-    let optList = [{ key: 0, text: "All", value: "All" }];
+    let optList = [{ key: 0, text: "전체", value: "" }];
     main.map((obj) => optList.push(obj));
-    let dropList=optList.map((data)=>{
-    return(
-      <Dropdown.Item text={data.text} onClick={()=>selectOpt(data.value)}></Dropdown.Item>
-    )});
 
+    let dropList = optList.map((data) => {
+      return (
+        <Dropdown.Item
+          text={data.text}
+          onClick={() => selectOpt(data.value, data.text)}
+        ></Dropdown.Item>
+      );
+    });
 
     return (
       <Input
@@ -51,15 +45,13 @@ class SearchView extends Component {
         onChange={(e) => onInputText(e)}
       >
         <Label style={headerInputDropbox} basic>
-
-          <Dropdown>
-            <Dropdown.Menu>
-             {dropList}
-            </Dropdown.Menu>
+          <Dropdown text={optName} style={{ width: "120px" }} fluid>
+            <Dropdown.Menu>{dropList}</Dropdown.Menu>
           </Dropdown>
         </Label>
         <input />
         <Button
+          basic
           icon="search"
           style={headerSearchButton}
           onClick={() => onSearch()}

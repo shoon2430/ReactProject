@@ -25,9 +25,41 @@ class CategoryLineContainer extends Component {
   setCategoryLine = (urlParams) => {
     var mainCategory = {};
     var subCategory = {};
-    if (!urlParams.category && !urlParams.subCategory && !urlParams.id) {
+    if (
+      !urlParams.category &&
+      !urlParams.subCategory &&
+      !urlParams.id &&
+      !urlParams.search
+    ) {
       console.log("메인x 서브x id x");
       return "》　전체검색";
+    } else if (
+      !urlParams.category &&
+      !urlParams.subCategory &&
+      !urlParams.id &&
+      urlParams.search
+    ) {
+      console.log("메인x 서브x id x search o");
+      return "》　[" + urlParams.search + "]　검색";
+    } else if (
+      urlParams.category &&
+      !urlParams.subCategory &&
+      !urlParams.id &&
+      urlParams.search
+    ) {
+      console.log("메인x 서브x id x search o");
+      mainCategory = main.find((data) => data.value === urlParams.category);
+      this.props.Store.list.setMainCategory(mainCategory.value);
+      this.props.Store.list.setMainCategoryMakeList();
+
+      return (
+        <div>
+          <a href={`/list?category=${mainCategory.value}`}>
+            》　{mainCategory.text}
+          </a>
+          　-　"{urlParams.search}"　검색
+        </div>
+      );
     } else if (!urlParams.category && !urlParams.subCategory && urlParams.id) {
       console.log("메인 x 서브x 아이디o");
       let item = this.props.Store.detail.getSelectItem;
