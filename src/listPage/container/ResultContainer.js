@@ -104,6 +104,22 @@ class ResultContainer extends Component {
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   &nbsp;원
                 </span>
+                <span
+                  style={{
+                    margin: "0 left",
+
+                    float: "right",
+                  }}
+                >
+                  {item.delivery === 1 ? (
+                    <span style={{ font: "5px" }}>
+                      <Icon name="shipping fast"></Icon>무료배송
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </span>
+                　
               </Card.Content>
 
               <Rail
