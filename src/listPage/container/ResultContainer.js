@@ -39,25 +39,26 @@ class ResultContainer extends Component {
     const results = resultList.map((item) => {
       return (
         <Grid.Column key={item.id}>
-          <Card color="#f5e5d5" as="a">
+          <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
             <Card.Content>
+              <Image src={item.imgUrl} style={imageSize} />
               <Card.Header
                 style={{
                   whiteSpace: "nowrap",
                   overflow: "hidden",
                   textOverflow: "ellipsis",
+                  fontSize: "17px",
+                  paddingTop: "7px",
                 }}
               >
                 {item.name}
               </Card.Header>
-
-              <Image src={item.imgUrl} style={imageSize} />
               <Card.Meta>
                 <span
                   style={{
                     textDecoration: "line-through",
                     textDecorationColor: "gray",
-                    fontSize: "15px",
+                    fontSize: "13px",
                     fontColor: "gray",
                   }}
                 >
@@ -66,7 +67,13 @@ class ResultContainer extends Component {
                 </span>
               </Card.Meta>
               <Card.Content>
-                <span style={{ color: "black", fontWeight: "bold" }}>
+                <span
+                  style={{
+                    color: "black",
+                    fontWeight: "bold",
+                    fontSize: "15px;",
+                  }}
+                >
                   {(item.price * (100 - item.discount) * 0.01)
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -78,7 +85,7 @@ class ResultContainer extends Component {
                 attached
                 internal
                 position="left"
-                style={{ top: "13%", left: "10px" }}
+                style={{ top: "3%", left: "-8px" }}
               >
                 <Label style={railDiscount}>{item.discount}%</Label>
               </Rail>
@@ -101,8 +108,7 @@ class ResultContainer extends Component {
           content="검색결과"
           style={{ marginTop: "10px" }}
         />
-        <Grid.Row columns={4}>{results.slice(0, 4)}</Grid.Row>
-        <Grid.Row columns={4}>{results.slice(4, 8)}</Grid.Row>
+        <Grid.Row columns={4}>{results}</Grid.Row>
       </Grid>
     );
   }

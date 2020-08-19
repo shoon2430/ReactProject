@@ -14,6 +14,7 @@ class BestDiscountContainer extends Component {
   render() {
     const { main, item } = this.props.Store;
     const bestDiscountItems = item.getBestDiscounteItems;
+
     return (
       <div>
         <BestDiscountImage
