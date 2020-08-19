@@ -39,7 +39,6 @@ export default class Item {
     : JSON.stringify([]);
 
   @computed get getNewSearchItems() {
-    console.log(this.newSearchItems);
     return this.newSearchItems ? this.newSearchItems.slice("") : [];
   }
 

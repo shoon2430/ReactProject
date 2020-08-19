@@ -117,7 +117,6 @@ export default class User {
       this.users = newUsers;
       localStorage.DB = JSON.stringify(newUsers);
     } else {
-      console.log(this.localBasket);
       this.localBasket = this.localBasket.filter((item) => item[0] !== id);
       localStorage.BASKET = JSON.stringify(this.localBasket);
     }

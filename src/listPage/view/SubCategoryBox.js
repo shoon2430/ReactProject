@@ -7,7 +7,7 @@ class SubCategoryBox extends Component {
     const { main } = this.props;
     let list = [];
     let subCategoryList = sub.filter((data) => data.main === main);
-    console.log("subcateList", subCategoryList);
+
     for (var i = 0; i < subCategoryList.length; i++) {
       list = list.concat(
         <List.Item

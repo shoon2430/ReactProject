@@ -9,7 +9,7 @@ const priceStyle = {
 class BasketList extends Component {
   render() {
     const { shoppingItem, buyCount, onRemoveBasketItem } = this.props;
-    console.log(onRemoveBasketItem);
+
     return (
       <Item>
         <Item.Image size="tiny" src={shoppingItem.imgUrl} />

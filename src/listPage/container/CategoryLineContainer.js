@@ -31,7 +31,7 @@ class CategoryLineContainer extends Component {
       !urlParams.id &&
       !urlParams.search
     ) {
-      console.log("메인x 서브x id x");
+      // console.log("메인x 서브x id x");
       return "》　전체검색";
     } else if (
       !urlParams.category &&
@@ -39,7 +39,7 @@ class CategoryLineContainer extends Component {
       !urlParams.id &&
       urlParams.search
     ) {
-      console.log("메인x 서브x id x search o");
+      // console.log("메인x 서브x id x search o");
       return "》　[" + urlParams.search + "]　검색";
     } else if (
       urlParams.category &&
@@ -47,7 +47,7 @@ class CategoryLineContainer extends Component {
       !urlParams.id &&
       urlParams.search
     ) {
-      console.log("메인x 서브x id x search o");
+      // console.log("메인x 서브x id x search o");
       mainCategory = main.find((data) => data.value === urlParams.category);
       this.props.Store.list.setMainCategory(mainCategory.value);
       this.props.Store.list.setMainCategoryMakeList();
@@ -61,7 +61,7 @@ class CategoryLineContainer extends Component {
         </div>
       );
     } else if (!urlParams.category && !urlParams.subCategory && urlParams.id) {
-      console.log("메인 x 서브x 아이디o");
+      // console.log("메인 x 서브x 아이디o");
       let item = this.props.Store.detail.getSelectItem;
       let code = item.category; //"CATCLO"
       mainCategory = main.find((data) => data.value === code);
@@ -74,7 +74,7 @@ class CategoryLineContainer extends Component {
       }
       return this.categoryDiv(mainCategory, subCategory);
     } else if (urlParams.category && urlParams.subCategory && !urlParams.id) {
-      console.log("메인o 서브o id x", urlParams);
+      // console.log("메인o 서브o id x", urlParams);
       mainCategory = main.find((data) => data.value === urlParams.category);
       this.props.Store.list.setMainCategory(mainCategory.value);
       this.props.Store.list.setMainCategoryMakeList();
@@ -85,7 +85,7 @@ class CategoryLineContainer extends Component {
 
       return this.categoryDiv(mainCategory, subCategory);
     } else if (urlParams.category && !urlParams.subCategory && !urlParams.id) {
-      console.log("메인o 서브x id x");
+      // console.log("메인o 서브x id x");
       mainCategory = main.find((data) => data.value === urlParams.category);
       this.props.Store.list.setMainCategory(mainCategory.value);
       this.props.Store.list.setMainCategoryMakeList();

@@ -34,7 +34,6 @@ export default class ListStore {
 
   @computed
   get getResultList() {
-    console.log("resultlist = ", this.resultList.slice(""));
     return this.resultList ? this.resultList.slice("") : [];
   }
 

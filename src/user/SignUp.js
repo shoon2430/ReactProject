@@ -57,7 +57,6 @@ const SignUp = inject("Store")(
       }
     };
 
-    console.log(Store.user);
     return (
       <Grid
         textAlign="center"

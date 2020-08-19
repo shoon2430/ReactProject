@@ -32,8 +32,6 @@ class MyMonpangContainer extends Component {
       );
     });
 
-    console.log(buyPrice);
-
     return (
       <div>
         <Header as="h2" style={{ margin: "35px" }}>
