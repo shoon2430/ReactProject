@@ -20,7 +20,7 @@ export default class ListStore {
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 전체 그릇[]
   @observable
-  resultList = [];
+  resultList = allData;
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 하나의 그릇{}
   @observable
@@ -99,5 +99,13 @@ export default class ListStore {
       return fixPrice >= min && fixPrice <= max ? list.push(item) : temp;
     });
     this.resultList = list;
+  }
+
+  // 키워드 검색
+  @action
+  keywordSearch(keyword) {
+    this.resultList = this.resultList.filter((data) =>
+      data.name.match(keyword)
+    );
   }
 }
