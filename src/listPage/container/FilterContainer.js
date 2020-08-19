@@ -25,6 +25,10 @@ class FilterContainer extends Component {
 
     this.state = {
       suirChecked: false,
+      deliveryFree: false,
+      deliveryNoFree: false,
+      itemNew: false,
+      itemOld: false,
     };
   }
 
@@ -65,20 +69,69 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
-  freeChange = (e) => {
-    console.log(e.target.textContent);
 
+  freeChange = () => {
+    // 기본값 false
+    const deliveryState = this.state.deliveryFree;
     this.setState({
-      delivery: e.target.value,
+      deliveryFree: !deliveryState,
     });
 
-    //alert(this.state.max);
+    if (this.state.deliveryNoFree)
+      this.setState({
+        deliveryNoFree: false,
+      });
+
+    if (!deliveryState) this.filterNotCategory("delivery", 0);
+    else this.filterNotCategory("delivery", -1); //전체
   };
-  nofreeChange = (e) => {
+
+  freeNoChange = () => {
+    // 기본값 false
+    const deliveryState = this.state.deliveryNoFree;
     this.setState({
-      delivery: e.target.value,
+      deliveryNoFree: !deliveryState,
     });
-    //alert(this.state.max);
+
+    if (this.state.deliveryFree)
+      this.setState({
+        deliveryFree: false,
+      });
+
+    if (!deliveryState) this.filterNotCategory("delivery", 1);
+    else this.filterNotCategory("delivery", -1); //전체
+  };
+
+  itemNewChange = () => {
+    // 기본값 false
+    const itemState = this.state.itemNew;
+    this.setState({
+      itemNew: !itemState,
+    });
+
+    if (this.state.itemOld)
+      this.setState({
+        itemOld: false,
+      });
+
+    if (!itemState) this.filterNotCategory("status", 0);
+    else this.filterNotCategory("status", -1); //전체
+  };
+
+  itemOldChange = () => {
+    // 기본값 false
+    const itemState = this.state.itemOld;
+    this.setState({
+      itemOld: !itemState,
+    });
+
+    if (this.state.itemNew)
+      this.setState({
+        itemNew: false,
+      });
+
+    if (!itemState) this.filterNotCategory("status", 1);
+    else this.filterNotCategory("status", -1); //전체
   };
 
   // 토클값 변화
@@ -90,26 +143,22 @@ class FilterContainer extends Component {
     else this.filterNotCategory("stock", -1); //전체
   };
 
-  //
   filterPrice = (min, max) => {
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
       this.setCategory();
-      // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
       this.props.Store.list.filterPrice(min, max);
     }
   };
 
   filterNotCategory = (rating, i) => {
     this.setCategory();
-    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterNotCategory(rating, i);
   };
 
   filterCategory = (rating, i) => {
     this.setCategory();
-    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterCategory(rating, i);
   };
 
@@ -125,8 +174,6 @@ class FilterContainer extends Component {
   };
 
   render() {
-    const sideFilters = this.props.Store.list.getSideFilterList;
-    console.log(sideFilters);
     return (
       <Container style={{ marginTop: "20px" }}>
         <Segment>
@@ -138,23 +185,27 @@ class FilterContainer extends Component {
           <Header as="h5">배송방법</Header>
           <Checkbox
             label={{ children: "무료배송" }}
-            onChange={this.freeChange}
+            onClick={this.freeChange}
+            checked={this.state.deliveryFree}
           />
           <br />
           <Checkbox
             label={{ children: "유료배송" }}
-            onChange={this.noFreeChange}
+            onClick={this.freeNoChange}
+            checked={this.state.deliveryNoFree}
           />
           <Divider section />
           <Header as="h5">상품 상태</Header>
           <Checkbox
             label={{ children: "새상품" }}
             onChange={this.itemNewChange}
+            checked={this.state.itemNew}
           />
           <br />
           <Checkbox
             label={{ children: "중고상품" }}
-            onChange={this.itmeoldChange}
+            onChange={this.itemOldChange}
+            checked={this.state.itemOld}
           />
           <Divider section />
           <Header as="h5">품절된 상품 보지않기</Header>

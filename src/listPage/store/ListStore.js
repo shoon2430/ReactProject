@@ -16,29 +16,11 @@ export default class ListStore {
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 전체 그릇[]
   @observable
-  resultList = [];
+  resultList = allData;
 
   //필터를 거쳐서 뷰에 뿌려질때 담는 하나의 그릇{}
   @observable
   result = {};
-
-  @observable
-  sideFilterList = [];
-
-  @computed
-  get getSideFilterList() {
-    return this.sideFilterList ? this.sideFilterList.slice("") : [];
-  }
-
-  @action
-  addSideFilterList(filter) {
-    this.sideFilterList = this.sideFilterList.concat(filter);
-  }
-
-  @action
-  removeSideFilterList(filter) {
-    this.sideFilterList = this.sideFilterList.filter((chk) => chk !== filter);
-  }
 
   @computed
   get getResult() {
@@ -54,11 +36,6 @@ export default class ListStore {
   get getResultList() {
     console.log("resultlist = ", this.resultList.slice(""));
     return this.resultList ? this.resultList.slice("") : [];
-  }
-
-  @action
-  setResultList(list) {
-    this.resultList = list;
   }
 
   @computed

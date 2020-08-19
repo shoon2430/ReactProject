@@ -36,7 +36,7 @@ class Item extends Component {
               <b style={{ color: "RoyalBlue" }}>
                 {item.delivery === 1 ? (
                   <Icon name="truck" style={{ marginLeft: "5px" }}>
-                    당일배송
+                    무료배송
                   </Icon>
                 ) : (
                   ""
