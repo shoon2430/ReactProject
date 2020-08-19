@@ -30,6 +30,7 @@ class Category extends Component {
     const color = this.props.color;
 
     // 임시로 데이터
+    const mainCode = ["CATFOO", "CATELE", "CATCLO"];
     const mainText = ["식품", "디지털", "패션"];
     const hotKeywords = [
       ["과일", "음료", "과자", "가공식품", "건강식품"],
@@ -39,6 +40,8 @@ class Category extends Component {
 
     const label = hotKeywords[categoryNumber].map((key) => (
       <Label
+        as="a"
+        href={`/list?search=${key}`}
         style={{ ...labelStyle, color: color, border: `solid ${color} 1px` }}
       >
         #{key}
@@ -50,7 +53,12 @@ class Category extends Component {
         <Header style={{ ...headerStyle, color: color }}>
           {mainText[categoryNumber]}
           <br />
-          <b style={{ fontSize: "15px", color: "black" }}>바로가기</b>
+          <a
+            style={{ fontSize: "15px", color: "black" }}
+            href={`/list?category=${mainCode[categoryNumber]}`}
+          >
+            바로가기
+          </a>
         </Header>
         <div
           style={{
