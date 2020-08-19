@@ -9,15 +9,27 @@ import { inject, observer } from "mobx-react";
 @inject("Store")
 @observer
 class CategoryLineContainer extends Component {
+  categoryDiv = (mainCategory, subCategory) => (
+    <div>
+      <a href={`/list?category=${mainCategory.value}`}>
+        》　{mainCategory.text}　-　
+      </a>
+      <a
+        href={`/list?category=${mainCategory.value}&subCategory=${subCategory.value}`}
+      >
+        {subCategory.text}
+      </a>
+    </div>
+  );
+
   setCategoryLine = (urlParams) => {
     var mainCategory = {};
     var subCategory = {};
-    if (
-      (urlParams.category === "" || urlParams.category === undefined) &&
-      (urlParams.id === "" || urlParams.id === undefined)
-    ) {
+    if (!urlParams.category && !urlParams.subCategory && !urlParams.id) {
+      console.log("메인x 서브x id x");
       return "》　전체검색";
-    } else if (urlParams.id !== "" && urlParams.id !== undefined) {
+    } else if (!urlParams.category && !urlParams.subCategory && urlParams.id) {
+      console.log("메인 x 서브x 아이디o");
       let item = this.props.Store.detail.getSelectItem;
       let code = item.category; //"CATCLO"
       mainCategory = main.find((data) => data.value === code);
@@ -28,46 +40,33 @@ class CategoryLineContainer extends Component {
         this.props.Store.list.setSubCategory(subCategory.value);
         this.props.Store.list.setSubCategoryMakeList();
       }
-      return (
-        <div>
-          <a href={`/list?category=${mainCategory.value}`}>
-            》　{mainCategory.text}　-　
-          </a>
-          <a
-            href={`/list?category=${mainCategory.value}&subCategory=${subCategory.value}`}
-          >
-            {subCategory.text}
-          </a>
-        </div>
-      );
-    } else if (
-      urlParams.category !== "" &&
-      urlParams.category !== undefined &&
-      (urlParams.id === "" || urlParams.id === undefined)
-    ) {
+      return this.categoryDiv(mainCategory, subCategory);
+    } else if (urlParams.category && urlParams.subCategory && !urlParams.id) {
+      console.log("메인o 서브o id x", urlParams);
       mainCategory = main.find((data) => data.value === urlParams.category);
       this.props.Store.list.setMainCategory(mainCategory.value);
       this.props.Store.list.setMainCategoryMakeList();
 
       subCategory = this.getSubCategoryTitle(urlParams);
-      if (subCategory) {
-        this.props.Store.list.setSubCategory(subCategory.value);
-        this.props.Store.list.setSubCategoryMakeList();
-      }
+      this.props.Store.list.setSubCategory(subCategory.value);
+      this.props.Store.list.setSubCategoryMakeList();
+
+      return this.categoryDiv(mainCategory, subCategory);
+    } else if (urlParams.category && !urlParams.subCategory && !urlParams.id) {
+      console.log("메인o 서브x id x");
+      mainCategory = main.find((data) => data.value === urlParams.category);
+      this.props.Store.list.setMainCategory(mainCategory.value);
+      this.props.Store.list.setMainCategoryMakeList();
       return (
         <div>
           <a href={`/list?category=${mainCategory.value}`}>
-            》　{mainCategory.text}　-　
-          </a>
-          <a
-            href={`/list?category=${mainCategory.value}&subCategory=${subCategory.value}`}
-          >
-            {subCategory.text}
+            》　{mainCategory.text}
           </a>
         </div>
       );
     }
   };
+
   getSubCategoryTitle = (urlParams) => {
     var subObj = {};
     subObj = sub.find((data) => data.value === urlParams.subCategory);
