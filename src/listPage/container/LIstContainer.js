@@ -5,13 +5,22 @@ import { withRouter } from "react-router-dom";
 import FilterContainer from "./FilterContainer";
 import ResultContainer from "./ResultContainer";
 import CategoryMainContainer from "./CategoryMainContainer";
+import { inject, observer } from "mobx-react";
 
 @withRouter
+@inject("Store")
+@observer
 class ListContainer extends Component {
   render() {
     const urlParams = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
+
+    // 검색어가 있을 경우
+    if (urlParams.search) {
+      const { list } = this.props.Store;
+      list.keywordSearch(urlParams.search);
+    }
 
     return (
       <Grid>
@@ -26,10 +35,13 @@ class ListContainer extends Component {
           <Grid.Column width={12}>
             <p>
               <span>
-                {urlParams.category && !urlParams.subCategory ? (
-                  <CategoryMainContainer />
-                ) : (
+                {/* 서브카테고리가 있는경우와 없는경우로 구분하도록 수정
+                    메인페이지에서 검색 할 때 카테고리가 없는 경우도 있음.
+                */}
+                {urlParams.subCategory ? (
                   <ResultContainer />
+                ) : (
+                  <CategoryMainContainer />
                 )}
               </span>
             </p>

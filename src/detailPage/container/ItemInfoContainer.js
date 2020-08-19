@@ -44,16 +44,15 @@ class ItemInfoContainer extends Component {
     });
     const { detail } = this.props.Store;
     detail.setSelectItem(searchObj.id);
+    const { item } = this.props.Store;
+    item.addNewSearchItems(detail.selectItem);
   }
 
   // 장바구니에 추가
   addItemToBasket = (id, count) => {
-    console.log("장바구니에 추가하시겠습니까?");
-
     const { user } = this.props.Store;
-
     const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
-    console.log(userInfo);
+
     if (userInfo === null) {
       user.addItemToBasket(id, count);
     }
@@ -68,8 +67,7 @@ class ItemInfoContainer extends Component {
   render() {
     const { detail } = this.props.Store;
     const { user } = this.props.Store;
-    console.log(`HELLO22 -> ${user.getLocalBasket}`);
-    // const { selectItem } = this.props.DetailPageStore;
+
     return (
       <ItemInfoView
         selectItem={detail.selectItem}
