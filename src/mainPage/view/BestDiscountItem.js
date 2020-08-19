@@ -35,7 +35,7 @@ class BestDiscountItem extends Component {
     const bestDiscountItemList = bestDiscountItems.map((item) => {
       return (
         <Grid.Column key={item.id}>
-          <Card color="orange" as="a">
+          <Card color="orange" as="a" href={`/detail?id=${item.id}`}>
             <Card.Content>
               <Card.Header
                 style={{

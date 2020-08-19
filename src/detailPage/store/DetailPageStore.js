@@ -1,7 +1,10 @@
 import { observable, action, computed } from "mobx";
 import allData from "../../data/allData";
-import clotheData from "../../data/clotheData";
-
+import foodData from "../../data/foodData";
+import elecData from "../../data/elecData";
+import main from "../../data/category/main";
+import sub from "../../data/category/sub";
+import { FeedSummary } from "semantic-ui-react";
 
 // Detail Page Mobx Store 클래스 선언
 export default class DetailPageStore {
@@ -10,11 +13,13 @@ export default class DetailPageStore {
   // data = allData;
 
   @observable
-  selectItem = clotheData[1];
+  selectItem = elecData[1];
+
 
   @action setSelectItem(id) {
     this.selectItem = allData.find((data) => String(data.id) === String(id));
   }
+
   @observable
   count = 0;
 

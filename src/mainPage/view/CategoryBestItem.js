@@ -100,7 +100,7 @@ class CategoryBestItem extends Component {
             </Table.Row>
           </Table.Body>
         </Table>
-        <Advertising />
+        <Advertising category={this.props.category} />
       </div>
     );
   }

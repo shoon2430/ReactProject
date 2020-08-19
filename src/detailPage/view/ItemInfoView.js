@@ -10,8 +10,9 @@ import {
   Input,
 } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
+import sub from "../../data/category/sub";
 
-class ItemInfoContainer extends Component {
+class ItemInfoView extends Component {
   render() {
     const { selectItem, star, goHome, onPlus, onMinus, count } = this.props;
 
@@ -23,15 +24,15 @@ class ItemInfoContainer extends Component {
             <Grid.Column style={{ width: "50%" }}>
               <Card style={{ width: "100%" }}>
                 <Card.Content style={{ fontSize: "15px" }}>
-                  <Label basic as="a" onClick={() => goHome("MAIN")}>
+                  <Label basic as="a" href={`/`}>
                     <Icon name="home" /> 홈
                   </Label>
                   &nbsp;&nbsp;{">"}&nbsp;&nbsp;
-                  <Label basic as="a">
+                  <Label basic as="a" href={`/list`}>
                     {selectItem.category}
                   </Label>
                   &nbsp;&nbsp;{">"}&nbsp;&nbsp;
-                  <Label basic as="a">
+                  <Label basic as="a" href={`/list`}>
                     {selectItem.subCategory}
                   </Label>
                 </Card.Content>
@@ -307,4 +308,4 @@ class ItemInfoContainer extends Component {
   }
 }
 
-export default ItemInfoContainer;
+export default ItemInfoView;
