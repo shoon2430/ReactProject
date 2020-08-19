@@ -3,8 +3,6 @@ import { observer, inject } from "mobx-react";
 import qs from "qs";
 import { withRouter } from "react-router-dom";
 import main from "../../data/category/main";
-
-// import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 
 import {
@@ -17,13 +15,6 @@ import {
   Header,
   Pagination,
 } from "semantic-ui-react";
-
-// const slideImages = [
-//   "images/mainPage/page1.png",
-//   "images/mainPage/page2.png",
-//   "images/mainPage/page3.png",
-//   "images/mainPage/page4.png",
-// ];
 
 const imageSize = {
   width: "100%",
@@ -144,7 +135,6 @@ class CategoryMainContainer extends Component {
   render() {
     const items = this.props.Store.list.getResultList;
 
-    console.log(items);
     const resultList = items.slice(
       (this.state.page - 1) * 16,
       this.state.page * 16
@@ -159,50 +149,64 @@ class CategoryMainContainer extends Component {
       ignoreQueryPrefix: true,
     });
     const mainCategory = main.find((data) => data.value === urlParams.category);
-    const bestItems = this.props.Store.item.categoryBestItemSort(resultList);
-    console.log("----bestItems----", bestItems);
+    let bestItems = this.props.Store.item.categoryBestItemSort(resultList);
+
+    // 가장 할인률이 높은 아이템을 BEST로
+    bestItems = bestItems.sort((a, b) => {
+      const d1 = a["discount"];
+      const d2 = b["discount"];
+      if (d1 < d2) return 1;
+      if (d1 > d2) return -1;
+      return 0;
+    });
+
     const bestList = bestItems.slice(0, 3);
-    console.log("----bestList----", bestList);
+
     return (
-      <Grid style={{ marginTop: "19px" }}>
-        <Header
-          as="h3"
-          icon="trophy"
-          content={`${mainCategory.text} BEST`}
-          style={{ marginTop: "5px" }}
-        />
-        <Grid.Row style={{ background: "#f2cb6f", width: "20px" }} columns={3}>
-          {this.resultbox(bestList)}
-        </Grid.Row>
-        <Header
-          as="h5"
-          icon="search"
-          content="검색결과"
-          style={{ marginTop: "30px" }}
-        />
-        <Grid.Row style={{ margin: 0 }} columns={4}>
-          {this.resultbox(resultList)}
-        </Grid.Row>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItem: "center",
-            width: "100%",
-          }}
-        >
-          <Pagination
-            boundaryRange={0}
-            defaultActivePage={1}
-            ellipsisItem={null}
-            firstItem={null}
-            lastItem={null}
-            siblingRange={2}
-            onPageChange={this.setNextPage}
-            totalPages={totalPage}
+      <>
+        <Grid style={{ marginTop: "19px" }}>
+          <Header
+            as="h3"
+            icon="trophy"
+            content={`${mainCategory ? mainCategory.text : ""} BEST`}
+            style={{ marginTop: "5px" }}
           />
-        </div>
-      </Grid>
+          <Grid.Row
+            style={{ background: "#f2cb6f", width: "20px" }}
+            columns={3}
+          >
+            {this.resultbox(bestList)}
+          </Grid.Row>
+          <Header
+            as="h5"
+            icon="search"
+            content="검색결과"
+            style={{ marginTop: "30px" }}
+          />
+          <Grid.Row style={{ margin: 0 }} columns={4}>
+            {this.resultbox(resultList)}
+          </Grid.Row>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItem: "center",
+              width: "100%",
+            }}
+          >
+            <Pagination
+              boundaryRange={0}
+              defaultActivePage={1}
+              ellipsisItem={null}
+              firstItem={null}
+              lastItem={null}
+              siblingRange={2}
+              onPageChange={this.setNextPage}
+              totalPages={totalPage}
+            />
+          </div>
+        </Grid>
+      </>
     );
   }
 }

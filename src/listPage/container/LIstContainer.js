@@ -22,7 +22,6 @@ class ListContainer extends Component {
       list.keywordSearch(urlParams.search);
     }
 
-    
     return (
       <Grid>
         <Grid.Row columns={2}>

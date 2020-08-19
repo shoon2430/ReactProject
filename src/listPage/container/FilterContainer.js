@@ -65,6 +65,7 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
+
   freeChange = (e) => {
     console.log(e.target.textContent);
 
@@ -74,6 +75,7 @@ class FilterContainer extends Component {
 
     //alert(this.state.max);
   };
+
   nofreeChange = (e) => {
     this.setState({
       delivery: e.target.value,
@@ -90,27 +92,22 @@ class FilterContainer extends Component {
     else this.filterNotCategory("stock", -1); //전체
   };
 
-  stockZero = (e) => {};
-  //
   filterPrice = (min, max) => {
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
       this.setCategory();
-      // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
       this.props.Store.list.filterPrice(min, max);
     }
   };
 
   filterNotCategory = (rating, i) => {
     this.setCategory();
-    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterNotCategory(rating, i);
   };
 
   filterCategory = (rating, i) => {
     this.setCategory();
-    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterCategory(rating, i);
   };
 
@@ -126,8 +123,6 @@ class FilterContainer extends Component {
   };
 
   render() {
-    const sideFilters = this.props.Store.list.getSideFilterList;
-    console.log(sideFilters);
     return (
       <Container style={{ marginTop: "20px" }}>
         <Segment>
