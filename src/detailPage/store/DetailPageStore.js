@@ -15,7 +15,6 @@ export default class DetailPageStore {
   @observable
   selectItem = elecData[1];
 
-
   @action setSelectItem(id) {
     this.selectItem = allData.find((data) => String(data.id) === String(id));
   }
@@ -23,5 +22,13 @@ export default class DetailPageStore {
   @observable
   count = 0;
 
+  @observable
+  subCate = "";
 
+  // @action setSubName(selectItem) {
+  //   // this.subCate = sub.find(
+  //   //   (data) => data.value === selectItem.subCategory
+  //   // );
+  //   this.subCate = selectItem;
+  // }
 }

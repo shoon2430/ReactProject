@@ -14,7 +14,23 @@ import sub from "../../data/category/sub";
 
 class ItemInfoView extends Component {
   render() {
-    const { selectItem, star, goHome, onPlus, onMinus, count } = this.props;
+    const {
+      selectItem,
+      star,
+      onPlus,
+      onMinus,
+      count,
+      onSubCate,
+      subCate,
+      subCateText
+    } = this.props;
+    // let {subCateName}=this.props;
+    // let subCateName = sub.find((data) => data.value === selectItem.subCategory).text;
+    // console.log(subCateName);
+    console.log("아ㅏ아아");
+    // console.log({ ...onSubCate }.text);
+    console.log(subCate);
+    // console.log(count);
 
     return (
       <div>
@@ -33,7 +49,7 @@ class ItemInfoView extends Component {
                   </Label>
                   &nbsp;&nbsp;{">"}&nbsp;&nbsp;
                   <Label basic as="a" href={`/list`}>
-                    {selectItem.subCategory}
+                    {subCateText}
                   </Label>
                 </Card.Content>
                 <Card.Content extra>
@@ -278,32 +294,10 @@ class ItemInfoView extends Component {
                   </Item.Content>
                 </Item>
               </Item.Group>
-
-              {/* <Item.Content>
-              <Item.Header>{selectItem.name}</Item.Header>
-              <Item.Meta>{selectItem.price}</Item.Meta>
-              <Item.Description>{selectItem.stock}</Item.Description>
-            </Item.Content> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </div>
-      // <Segment>
-      //   <Grid columns={2} relaxed="very">
-      //     <Grid.Column>
-      //       <Card>
-      //         <Image src={selectItem.imgUrl} wrapped ui={false}/>
-      //       </Card>
-      //     </Grid.Column>
-      //     <Grid.Column>
-      //       <Item.Content>
-      // <Item.Header as="a">{selectItem.name}</Item.Header>
-      // <Item.Meta>{selectItem.price}</Item.Meta>
-      // <Item.Description>{selectItem.stock}</Item.Description>
-      //       </Item.Content>
-      //     </Grid.Column>
-      //   </Grid>
-      // </Segment>
     );
   }
 }

@@ -46,10 +46,24 @@ class ItemInfoContainer extends Component {
     detail.setSelectItem(searchObj.id);
   }
 
+  onSubCate = () => {
+    const { selectItem } = this.props.Store.detail;
+    return (this.props.Store.detail.subCate = sub.find(
+      (data) => data.value === selectItem.subCategory
+    ).text);
+    // return this.props.Store.detail.subCate;
+    // this.props.Store.detail.setSubName(selectItem);
+    // this.props.Store.detail.setSubName(this.props.Store.detail.subCate);
+  };
+
   render() {
     const { detail } = this.props.Store;
 
-    // const { selectItem } = this.props.DetailPageStore;
+    const { selectItem } = this.props.Store.detail;
+    const subCateObj = sub.find((data) => data.value === selectItem.subCategory);
+    const subCateText = {...subCateObj}.text;
+    console.log("??",subCateText);
+   
     return (
       <ItemInfoView
         selectItem={detail.selectItem}
@@ -58,6 +72,8 @@ class ItemInfoContainer extends Component {
         onPlus={this.onPlus}
         onMinus={this.onMinus}
         count={detail.count}
+        subCate={detail.subCate}
+        subCateText={subCateText}
       />
     );
   }

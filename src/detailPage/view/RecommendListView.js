@@ -11,7 +11,7 @@ import RecommendItemView from "./RecommendItemView";
 
 class RecommendListView extends Component {
   render() {
-    const { selectItem, bestDiscount, items } = this.props;
+    const { selectItem, bestDiscount, items,subCateText } = this.props;
 
     const subitems = items.filter(
       (item) => selectItem.subCategory === item.subCategory
@@ -51,7 +51,7 @@ class RecommendListView extends Component {
           <div
             style={{ fontWeight: "bold", fontSize: "20px", marginTop: "10px" }}
           >
-            <span style={{ color: "orange" }}>{selectItem.subCategory}</span>
+            <span style={{ color: "orange" }}>{subCateText}</span>
             <span>&nbsp;연관 상품</span>
           </div>
         </Grid.Row>
