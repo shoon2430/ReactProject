@@ -31,4 +31,10 @@ export default class DetailPageStore {
   //   // );
   //   this.subCate = selectItem;
   // }
+  sub = {};
+
+  @computed
+  get getSelectItem() {
+    return this.selectItem ? {...this.selectItem} : {};
+  }
 }

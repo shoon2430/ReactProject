@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, List } from "semantic-ui-react";
+import { Grid} from "semantic-ui-react";
 import FilterContainer from "./FilterContainer";
 import ResultContainer from "./ResultContainer";
 

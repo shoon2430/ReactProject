@@ -1,6 +1,5 @@
 import { observable, computed, action } from "mobx";
 import allData from "../../data/allData";
-import clothe from "../../data/clotheData";
 
 export default class ListStore {
   @observable
@@ -39,7 +38,6 @@ export default class ListStore {
 
   @computed
   get getResultList() {
-    console.log("resultlist = ", this.resultList.slice(""));
     return this.resultList ? this.resultList.slice("") : [];
   }
   @computed
@@ -71,7 +69,6 @@ export default class ListStore {
   }
   @action
   setSubCategoryMakeList() {
-    console.log("store makelist sub before", this.resultList);
     this.resultList = this.allData.filter((data) => {
       if (data.subCategory === this.subCategory) {
         return data;
@@ -85,22 +82,20 @@ export default class ListStore {
     //아직 url로 안받아와서 작동 잘 안함.
     let temp = [];
     let list = [];
-    console.log("filterCategory---", this.resultList);
-    temp = this.reulstList.map((object) =>
-      object[key].match(value) ? list.push(object) : temp
+    temp = this.getResultList.map((object) =>
+      object[key] === value ? list.push(object) : temp
     );
     this.resultList = list;
   }
 
   @action
   filterPrice(min, max) {
-    console.log("Store--filterPrice", min, max, this.resultList);
     let temp = [];
     let list = [];
-    temp = this.resultList.map((object) =>
-      object.price >= min && object.price <= max ? list.push(object) : temp
-    );
-    console.log("listStore---filterPrice", list);
+    temp = this.resultList.map((item) => {
+      const fixPrice = item.price * (100 - item.discount) * 0.01;
+      return fixPrice >= min && fixPrice <= max ? list.push(item) : temp;
+    });
     this.resultList = list;
   }
 }
