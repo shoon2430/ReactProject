@@ -52,8 +52,6 @@ class FilterContainer extends Component {
   };
   //
 
-
-
   minChange = (e) => {
     this.setState({
       min: e.target.value,
@@ -82,7 +80,6 @@ class FilterContainer extends Component {
     });
     //alert(this.state.max);
   };
-<<<<<<< HEAD
 
   // 토클값 변화
   stockZero = (e) => {
@@ -93,9 +90,7 @@ class FilterContainer extends Component {
     else this.filterNotCategory("stock", -1); //전체
   };
 
-=======
   stockZero = (e) => {};
->>>>>>> c8ee4fee1041a0316f5de1e4dc9ff4c6932801b5
   //
   filterPrice = (min, max) => {
     if (min === "" || max === "") {
