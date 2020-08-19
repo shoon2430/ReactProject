@@ -15,7 +15,11 @@ class BasketListContainer extends Component {
   render() {
     const { user } = this.props.Store;
     const userInfo = user.loginUserInfo;
-    const eyeShoppingList = userInfo.eyeShoppingList.slice("");
+
+    const eyeShoppingList = userInfo.eyeShoppingList
+      ? userInfo.eyeShoppingList.slice("")
+      : [];
+
     let buyPrice = 0;
     const userEyeShoppingListComponent = eyeShoppingList.map((eyeShopping) => {
       let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
@@ -30,8 +34,6 @@ class BasketListContainer extends Component {
       );
     });
 
-    console.log(buyPrice);
-
     return (
       <div>
         <Header as="h2" style={{ margin: "35px" }}>
@@ -39,6 +41,18 @@ class BasketListContainer extends Component {
           <Header.Content>장바구니</Header.Content>
         </Header>
         <Item.Group divided style={{ marginLeft: "7%", marginRight: "7%" }}>
+          {userEyeShoppingListComponent.length === 0 && (
+            <div
+              style={{
+                margin: "0 auto",
+                textAlign: "center",
+                marginTop: "92px",
+                marginBottom: "90px",
+              }}
+            >
+              <h1>장바구니에 담긴 상품이 없습니다.</h1>
+            </div>
+          )}
           {userEyeShoppingListComponent}
         </Item.Group>
         <div

@@ -67,6 +67,7 @@ const SignUp = inject("Store")(
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="orange" textAlign="center">
             <Image
+              href="/"
               src="images/logo/logo.png"
               style={{ width: "150px", height: "50px" }}
             />{" "}
