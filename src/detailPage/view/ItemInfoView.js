@@ -14,7 +14,15 @@ import sub from "../../data/category/sub";
 
 class ItemInfoView extends Component {
   render() {
-    const { selectItem, star, goHome, onPlus, onMinus, count } = this.props;
+    const {
+      selectItem,
+      star,
+      goHome,
+      onPlus,
+      onMinus,
+      count,
+      addItemToBasket,
+    } = this.props;
 
     return (
       <div>
@@ -88,7 +96,7 @@ class ItemInfoView extends Component {
                         marginTop: "30px",
                       }}
                     >
-                      {selectItem.stock === 0 ? (
+                      {selectItem.stock - count === 0 ? (
                         <div>
                           <span style={{ marginLeft: "10px" }}>
                             <Icon
@@ -153,7 +161,7 @@ class ItemInfoView extends Component {
                           fontWeight: "normal",
                         }}
                       >
-                        (&nbsp;재고&emsp;&emsp;{selectItem.stock}&nbsp;)
+                        (&nbsp;재고&emsp;&emsp;{selectItem.stock - count}&nbsp;)
                       </div>
                       <div
                         style={{
@@ -267,13 +275,27 @@ class ItemInfoView extends Component {
                       size="huge"
                       style={{ marginTop: "20px" }}
                     >
-                      <Button animated="vertical" basic color="orange">
+                      <Button
+                        animated="vertical"
+                        basic
+                        color="orange"
+                        onClick={() => {
+                          addItemToBasket(selectItem.id, count);
+                        }}
+                      >
                         <Button.Content hidden>장바구니</Button.Content>
                         <Button.Content visible>
                           <Icon name="shop" />
                         </Button.Content>
                       </Button>
-                      <Button color="orange">바로구매</Button>
+                      <Button
+                        color="orange"
+                        onClick={() => {
+                          alert("바로구매");
+                        }}
+                      >
+                        바로구매
+                      </Button>
                     </Button.Group>
                   </Item.Content>
                 </Item>

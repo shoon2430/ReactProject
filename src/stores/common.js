@@ -7,11 +7,11 @@ import DetailPageStore from "../detailPage/store/DetailPageStore";
 
 export default class CommonStore {
   constructor() {
-    this.user = new UserStore(this);
     this.item = new ItemStore(this);
     this.page = new PageStore(this);
     this.main = new MainPageStore(this);
     this.list = new ListStore(this);
     this.detail = new DetailPageStore(this);
+    this.user = new UserStore(this);
   }
 }

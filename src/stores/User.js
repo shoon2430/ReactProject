@@ -2,14 +2,25 @@ import { observable, computed, action } from "mobx";
 import AllUser from "../data/userData";
 
 localStorage.DB = localStorage.DB ? localStorage.DB : JSON.stringify(AllUser);
-localStorage.LOGIN = localStorage.LOGIN ? localStorage.LOGIN : "";
+localStorage.LOGIN = localStorage.LOGIN ? localStorage.LOGIN : "null";
+localStorage.BASKET = localStorage.BASKET
+  ? localStorage.BASKET
+  : JSON.stringify([]);
 
 export default class User {
+  constructor(root) {
+    this.root = root;
+  }
+
   @observable users = localStorage.DB
     ? JSON.parse(localStorage.DB)
     : JSON.stringify(AllUser);
 
   @observable loginUser = localStorage.LOGIN ? localStorage.LOGIN : "";
+
+  @observable localBasket = localStorage.BASKET
+    ? JSON.parse(localStorage.BASKET)
+    : JSON.stringify([]);
 
   @computed get getUsers() {
     return this.users ? this.users.slice("") : [];
@@ -52,5 +63,29 @@ export default class User {
 
     this.users = this.users.concat(newUser);
     localStorage.DB = JSON.stringify(this.users);
+  }
+
+  // 로컬 장바구니 조회
+  @computed get getLocalBasket() {
+    return this.localBasket.length > 0 ? this.localBasket.slice("") : [];
+  }
+
+  // 로컬 장바구니에 등록
+  @action addItemToBasket(id, count) {
+    const { item } = this.root;
+
+    const AllItem = item.getItems();
+
+    item.setItems(
+      AllItem.map((item) => {
+        if (item.id === id) {
+          item.stock = item.stock - count;
+        }
+        return item;
+      })
+    );
+
+    const numItem = [id, count];
+    localStorage.BASKET = JSON.stringify(this.localBasket.concat(numItem));
   }
 }
