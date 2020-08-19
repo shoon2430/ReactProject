@@ -20,17 +20,8 @@ class ItemInfoView extends Component {
       onPlus,
       onMinus,
       count,
-      onSubCate,
-      subCate,
-      subCateText
+      subCateText,
     } = this.props;
-    // let {subCateName}=this.props;
-    // let subCateName = sub.find((data) => data.value === selectItem.subCategory).text;
-    // console.log(subCateName);
-    console.log("아ㅏ아아");
-    // console.log({ ...onSubCate }.text);
-    console.log(subCate);
-    // console.log(count);
 
     return (
       <div>
@@ -40,17 +31,17 @@ class ItemInfoView extends Component {
             <Grid.Column style={{ width: "50%" }}>
               <Card style={{ width: "100%" }}>
                 <Card.Content style={{ fontSize: "15px" }}>
-                  <Label basic as="a" href={`/`}>
+                  {/* <Label basic as="a" href={`/`}>
                     <Icon name="home" /> 홈
-                  </Label>
-                  &nbsp;&nbsp;{">"}&nbsp;&nbsp;
+                  </Label> */}
+                  {/* &nbsp;&nbsp;{">"}&nbsp;&nbsp;
                   <Label basic as="a" href={`/list`}>
                     {selectItem.category}
                   </Label>
                   &nbsp;&nbsp;{">"}&nbsp;&nbsp;
                   <Label basic as="a" href={`/list`}>
                     {subCateText}
-                  </Label>
+                  </Label> */}
                 </Card.Content>
                 <Card.Content extra>
                   <Image

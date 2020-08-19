@@ -25,16 +25,10 @@ export default class DetailPageStore {
   @observable
   subCate = "";
 
-  // @action setSubName(selectItem) {
-  //   // this.subCate = sub.find(
-  //   //   (data) => data.value === selectItem.subCategory
-  //   // );
-  //   this.subCate = selectItem;
-  // }
   sub = {};
 
   @computed
   get getSelectItem() {
-    return this.selectItem ? {...this.selectItem} : {};
+    return this.selectItem ? { ...this.selectItem } : {};
   }
 }

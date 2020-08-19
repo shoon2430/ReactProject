@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Input, Dropdown, Button, Label } from "semantic-ui-react";
+import main from "../../data/category/main";
+import sub from "../../data/category/sub";
+import { Link } from "react-router-dom";
 
 const options = [
   { key: "all", text: "All", value: "all" },
@@ -25,26 +28,33 @@ const headerSearchButton = {
 
 class SearchView extends Component {
   render() {
+    let optList = [{ key: 0, text: "All", value: "All" }];
+    main.map((obj) => optList.push(obj));
+    const { onInputText } = this.props;
     return (
       <Input
         labelPosition="right"
         type="text"
         placeholder="Search"
         style={headerInput}
-        onChange={() => {
-          console.log("검색어가 입력되고 있습니다.");
-        }}
+        onChange={onInputText}
       >
-        <Label style={headerInputDropbox}>
-          <Dropdown text="All" options={options} floating />
+        <Label style={headerInputDropbox} basic>
+          <Dropdown
+            selection
+            options={optList}
+            defaultValue={optList[0].text}
+          ></Dropdown>
         </Label>
         <input />
         <Button
           icon="search"
           style={headerSearchButton}
-          onClick={() => {
-            alert("검색!");
-          }}
+          // onClick={() => {
+          //   alert("검색!");
+          // }}
+          as="a"
+          // href={`/list?category=${main[i].value}`}
         ></Button>
       </Input>
     );
