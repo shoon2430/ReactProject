@@ -27,20 +27,19 @@ const headerSearchButton = {
 };
 
 class SearchView extends Component {
-  
-
-  
   render() {
-    const { onInputText, onSearch,selectOpt } = this.props;
+    const { onInputText, onSearch, selectOpt } = this.props;
 
-
-    let optList = [{ key: 0, text: "All", value: "All" }];
+    let optList = [{ key: 0, text: "All", value: "" }];
     main.map((obj) => optList.push(obj));
-    let dropList=optList.map((data)=>{
-    return(
-      <Dropdown.Item text={data.text} onClick={()=>selectOpt(data.value)}></Dropdown.Item>
-    )});
-
+    let dropList = optList.map((data) => {
+      return (
+        <Dropdown.Item
+          text={data.text}
+          onClick={() => selectOpt(data.value)}
+        ></Dropdown.Item>
+      );
+    });
 
     return (
       <Input
@@ -51,11 +50,8 @@ class SearchView extends Component {
         onChange={(e) => onInputText(e)}
       >
         <Label style={headerInputDropbox} basic>
-
           <Dropdown>
-            <Dropdown.Menu>
-             {dropList}
-            </Dropdown.Menu>
+            <Dropdown.Menu>{dropList}</Dropdown.Menu>
           </Dropdown>
         </Label>
         <input />
