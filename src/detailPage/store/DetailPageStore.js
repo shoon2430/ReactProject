@@ -23,5 +23,11 @@ export default class DetailPageStore {
   @observable
   count = 0;
 
+  @observable
+  sub = {};
 
+  @computed
+  get getSelectItem() {
+    return this.selectItem ? {...this.selectItem} : {};
+  }
 }

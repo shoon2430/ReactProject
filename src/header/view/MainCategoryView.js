@@ -2,11 +2,21 @@ import React, { Component } from "react";
 import { Dropdown, Menu } from "semantic-ui-react";
 import main from "../../data/category/main";
 import sub from "../../data/category/sub";
+import { Link } from "react-router-dom";
 
 //import MainCategoryBox from "./MainSubCategoryView";
 
-const headerDropdown = {
+const headerMenu = {
   marginRight: "30px",
+  width: "120px",
+  height: "115px",
+  background: "#ffb74d",
+  display: "top",
+  justifyContent: "center",
+  alignItems: "center",
+  boxSizing: "border-box",
+};
+const headerDropdown = {
   width: "120px",
   height: "115px",
   background: "#ffb74d",
@@ -25,32 +35,34 @@ const hearDropdownicon = {
 class CategoryView extends Component {
   innerDrop = () => {
     let list = [];
-    let subList = [];
+
     for (let i = 0; i < main.length; i++) {
-      subList = sub.filter((data) => data.main === main[i].value);
-      console.log("------sublist---", subList);
-      list = list.concat(
-        <Dropdown.Item>
-          {main[i].text}
-          <Dropdown
-            pointing="left"
-            className="link item"
-            options={subList[i].text}
+      let subList = sub.filter((subObj) => subObj.main === main[i].value);
+      let dropdownList = [];
+      subList.map((subListObj) =>
+        dropdownList.push(
+          <Dropdown.Item
+            text={subListObj.text}
+            as={Link}
+            to={`/list?category=${main[i].value}&subCategory=${subListObj.value}`}
           />
-        </Dropdown.Item>
+        )
       );
-      return list;
+      list.push(
+        <Dropdown item simple text={main[i].text} style={{ width: "150px" }}>
+          <Dropdown.Menu>{dropdownList}</Dropdown.Menu>
+        </Dropdown>
+      );
     }
+    return list;
   };
   render() {
     return (
-      <Dropdown
-        icon={hearDropdownicon}
-        style={headerDropdown}
-        className="link item"
-      >
-        <Dropdown.Menu>{this.innerDrop()}</Dropdown.Menu>
-      </Dropdown>
+      <Menu style={headerMenu}>
+        <Dropdown item icon={hearDropdownicon} style={headerDropdown}>
+          <Dropdown.Menu>{this.innerDrop()}</Dropdown.Menu>
+        </Dropdown>
+      </Menu>
     );
   }
 }
