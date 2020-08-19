@@ -67,6 +67,7 @@ export default class ListStore {
       }
     });
   }
+
   @action
   setSubCategoryMakeList() {
     this.resultList = this.allData.filter((data) => {
