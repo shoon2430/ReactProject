@@ -16,7 +16,6 @@ class SearchContainer extends Component {
       selectOption: value,
       optName: name,
     });
-    console.log(">>>>", this.state.selectOption, this.state.optName);
   };
 
   onInputText = (e) => {
@@ -42,7 +41,6 @@ class SearchContainer extends Component {
         onInputText={this.onInputText}
         selectOpt={this.selectOpt}
         optName={this.state.optName}
-        // selectOption={this.state.selectOption}
       />
     );
   }

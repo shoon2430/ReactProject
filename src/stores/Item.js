@@ -3,6 +3,10 @@ import allData from "../data/allData";
 
 localStorage.NEW = localStorage.NEW ? localStorage.NEW : JSON.stringify([]);
 
+localStorage.ITEMS = localStorage.ITEMS
+  ? localStorage.ITEMS
+  : JSON.stringify(allData);
+
 export default class Item {
   /*
   아이템 관련 Store
@@ -11,7 +15,9 @@ export default class Item {
   */
 
   // 전체 아이템
-  @observable items = allData;
+  @observable items = localStorage.ITEMS
+    ? JSON.parse(localStorage.ITEMS)
+    : JSON.stringify(allData);
 
   // 현재 조회되고있는 아이템 리스트
   @observable selectedItems = [];
@@ -50,9 +56,14 @@ export default class Item {
     }
   }
 
+  @action removeNewSearchItems(id) {
+    this.newSearchItems = this.newSearchItems.filter((item) => item.id !== id);
+    localStorage.NEW = JSON.stringify(this.newSearchItems);
+  }
+
   // 전체 아이템 조회
   @computed get getItems() {
-    return this.items ? this.items.splice("") : [];
+    return this.items ? this.items.slice("") : [];
   }
 
   @action setItems(items) {

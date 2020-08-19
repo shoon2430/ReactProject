@@ -44,7 +44,7 @@ class Header extends Component {
             <LoginContainer />
           </div>
           {/* 임시로 페이지가 넘어가는 기능을 확인 할 수있도록 추가했습니다. */}
-          <div className="headerSub" style={headerSub}>
+          {/* <div className="headerSub" style={headerSub}>
             <Label color="orange" horizontal href="/">
               MAIN
             </Label>
@@ -54,7 +54,7 @@ class Header extends Component {
             <Label color="grey" horizontal href="/detail">
               DETAIL
             </Label>
-          </div>
+          </div> */}
         </div>
       </div>
     );

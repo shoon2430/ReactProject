@@ -57,6 +57,8 @@ class ItemInfoContainer extends Component {
       user.addItemToBasket(id, count);
     }
     user.addItemToBasket(id, count);
+    alert("장바구니 등록에 성공했습니다. \n장바구니로 이동합니다.");
+    window.location = "/basket";
   };
 
   // // 상품구매
