@@ -5,7 +5,6 @@ import SubCategoryBox from "../view/SubCategoryBox";
 
 import {
   Input,
-  Icon,
   Button,
   Segment,
   Header,
@@ -59,7 +58,7 @@ class FilterContainer extends Component {
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
-      this.props.Store.list.set();
+      this.props.Store.list.setSubCategoryMakeList();
       this.props.Store.list.filterPrice(min, max);
     }
   };

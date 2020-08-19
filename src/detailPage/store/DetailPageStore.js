@@ -1,9 +1,7 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import allData from "../../data/allData";
-import foodData from "../../data/foodData";
-import elecData from "../../data/elecData";
-import main from "../../data/category/main";
-import sub from "../../data/category/sub";
+import clotheData from "../../data/clotheData";
+
 
 // Detail Page Mobx Store 클래스 선언
 export default class DetailPageStore {
@@ -12,7 +10,7 @@ export default class DetailPageStore {
   // data = allData;
 
   @observable
-  selectItem = elecData[1];
+  selectItem = clotheData[1];
 
   @action setSelectItem(id) {
     this.selectItem = allData.find((data) => String(data.id) === String(id));
@@ -22,4 +20,9 @@ export default class DetailPageStore {
 
   @observable
   sub = {};
+
+  @computed
+  get getSelectItem() {
+    return this.selectItem ? {...this.selectItem} : {};
+  }
 }
