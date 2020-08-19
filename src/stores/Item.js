@@ -31,6 +31,10 @@ export default class Item {
     return this.items ? this.items.splice("") : [];
   }
 
+  @action setItems(items) {
+    this.items = items;
+  }
+
   // 카테고리별 할인율이 가장 높은 아이템
   bestDiscount(items) {
     return items.sort((a, b) => {

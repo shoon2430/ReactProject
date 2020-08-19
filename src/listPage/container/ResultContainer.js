@@ -10,6 +10,7 @@ import {
   Rail,
   Label,
   Header,
+  Pagination,
 } from "semantic-ui-react";
 
 const imageSize = {
@@ -26,6 +27,14 @@ const railDiscount = {
 @inject("Store")
 @observer
 class ResultContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      page: 1,
+    };
+  }
+
   starCount = (rating) => {
     let start = [];
     for (var i = 0; i < rating; i++) {
@@ -33,8 +42,24 @@ class ResultContainer extends Component {
     }
     return start;
   };
+
+  setNextPage = (e) => {
+    this.setState({ page: e.target.getAttribute("value") });
+  };
+
   render() {
-    const resultList = this.props.Store.list.getResultList;
+    const items = this.props.Store.list.getResultList;
+
+    const resultList = items.slice(
+      (this.state.page - 1) * 16,
+      this.state.page * 16
+    );
+
+    let totalPage = Math.floor(items.length / 16);
+
+    if (items.length % 16) {
+      totalPage += 1;
+    }
 
     const results = resultList.map((item) => {
       return (
@@ -109,6 +134,25 @@ class ResultContainer extends Component {
           style={{ marginTop: "10px" }}
         />
         <Grid.Row columns={4}>{results}</Grid.Row>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItem: "center",
+            width: "100%",
+          }}
+        >
+          <Pagination
+            boundaryRange={0}
+            defaultActivePage={1}
+            ellipsisItem={null}
+            firstItem={null}
+            lastItem={null}
+            siblingRange={2}
+            onPageChange={this.setNextPage}
+            totalPages={totalPage}
+          />
+        </div>
       </Grid>
     );
   }

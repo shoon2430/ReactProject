@@ -14,7 +14,16 @@ import sub from "../../data/category/sub";
 
 class ItemInfoView extends Component {
   render() {
-    const { selectItem, star, goHome, onPlus, onMinus, count } = this.props;
+    const {
+      selectItem,
+      star,
+      onPlus,
+      onMinus,
+      count,
+      subCateText,
+      goHome,
+      addItemToBasket,
+    } = this.props;
 
     return (
       <div>
@@ -24,17 +33,17 @@ class ItemInfoView extends Component {
             <Grid.Column style={{ width: "50%" }}>
               <Card style={{ width: "100%" }}>
                 <Card.Content style={{ fontSize: "15px" }}>
-                  <Label basic as="a" href={`/`}>
+                  {/* <Label basic as="a" href={`/`}>
                     <Icon name="home" /> 홈
-                  </Label>
-                  &nbsp;&nbsp;{">"}&nbsp;&nbsp;
+                  </Label> */}
+                  {/* &nbsp;&nbsp;{">"}&nbsp;&nbsp;
                   <Label basic as="a" href={`/list`}>
                     {selectItem.category}
                   </Label>
                   &nbsp;&nbsp;{">"}&nbsp;&nbsp;
                   <Label basic as="a" href={`/list`}>
-                    {selectItem.subCategory}
-                  </Label>
+                    {subCateText}
+                  </Label> */}
                 </Card.Content>
                 <Card.Content extra>
                   <Image
@@ -88,7 +97,7 @@ class ItemInfoView extends Component {
                         marginTop: "30px",
                       }}
                     >
-                      {selectItem.stock === 0 ? (
+                      {selectItem.stock - count === 0 ? (
                         <div>
                           <span style={{ marginLeft: "10px" }}>
                             <Icon
@@ -153,7 +162,7 @@ class ItemInfoView extends Component {
                           fontWeight: "normal",
                         }}
                       >
-                        (&nbsp;재고&emsp;&emsp;{selectItem.stock}&nbsp;)
+                        (&nbsp;재고&emsp;&emsp;{selectItem.stock - count}&nbsp;)
                       </div>
                       <div
                         style={{
@@ -267,43 +276,35 @@ class ItemInfoView extends Component {
                       size="huge"
                       style={{ marginTop: "20px" }}
                     >
-                      <Button animated="vertical" basic color="orange">
+                      <Button
+                        animated="vertical"
+                        basic
+                        color="orange"
+                        onClick={() => {
+                          addItemToBasket(selectItem.id, count);
+                        }}
+                      >
                         <Button.Content hidden>장바구니</Button.Content>
                         <Button.Content visible>
                           <Icon name="shop" />
                         </Button.Content>
                       </Button>
-                      <Button color="orange">바로구매</Button>
+                      <Button
+                        color="orange"
+                        onClick={() => {
+                          alert("바로구매");
+                        }}
+                      >
+                        바로구매
+                      </Button>
                     </Button.Group>
                   </Item.Content>
                 </Item>
               </Item.Group>
-
-              {/* <Item.Content>
-              <Item.Header>{selectItem.name}</Item.Header>
-              <Item.Meta>{selectItem.price}</Item.Meta>
-              <Item.Description>{selectItem.stock}</Item.Description>
-            </Item.Content> */}
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </div>
-      // <Segment>
-      //   <Grid columns={2} relaxed="very">
-      //     <Grid.Column>
-      //       <Card>
-      //         <Image src={selectItem.imgUrl} wrapped ui={false}/>
-      //       </Card>
-      //     </Grid.Column>
-      //     <Grid.Column>
-      //       <Item.Content>
-      // <Item.Header as="a">{selectItem.name}</Item.Header>
-      // <Item.Meta>{selectItem.price}</Item.Meta>
-      // <Item.Description>{selectItem.stock}</Item.Description>
-      //       </Item.Content>
-      //     </Grid.Column>
-      //   </Grid>
-      // </Segment>
     );
   }
 }

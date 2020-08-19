@@ -46,9 +46,29 @@ class ItemInfoContainer extends Component {
     detail.setSelectItem(searchObj.id);
   }
 
+  // 장바구니에 추가
+  addItemToBasket = (id, count) => {
+    console.log("장바구니에 추가하시겠습니까?");
+
+    const { user } = this.props.Store;
+
+    const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
+    console.log(userInfo);
+    if (userInfo === null) {
+      user.addItemToBasket(id, count);
+    }
+    user.addItemToBasket(id, count);
+  };
+
+  // // 상품구매
+  // buyItem ()=>{
+
+  // }
+
   render() {
     const { detail } = this.props.Store;
-
+    const { user } = this.props.Store;
+    console.log(`HELLO22 -> ${user.getLocalBasket}`);
     // const { selectItem } = this.props.DetailPageStore;
     return (
       <ItemInfoView
@@ -58,6 +78,9 @@ class ItemInfoContainer extends Component {
         onPlus={this.onPlus}
         onMinus={this.onMinus}
         count={detail.count}
+        subCate={detail.subCate}
+        // subCateText={subCateText}
+        addItemToBasket={this.addItemToBasket}
       />
     );
   }

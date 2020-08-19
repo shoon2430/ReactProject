@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import StarBox from "../view/StarBox";
 import SubCategoryBox from "../view/SubCategoryBox";
+import qs from "qs";
+import { withRouter } from "react-router-dom";
 
 import {
   Input,
@@ -14,9 +16,24 @@ import {
   Container,
 } from "semantic-ui-react";
 
+@withRouter
 @inject("Store")
 @observer
 class FilterContainer extends Component {
+  //카테고리 파라미터 체크
+  setCategory = () => {
+    const paramObj = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+
+    //서브기준 필터
+    if (paramObj.subCategory) this.props.Store.list.setSubCategoryMakeList();
+    //메인기준 필터
+    else if (paramObj.category) this.props.Store.list.setMainCategoryMakeList();
+
+    //필터x
+  };
+
   //router 적용시 바꿔줘야할 부분
   //mainCategory = "CATCLO";
 
@@ -40,9 +57,12 @@ class FilterContainer extends Component {
     //alert(this.state.max);
   };
   freeChange = (e) => {
+    console.log(e.target.textContent);
+
     this.setState({
       delivery: e.target.value,
     });
+
     //alert(this.state.max);
   };
   nofreeChange = (e) => {
@@ -60,14 +80,18 @@ stockZero=(e)=>{
     if (min === "" || max === "") {
       alert("최소값, 최대값을 모두 입력하세요");
     } else {
-      this.props.Store.list.setSubCategoryMakeList();
+      this.setCategory();
+      // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
       this.props.Store.list.filterPrice(min, max);
     }
   };
 
   filterCategory = (rating, i) => {
     console.log("filter!", rating, i);
-    this.props.Store.list.setSubCategoryMakeList();
+    console.log(this.props.Store.getMainCategory);
+
+    this.setCategory();
+    // this.props.Store.list.setSubCategoryMakeList(); 기존소스 주석
     this.props.Store.list.filterCategory(rating, i);
   };
 
@@ -136,4 +160,4 @@ stockZero=(e)=>{
   }
 }
 
-export default FilterContainer;
+export default withRouter(FilterContainer);
