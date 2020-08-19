@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import CategoryBestItem from "../../mainPage/view/CategoryBestItem";
 import { observer, inject } from "mobx-react";
+import qs from "qs";
+import { withRouter } from "react-router-dom";
+import main from "../../data/category/main";
+
 // import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 
@@ -33,6 +36,7 @@ const railDiscount = {
   fontSize: "16px",
 };
 
+@withRouter
 @inject("Store")
 @observer
 class CategoryMainContainer extends Component {
@@ -40,7 +44,7 @@ class CategoryMainContainer extends Component {
     super(props);
 
     this.state = {
-      page: 1,
+      page: 1, //시작페이지
     };
   }
 
@@ -56,36 +60,8 @@ class CategoryMainContainer extends Component {
     this.setState({ page: e.target.getAttribute("value") });
   };
 
-  sideFilterCategory(items, key, value) {
-    return items.filter((object) => object[key] === value);
-  }
-
-  render() {
-    let items = this.props.Store.list.getResultList;
-
-    // 적용된 사이드 필터 가져오기
-    const sideFilters = this.props.Store.list.getSideFilterList;
-    console.log(sideFilters);
-    // 필터가 적용된 경우
-    if (sideFilters.length > 0) {
-      items = sideFilters.map((filter) =>
-        this.sideFilterCategory(items, filter.key, filter.value)
-      );
-    }
-
-    console.log(items);
-    const resultList = items.slice(
-      (this.state.page - 1) * 16,
-      this.state.page * 16
-    );
-
-    let totalPage = Math.floor(items.length / 16);
-
-    if (items.length % 16) {
-      totalPage += 1;
-    }
-
-    const results = resultList.map((item) => {
+  resultbox = (objectlist) => {
+    const result = objectlist.map((item) => {
       return (
         <Grid.Column key={item.id}>
           <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
@@ -128,6 +104,20 @@ class CategoryMainContainer extends Component {
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   &nbsp;원
                 </span>
+                <span
+                  style={{
+                    margin: "0 left",
+                    float: "right",
+                  }}
+                >
+                  {item.delivery === 1 ? (
+                    <span style={{ font: "6px" }}>
+                      <Icon name="shipping fast"></Icon>무료배송
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </span>
               </Card.Content>
 
               <Rail
@@ -148,16 +138,51 @@ class CategoryMainContainer extends Component {
         </Grid.Column>
       );
     });
+    return result;
+  };
 
+  render() {
+    const items = this.props.Store.list.getResultList;
+
+    console.log(items);
+    const resultList = items.slice(
+      (this.state.page - 1) * 16,
+      this.state.page * 16
+    );
+
+    let totalPage = Math.floor(items.length / 16);
+
+    if (items.length % 16) {
+      totalPage += 1;
+    }
+    const urlParams = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    const mainCategory = main.find((data) => data.value === urlParams.category);
+    const bestItems = this.props.Store.item.categoryBestItemSort(resultList);
+    console.log("----bestItems----", bestItems);
+    const bestList = bestItems.slice(0, 3);
+    console.log("----bestList----", bestList);
     return (
       <Grid style={{ marginTop: "19px" }}>
+        <Header
+          as="h3"
+          icon="trophy"
+          content={`${mainCategory.text} BEST`}
+          style={{ marginTop: "5px" }}
+        />
+        <Grid.Row style={{ background: "#f2cb6f", width: "20px" }} columns={3}>
+          {this.resultbox(bestList)}
+        </Grid.Row>
         <Header
           as="h5"
           icon="search"
           content="검색결과"
-          style={{ marginTop: "10px" }}
+          style={{ marginTop: "30px" }}
         />
-        <Grid.Row columns={4}>{results}</Grid.Row>
+        <Grid.Row style={{ margin: 0 }} columns={4}>
+          {this.resultbox(resultList)}
+        </Grid.Row>
         <div
           style={{
             display: "flex",
@@ -181,5 +206,4 @@ class CategoryMainContainer extends Component {
     );
   }
 }
-
 export default CategoryMainContainer;
