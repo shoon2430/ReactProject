@@ -48,10 +48,10 @@ export default class User {
     window.location = "/login";
   }
 
-  @action signUp(password, name) {
+  @action signUp(id, password, name) {
     const newUser = {
       key: this.users.length + 1,
-      id: `student${this.users.length + 1}`,
+      id: id,
       password: password,
       name: name,
       gender: "M",
@@ -110,9 +110,7 @@ export default class User {
       const newUsers = this.users.map((user) => {
         if (user.id === userInfo.id) {
           let userBasket = user.eyeShoppingList;
-          console.log(userBasket);
           user.eyeShoppingList = userBasket.filter((item) => item[0] !== id);
-          console.log(user.eyeShoppingList);
         }
         return user;
       });

@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  Card,
-  Image,
-  Item,
-  ItemDescription,
-  Pagination,
-} from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import RecommendItemView from "./RecommendItemView";
 
 class RecommendListView extends Component {

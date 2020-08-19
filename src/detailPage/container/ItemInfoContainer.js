@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import ItemInfoView from "../view/ItemInfoView";
 import { Icon } from "semantic-ui-react";
-import sub from "../../data/category/sub";
 
 import qs from "qs";
 import { withRouter } from "react-router-dom";
@@ -61,14 +60,8 @@ class ItemInfoContainer extends Component {
     window.location = "/basket";
   };
 
-  // // 상품구매
-  // buyItem ()=>{
-
-  // }
-
   render() {
     const { detail } = this.props.Store;
-    const { user } = this.props.Store;
 
     return (
       <ItemInfoView

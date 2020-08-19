@@ -46,7 +46,7 @@ class BasketListContainer extends Component {
           />
         );
       });
-    else if (localBasket.length > 0) {
+    else if (localBasket.length > 0 && userInfo === "null") {
       userEyeShoppingListComponent = localBasket.map((eyeShopping) => {
         let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
         buyPrice += price;

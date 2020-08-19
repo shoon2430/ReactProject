@@ -59,20 +59,16 @@ export default class ListStore {
 
   @action //카테고리를 따로 떼는 작업을 하는 함수.
   setMainCategoryMakeList() {
-    this.resultList = this.allData.filter((data) => {
-      if (data.category === this.mainCategory) {
-        return data;
-      }
-    });
+    this.resultList = this.allData.filter(
+      (data) => data.category === this.mainCategory
+    );
   }
 
   @action
   setSubCategoryMakeList() {
-    this.resultList = this.allData.filter((data) => {
-      if (data.subCategory === this.subCategory) {
-        return data;
-      }
-    });
+    this.resultList = this.allData.filter(
+      (data) => data.subCategory === this.subCategory
+    );
   }
 
   @action

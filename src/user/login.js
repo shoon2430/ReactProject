@@ -24,11 +24,9 @@ const Login = inject("Store")(
 
     const validCheck = () => {
       const userList = Store.user.getUsers;
-      const checked = userList.find((user) => {
-        if (user.id === id && String(user.password) === String(password)) {
-          return true;
-        }
-      });
+      const checked = userList.find(
+        (user) => user.id === id && String(user.password) === String(password)
+      );
 
       if (checked) {
         return true;

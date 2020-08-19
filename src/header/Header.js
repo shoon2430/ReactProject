@@ -2,17 +2,11 @@ import React, { Component } from "react";
 import CategoryContainer from "./container/CategoryContainer";
 import SearchContainer from "./container/SearchContainer";
 import LoginContainer from "./container/LoginContainer";
-import { Image, Label } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 import { inject } from "mobx-react";
 
 const header = {
   marginTop: "-2px",
-  display: "flex",
-  justifyContent: "start",
-  alignItems: "center",
-};
-
-const headerSub = {
   display: "flex",
   justifyContent: "start",
   alignItems: "center",

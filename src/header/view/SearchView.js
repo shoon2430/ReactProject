@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Input, Dropdown, Button, Label, Icon } from "semantic-ui-react";
 import main from "../../data/category/main";
-import sub from "../../data/category/sub";
-import { Link } from "react-router-dom";
 
 const headerInput = {
   width: "64%",
