@@ -31,7 +31,6 @@ export default class Item {
     return this.items ? this.items.splice("") : [];
   }
 
-
   // 카테고리별 할인율이 가장 높은 아이템
   bestDiscount(items) {
     return items.sort((a, b) => {
@@ -46,12 +45,11 @@ export default class Item {
   }
   @computed get getCateDiscountItems() {
     const MAX_COUNT = 5;
- 
+
     let foodDiscount = this.bestDiscount(this.items.slice(0, 41));
     let elecDiscount = this.bestDiscount(this.items.slice(41, 81));
     let clotheDiscount = this.bestDiscount(this.items.slice(81, 121));
 
-    // return bestDiscount.slice(0, MAX_COUNT);
     return [
       foodDiscount.slice(0, MAX_COUNT),
       elecDiscount.slice(0, MAX_COUNT),
@@ -59,11 +57,6 @@ export default class Item {
     ];
   }
 
- 
-
-
-
-  
   // 할인률이 가장 높은 아이템 조회
   @computed get getBestDiscounteItems() {
     const MAX_COUNT = 8;

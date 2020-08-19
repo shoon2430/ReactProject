@@ -23,16 +23,16 @@ class LoginView extends Component {
     const { login } = this.props;
     return (
       <div style={headerIconBox}>
-        <Link style={iconLabel} to="/my">
+        <a style={iconLabel} href="/myMonpang">
           {login !== "null" && <Icon name="user" size="big" />}
           {login !== "null" && (
             <p style={{ fontSize: "12px", marginTop: "3px" }}>마이몬팡</p>
           )}
-        </Link>
-        <Link style={iconLabel} to="/basket">
+        </a>
+        <a style={iconLabel} href="/basket">
           <Icon name="shop" size="big" />
           <p style={{ fontSize: "12px", marginTop: "3px" }}>장바구니</p>
-        </Link>
+        </a>
       </div>
     );
   }

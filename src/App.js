@@ -8,6 +8,9 @@ import MainPage from "./mainPage/MainPage";
 import ListPage from "./listPage/view/ListPage";
 import DetailPage from "./detailPage/DetailPage";
 import Footer from "./footer/Footer";
+import MyMonpang from "./user/container/MyMonpangContainer";
+import BasketList from "./user/container/BasketListContainer";
+
 import { Container } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
 
@@ -57,10 +60,11 @@ class App extends Component {
 
         <Container>
           <Header />
-          <Route path="/my" component={MainPage} exact={true} />
           <Route path="/" component={MainPage} exact={true} />
           <Route path="/list" component={ListPage} exact={true} />
           <Route path="/detail" component={DetailPage} exact={true} />
+          <Route path="/myMonpang" component={MyMonpang} exact={true} />
+          <Route path="/basket" component={BasketList} exact={true} />
         </Container>
         <Footer />
       </>

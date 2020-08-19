@@ -33,12 +33,6 @@ const headerMain = {
 
 @inject("Store")
 class Header extends Component {
-  // 페이지 이동 함수
-  movePage = (e) => {
-    const page = e.target.textContent;
-    this.props.Store.page.moveToPage(page);
-  };
-
   render() {
     return (
       <div style={header}>
