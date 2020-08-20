@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MyMonpang from "../view/MyMonpang";
 
 import { observer, inject } from "mobx-react";
-import { Item, Grid, Icon, Header } from "semantic-ui-react";
+import { Item, Icon, Header } from "semantic-ui-react";
 
 @inject("Store")
 @observer
@@ -31,8 +31,6 @@ class MyMonpangContainer extends Component {
         />
       );
     });
-
-    console.log(buyPrice);
 
     return (
       <div>

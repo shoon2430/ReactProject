@@ -76,7 +76,7 @@ class CategoryBestItem extends Component {
                       this.state.imagePage - 1
                     ].imgUrl
                   }
-                  style={{ width: "100%", height: "80%" }}
+                  style={{ width: "100%", height: "70%" }}
                 />
               </Table.Cell>
               {showItems.slice(0, 3)}

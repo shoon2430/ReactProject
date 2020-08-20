@@ -48,10 +48,10 @@ export default class User {
     window.location = "/login";
   }
 
-  @action signUp(password, name) {
+  @action signUp(id, password, name) {
     const newUser = {
       key: this.users.length + 1,
-      id: `student${this.users.length + 1}`,
+      id: id,
       password: password,
       name: name,
       gender: "M",
@@ -74,18 +74,51 @@ export default class User {
   @action addItemToBasket(id, count) {
     const { item } = this.root;
 
-    const AllItem = item.getItems();
+    const AllItem = item.getItems;
 
-    item.setItems(
-      AllItem.map((item) => {
-        if (item.id === id) {
-          item.stock = item.stock - count;
+    if (this.getLoginUser !== "null") {
+      const userInfo = this.loginUserInfo;
+      const newUsers = this.users.map((user) => {
+        if (user.id === userInfo.id) {
+          let userBasket = user.eyeShoppingList;
+          user.eyeShoppingList = userBasket.concat([[id, count]]);
         }
-        return item;
-      })
-    );
+        return user;
+      });
+      this.users = newUsers;
+      localStorage.DB = JSON.stringify(newUsers);
+    } else {
+      item.setItems(
+        AllItem.map((item) => {
+          if (item.id === id) {
+            item.stock = item.stock - count;
+          }
+          return item;
+        })
+      );
 
-    const numItem = [id, count];
-    localStorage.BASKET = JSON.stringify(this.localBasket.concat(numItem));
+      const numItem = [id, count];
+      localStorage.BASKET = JSON.stringify(this.localBasket.concat([numItem]));
+    }
+  }
+
+  @action removeBasketItem(id) {
+    // 로그인 인경우
+
+    if (this.getLoginUser !== "null") {
+      const userInfo = this.loginUserInfo;
+      const newUsers = this.users.map((user) => {
+        if (user.id === userInfo.id) {
+          let userBasket = user.eyeShoppingList;
+          user.eyeShoppingList = userBasket.filter((item) => item[0] !== id);
+        }
+        return user;
+      });
+      this.users = newUsers;
+      localStorage.DB = JSON.stringify(newUsers);
+    } else {
+      this.localBasket = this.localBasket.filter((item) => item[0] !== id);
+      localStorage.BASKET = JSON.stringify(this.localBasket);
+    }
   }
 }

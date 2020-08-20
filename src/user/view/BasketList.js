@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Item, Header } from "semantic-ui-react";
+import { Item, Header, Label } from "semantic-ui-react";
 
 const priceStyle = {
   display: "flex",
@@ -8,13 +8,17 @@ const priceStyle = {
 
 class BasketList extends Component {
   render() {
-    const { shoppingItem, buyCount } = this.props;
+    const { shoppingItem, buyCount, onRemoveBasketItem } = this.props;
+
     return (
-      <Item href={`/detail?id=${shoppingItem.id}`}>
+      <Item>
         <Item.Image size="tiny" src={shoppingItem.imgUrl} />
         <Item.Content verticalAlign="middle">
           <Header.Content as="h4">
-            <Header.Content style={{ color: "#273746", fontSize: "20px" }}>
+            <Header.Content
+              style={{ color: "#273746", fontSize: "20px" }}
+              href={`/detail?id=${shoppingItem.id}`}
+            >
               {shoppingItem.name}
             </Header.Content>
           </Header.Content>
@@ -38,6 +42,15 @@ class BasketList extends Component {
             </b>
           </div>
         </Item.Content>
+        <Label
+          as="a"
+          onClick={() => {
+            onRemoveBasketItem(shoppingItem.id);
+          }}
+          style={{ height: "10%", background: "#F32020", color: "white" }}
+        >
+          삭제
+        </Label>
       </Item>
     );
   }

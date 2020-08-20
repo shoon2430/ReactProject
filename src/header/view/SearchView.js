@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Input, Dropdown, Button, Label } from "semantic-ui-react";
+import { Input, Dropdown, Button, Label, Icon } from "semantic-ui-react";
 import main from "../../data/category/main";
-import sub from "../../data/category/sub";
-import { Link } from "react-router-dom";
 
 const headerInput = {
   width: "64%",
@@ -17,7 +15,7 @@ const headerInputDropbox = {
 
 const headerSearchButton = {
   marginLeft: "-2px",
-  width: "50px",
+  width: "60px",
 };
 
 class SearchView extends Component {
@@ -49,15 +47,15 @@ class SearchView extends Component {
             <Dropdown.Menu>{dropList}</Dropdown.Menu>
           </Dropdown>
         </Label>
-        <input />
+        <input onKeypress={(e) => (e.keyCode === "13" ? onSearch() : null)} />
         <Button
           basic
-          icon="search"
           style={headerSearchButton}
           onClick={() => onSearch()}
           as="a"
-          // href={`/list?category=${main[i].value}`}
-        ></Button>
+        >
+          <Icon name="search" style={{ margin: "1.5px", marginTop: "7px" }} />
+        </Button>
       </Input>
     );
   }

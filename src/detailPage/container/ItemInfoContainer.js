@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import ItemInfoView from "../view/ItemInfoView";
 import { Icon } from "semantic-ui-react";
-import sub from "../../data/category/sub";
 
 import qs from "qs";
 import { withRouter } from "react-router-dom";
@@ -50,6 +49,11 @@ class ItemInfoContainer extends Component {
 
   // 장바구니에 추가
   addItemToBasket = (id, count) => {
+    if (count === 0) {
+      alert("구매수량을 선택하세요.");
+      return;
+    }
+
     const { user } = this.props.Store;
     const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
 
@@ -57,16 +61,12 @@ class ItemInfoContainer extends Component {
       user.addItemToBasket(id, count);
     }
     user.addItemToBasket(id, count);
+    alert("장바구니 등록에 성공했습니다. \n장바구니로 이동합니다.");
+    window.location = "/basket";
   };
-
-  // // 상품구매
-  // buyItem ()=>{
-
-  // }
 
   render() {
     const { detail } = this.props.Store;
-    const { user } = this.props.Store;
 
     return (
       <ItemInfoView

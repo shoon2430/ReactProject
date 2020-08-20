@@ -6,11 +6,9 @@ import {
   Card,
   Icon,
   Button,
-  Label,
   Input,
 } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
-import sub from "../../data/category/sub";
 
 class ItemInfoView extends Component {
   render() {
@@ -20,8 +18,6 @@ class ItemInfoView extends Component {
       onPlus,
       onMinus,
       count,
-      subCateText,
-      goHome,
       addItemToBasket,
     } = this.props;
 
