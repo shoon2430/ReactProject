@@ -32,7 +32,7 @@ class BasketListContainer extends Component {
     let buyPrice = 0;
     let userEyeShoppingListComponent = "";
 
-    if (eyeShoppingList.length > 0)
+    if (eyeShoppingList.length > 0) {
       userEyeShoppingListComponent = eyeShoppingList.map((eyeShopping) => {
         let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
         buyPrice += price;
@@ -46,7 +46,7 @@ class BasketListContainer extends Component {
           />
         );
       });
-    else if (localBasket.length > 0 && userInfo === "null") {
+    } else if (localBasket.length > 0 && !userInfo.id) {
       userEyeShoppingListComponent = localBasket.map((eyeShopping) => {
         let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
         buyPrice += price;
