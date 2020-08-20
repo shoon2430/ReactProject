@@ -49,6 +49,11 @@ class ItemInfoContainer extends Component {
 
   // 장바구니에 추가
   addItemToBasket = (id, count) => {
+    if (count === 0) {
+      alert("구매수량을 선택하세요.");
+      return;
+    }
+
     const { user } = this.props.Store;
     const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
 

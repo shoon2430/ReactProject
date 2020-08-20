@@ -25,6 +25,11 @@ class SearchContainer extends Component {
   };
 
   onSearch = () => {
+    if (!this.state.inputText) {
+      alert("검색어를 입력해주세요!");
+      return;
+    }
+
     let url = "/list?search=";
     url += this.state.inputText ? this.state.inputText : "";
     url += this.state.selectOption
