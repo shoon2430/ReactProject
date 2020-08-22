@@ -5,29 +5,16 @@ class ItemPaging extends Component {
   render() {
     const { setPage, allPage, nowPage } = this.props;
 
-    let pageList = [];
+    const pageList = [...Array(allPage).keys()].map((page) => (
+      <Icon
+        key={page}
+        name="circle"
+        color={page + 1 === nowPage ? "black" : "grey"}
+        onClick={() => setPage(page + 1)}
+      />
+    ));
 
-    for (var i = 1; i <= allPage; i++) {
-      const color = i === nowPage ? "black" : "grey";
-      pageList.push(<Icon name="circle" color={color} />);
-    }
-    return (
-      <div style={{ textAlign: "center" }}>
-        <Icon
-          name="arrow left"
-          onClick={() => {
-            setPage(nowPage - 1 < 1 ? allPage : nowPage - 1);
-          }}
-        />
-        {pageList}
-        <Icon
-          name="arrow right"
-          onClick={() => {
-            setPage(nowPage + 1 > allPage ? 1 : nowPage + 1);
-          }}
-        />
-      </div>
-    );
+    return <div style={{ textAlign: "center" }}>{pageList}</div>;
   }
 }
 

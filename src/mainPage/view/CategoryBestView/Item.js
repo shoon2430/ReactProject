@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Image, Icon, Card } from "semantic-ui-react";
+import { Table, Image, Icon, Card, Rating } from "semantic-ui-react";
 
 const imageStyle = {
   width: "100%",
@@ -12,28 +12,27 @@ const cardStyle = {
   textOverflow: "ellipsis",
   textAlign: "left",
 };
+
 class Item extends Component {
-  starCount = (rating) => {
-    let start = [];
-    for (var i = 0; i < rating; i++) {
-      start = start.concat(<Icon name="star" color="yellow" />);
-    }
-    return start;
-  };
   render() {
     const { item } = this.props;
     return (
       <Table.Cell textAlign="center">
-        <Card style={{ width: "190px" }} as="a" href={`/detail?id=${item.id}`}>
-          <Image src={item.imgUrl} style={imageStyle} />
+        <Card
+          className="item"
+          style={{ width: "190px" }}
+          as="a"
+          href={`/detail?id=${item.id}`}
+        >
+          <Image className="item__image" src={item.imgUrl} style={imageStyle} />
           <Card.Content>
             <Card.Description style={cardStyle}>
-              {item.name}
+              <span className="item__delivery">{item.name}</span>
               <br />
-              <b style={{ fontSize: "15px" }}>
+              <b className="item__price" style={{ fontSize: "15px" }}>
                 {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
               </b>
-              <b style={{ color: "RoyalBlue" }}>
+              <b className="item__delivery" style={{ color: "RoyalBlue" }}>
                 {item.delivery === 1 ? (
                   <Icon name="truck" style={{ marginLeft: "5px" }}>
                     무료배송
@@ -43,7 +42,12 @@ class Item extends Component {
                 )}
               </b>
               <br />
-              {this.starCount(item.rating)}
+              <Rating
+                className="item__rating"
+                icon="star"
+                defaultRating={item.rating}
+                maxRating={item.rating}
+              />
             </Card.Description>
           </Card.Content>
         </Card>
