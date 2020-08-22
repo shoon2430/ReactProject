@@ -7,25 +7,15 @@ import { observer, inject } from "mobx-react";
 @inject("Store")
 @observer
 class BestDiscountContainer extends Component {
-  changeBackground = (next) => {
-    this.props.Store.main.changeDiscountMainImageUrl(next);
-    this.props.Store.main.setNextPage(next);
-  };
-
   render() {
-    const { main, item } = this.props.Store;
+    const { item } = this.props.Store;
     const bestDiscountItems = item.getBestDiscounteItems.map((item) => (
       <BestDiscountItem bestDiscountItem={item} />
     ));
 
     return (
       <div>
-        <BestDiscountImage
-          Background={main.getDiscountMainImageUrl}
-          changeBackground={this.changeBackground}
-          left={main.getLeftPage}
-          right={main.getRightPage}
-        />
+        <BestDiscountImage />
         <BestDiscountItemList bestDiscountItems={bestDiscountItems} />
       </div>
     );
