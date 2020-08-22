@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CategoryBestItem from "../view/CategoryBestItem";
+import CategoryBestItemList from "../view/CategoryBestView/CategoryBestItemList";
 import { observer, inject } from "mobx-react";
 import { Header } from "semantic-ui-react";
 
@@ -12,7 +12,7 @@ class CategoryBestItemContainer extends Component {
     const categoryColorList = item.getCategoryColorList;
 
     categoryBestItmes = categoryBestItmes.map((items, idx) => (
-      <CategoryBestItem
+      <CategoryBestItemList
         category={idx}
         color={categoryColorList[idx]}
         items={{

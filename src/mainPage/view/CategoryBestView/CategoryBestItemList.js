@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Table, Image } from "semantic-ui-react";
 
-import ImagePaging from "./CategoryBestItems/ImagePaging";
-import ItemPaging from "./CategoryBestItems/ItemPaging";
-import Item from "./CategoryBestItems/Item";
-import Category from "./CategoryBestItems/Category";
-import Advertising from "./CategoryBestItems/Advertising";
+import ImagePaging from "./ImagePaging";
+import ItemPaging from "./ItemPaging";
+import Item from "./Item";
+import Category from "./Category";
+import Advertising from "./Advertising";
 
 const categoryItemTable = {
   height: "500px",
@@ -15,7 +15,7 @@ const categoryItemImage = {
   width: "30%",
 };
 
-class CategoryBestItem extends Component {
+class CategoryBestItemList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -106,4 +106,4 @@ class CategoryBestItem extends Component {
   }
 }
 
-export default CategoryBestItem;
+export default CategoryBestItemList;

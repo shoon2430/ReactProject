@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import BestDiscountImage from "../view/BestDiscountImage";
-import BestDiscountItem from "../view/BestDiscountItem";
+import BestDiscountImage from "../view/BestDiscountView/BestDiscountImage";
+import BestDiscountItemList from "../view/BestDiscountView/BestDiscountItemList";
+import BestDiscountItem from "../view/BestDiscountView/BestDiscountItem";
 import { observer, inject } from "mobx-react";
 
 @inject("Store")
@@ -13,7 +14,9 @@ class BestDiscountContainer extends Component {
 
   render() {
     const { main, item } = this.props.Store;
-    const bestDiscountItems = item.getBestDiscounteItems;
+    const bestDiscountItems = item.getBestDiscounteItems.map((item) => (
+      <BestDiscountItem bestDiscountItem={item} />
+    ));
 
     return (
       <div>
@@ -23,7 +26,7 @@ class BestDiscountContainer extends Component {
           left={main.getLeftPage}
           right={main.getRightPage}
         />
-        <BestDiscountItem bestDiscountItems={bestDiscountItems} />
+        <BestDiscountItemList bestDiscountItems={bestDiscountItems} />
       </div>
     );
   }
