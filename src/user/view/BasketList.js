@@ -9,6 +9,8 @@ const priceStyle = {
 class BasketList extends Component {
   render() {
     const { shoppingItem, buyCount, onRemoveBasketItem } = this.props;
+    const price = shoppingItem.price * (100 - shoppingItem.discount) * 0.01;
+    const sumPrice = price * buyCount;
 
     return (
       <Item>
@@ -25,9 +27,7 @@ class BasketList extends Component {
           <div style={priceStyle}>
             <div>
               <b style={{ color: "#456AE8", fontSize: "20px" }}>
-                {String(shoppingItem.price)
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </b>
 
               <b style={{ color: "#566573", fontSize: "16px" }}>
@@ -35,10 +35,7 @@ class BasketList extends Component {
               </b>
             </div>
             <b style={{ color: "red", fontSize: "20px" }}>
-              {String(shoppingItem.price * buyCount)
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-              원
+              {sumPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원
             </b>
           </div>
         </Item.Content>

@@ -13,6 +13,7 @@ class CategoryBestItemContainer extends Component {
 
     categoryBestItmes = categoryBestItmes.map((items, idx) => (
       <CategoryBestItemList
+        key={idx}
         category={idx}
         color={categoryColorList[idx]}
         items={{
