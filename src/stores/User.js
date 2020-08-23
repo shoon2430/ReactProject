@@ -89,6 +89,7 @@ export default class User {
       localStorage.DB = JSON.stringify(newUsers);
     } else {
       item.setItems(
+        // 장바구니에 추가한 아이템의 수량 제거
         AllItem.map((item) => {
           if (item.id === id) {
             item.stock = item.stock - count;
