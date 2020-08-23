@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import Result from "../view/Result";
-import ResultInner from "../view/ResultInner";
 
 @inject("Store")
 @observer

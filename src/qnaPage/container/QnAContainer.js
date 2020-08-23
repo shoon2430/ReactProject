@@ -1,25 +1,34 @@
 import React, { Component } from "react";
-import QnAPage from "../view/QnAPage";
-import { Menu, Dropdown } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import QnASidebar from "../view/QnASidebar";
+import QnAInfo from "../view/QnAInfo";
+import { Grid, Segment } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
+
+@withRouter
 class QnAContainer extends Component {
   render() {
     return (
       <div>
-        <Menu>
-          <Menu.Item>
-            고객센터
-            <Dropdown>
-              <Dropdown.Menu>
-                <Dropdown.Item
-                  text="자주묻는질문"
-                  as={Link}
-                  to={`/qna/often`}
-                ></Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </Menu.Item>
-        </Menu>
+        <Grid>
+          <Grid.Row columns={2}>
+            <Grid.Column width={3} style={{ height: "700px" , marginTop:"20px"}}>
+              <p>
+                <span>
+                  <QnASidebar />
+                </span>
+              </p>
+            </Grid.Column>
+            <Grid.Column
+              stretched
+              width={13}
+              style={{ height: "700px", marginTop: "20px" }}
+            >
+              <Segment>
+                <QnAInfo />
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }
