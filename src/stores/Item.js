@@ -81,6 +81,7 @@ export default class Item {
       return 0;
     });
   }
+
   @computed get getCateDiscountItems() {
     const MAX_COUNT = 5;
 

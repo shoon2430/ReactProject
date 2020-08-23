@@ -10,9 +10,11 @@ class RecommendContainer extends Component {
     const { detail, item } = this.props.Store;
     const bestDiscount = item.getCateDiscountItems;
     const { selectItem } = this.props.Store.detail;
+
     const subCateObj = sub.find(
       (data) => data.value === selectItem.subCategory
     );
+
     const subCateText = { ...subCateObj }.text;
     return (
       <RecommendListView
