@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import RecommendItemView from "./RecommendItemView";
+import main from "../../data/category/main";
 
-class RecommendListView extends Component {
+// selectItem이 포함된 메인 카테고리의 아이템 중 할인율이 높은 상품 리스트
+class RecommendBestDiscountView extends Component {
   render() {
-    const { selectItem, bestDiscount, items, subCateText } = this.props;
+    const { selectItem, bestDiscount } = this.props;
 
-    const subitems = items.filter(
-      (item) => selectItem.subCategory === item.subCategory
-    );
+    const mainCateObj = main.find((data) => data.value === selectItem.category);
+    const mainCateText = { ...mainCateObj }.text;
 
     return (
       <Grid>
@@ -17,11 +18,7 @@ class RecommendListView extends Component {
             style={{ fontWeight: "bold", fontSize: "20px", marginTop: "20px" }}
           >
             <span style={{ color: "orange", fontSize: "21px" }}>
-              {selectItem.category === "CATFOO"
-                ? "식품"
-                : selectItem.category === "CATELE"
-                ? "가전디지털"
-                : "패션의류/잡화"}
+              {mainCateText}
             </span>
             <span>&nbsp;특가 상품</span>
           </div>
@@ -39,24 +36,9 @@ class RecommendListView extends Component {
                 return <RecommendItemView selectItem={item} />;
               })}
         </Grid.Row>
-
-        <Grid.Row>
-          <div
-            style={{ fontWeight: "bold", fontSize: "20px", marginTop: "10px" }}
-          >
-            <span style={{ color: "orange" }}>{subCateText}</span>
-            <span>&nbsp;연관 상품</span>
-          </div>
-        </Grid.Row>
-
-        <Grid.Row>
-          {subitems.slice(0, 5).map((item) => (
-            <RecommendItemView selectItem={item} />
-          ))}
-        </Grid.Row>
       </Grid>
     );
   }
 }
 
-export default RecommendListView;
+export default RecommendBestDiscountView;

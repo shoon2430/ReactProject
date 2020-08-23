@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import ItemInfoView from "../view/ItemInfoView";
-import { Icon } from "semantic-ui-react";
 
 import qs from "qs";
 import { withRouter } from "react-router-dom";
@@ -9,21 +8,7 @@ import { withRouter } from "react-router-dom";
 @inject("Store")
 @observer
 class ItemInfoContainer extends Component {
-  starCount = (rating) => {
-    let start = [];
-    for (var i = 0; i < rating; i++) {
-      start = start.concat(<Icon name="star" color="yellow" size="large" />);
-    }
-    for (var j = 0; j < 5 - rating; j++) {
-      start = start.concat(<Icon name="star" color="grey" size="large" />);
-    }
-    return start;
-  };
-
-  movePage = (e) => {
-    this.props.Store.page.moveToPage(e);
-  };
-
+  // 제품 구매 수량을 더하는 함수
   onPlus = () => {
     const { selectItem } = this.props.Store.detail;
     if (this.props.Store.detail.count < selectItem.stock) {
@@ -31,6 +16,7 @@ class ItemInfoContainer extends Component {
     }
   };
 
+  // 제품 구매 수량을 빼는 함수
   onMinus = () => {
     if (this.props.Store.detail.count > 0) {
       this.props.Store.detail.count -= 1;
@@ -55,12 +41,9 @@ class ItemInfoContainer extends Component {
     }
 
     const { user } = this.props.Store;
-    const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
 
-    if (userInfo === null) {
-      user.addItemToBasket(id, count);
-    }
     user.addItemToBasket(id, count);
+
     alert("장바구니 등록에 성공했습니다. \n장바구니로 이동합니다.");
     window.location = "/basket";
   };
@@ -77,7 +60,6 @@ class ItemInfoContainer extends Component {
         onMinus={this.onMinus}
         count={detail.count}
         subCate={detail.subCate}
-        // subCateText={subCateText}
         addItemToBasket={this.addItemToBasket}
       />
     );

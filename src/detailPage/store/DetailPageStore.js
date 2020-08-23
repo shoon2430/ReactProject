@@ -1,5 +1,4 @@
 import { observable, action, computed } from "mobx";
-import allData from "../../data/allData";
 import elecData from "../../data/elecData";
 
 // Detail Page Mobx Store 클래스 선언
