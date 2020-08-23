@@ -11,9 +11,9 @@ class RecentlyViewedItemContainer extends Component {
   };
 
   render() {
-    const { item } = this.props.Store;
-    const newItemList = item.getNewSearchItems;
+    const newItemList = this.props.Store.item.getNewSearchItems;
 
+    // 최근 조회 목록 아이템 컴포넌트 리스트 생성
     const recentlyViewedItemComponents = newItemList.map((newItem) => (
       <RecentlyViewedItem
         item={newItem}

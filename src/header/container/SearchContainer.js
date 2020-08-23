@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchView from "../view/SearchView";
 import { inject, observer } from "mobx-react";
+import main from "../../data/category/main";
 
 @inject("Store")
 @observer
@@ -40,8 +41,10 @@ class SearchContainer extends Component {
   };
 
   render() {
+    main.unshift({ key: 0, text: "전체", value: "" });
     return (
       <SearchView
+        mainCategoryList={main}
         onSearch={this.onSearch}
         onInputText={this.onInputText}
         selectOpt={this.selectOpt}

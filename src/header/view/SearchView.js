@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Input, Dropdown, Button, Label, Icon } from "semantic-ui-react";
-import main from "../../data/category/main";
 
 const headerInput = {
   width: "64%",
@@ -20,12 +19,15 @@ const headerSearchButton = {
 
 class SearchView extends Component {
   render() {
-    const { onInputText, onSearch, selectOpt, optName } = this.props;
+    const {
+      mainCategoryList,
+      onInputText,
+      onSearch,
+      selectOpt,
+      optName,
+    } = this.props;
 
-    let optList = [{ key: 0, text: "전체", value: "" }];
-    main.map((obj) => optList.push(obj));
-
-    let dropList = optList.map((data) => {
+    let dropList = mainCategoryList.map((data) => {
       return (
         <Dropdown.Item
           text={data.text}
