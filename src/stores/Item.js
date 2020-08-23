@@ -52,7 +52,7 @@ export default class Item {
     // 동일한 아이템이 없을 경우
     if (!itemCheck) {
       this.newSearchItems.unshift(newItem);
-      this.newSearchItems = this.newSearchItems.slice(0, 3);
+      this.newSearchItems = this.newSearchItems.slice(0, 9);
       localStorage.NEW = JSON.stringify(this.newSearchItems);
     }
   }

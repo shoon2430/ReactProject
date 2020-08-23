@@ -3,11 +3,11 @@ import { Message } from "semantic-ui-react";
 
 const recentlyViewedListStyle = {
   position: "fixed",
-  maxHeight: "850px",
+  maxHeight: "758px",
   top: "13%",
   left: "81%",
   zIndex: "10",
-  overflow: "scroll",
+  overflow: "auto",
   overflowX: "hidden",
 };
 
