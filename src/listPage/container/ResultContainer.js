@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
-import "../../mainPage/view/BestDiscountItem.css";
 
 import {
   Grid,
