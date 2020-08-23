@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Item, Image, Grid, Icon } from "semantic-ui-react";
 import Price from "./ItemInfomation/Price";
+import ItemTitle from "./ItemInfomation/ItemTitle";
 
 class RecommendItemView extends Component {
   render() {
@@ -16,16 +17,14 @@ class RecommendItemView extends Component {
         <Item>
           <Image src={selectItem.imgUrl} style={{ height: "200px" }} />
           <Item.Group style={{ textAlign: "center" }}>
-            <Item.Header
-              style={{
-                fontWeight: "bold",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {selectItem.name}
-            </Item.Header>
+            <ItemTitle
+              selectItem={selectItem}
+              titleFontSize={"18px"}
+              width={200}
+              overflow={"hidden"}
+              textOverflow={"ellipsis"}
+              whiteSpace={"nowrap"}
+            />
             <Price
               selectItem={selectItem}
               count={count}

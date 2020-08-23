@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
 import Price from "./ItemInfomation/Price";
+import ItemTitle from "./ItemInfomation/ItemTitle";
 
 class ItemInfoView extends Component {
   render() {
@@ -34,22 +35,14 @@ class ItemInfoView extends Component {
             </Grid.Column>
             <Grid.Column style={{ width: "50%", lineHeight: "32px" }}>
               <Item.Group divided>
-                <Item>
-                  <Item.Content>
-                    <Item.Header style={{ fontSize: "30px" }}>
-                      {selectItem.name}
-                    </Item.Header>
-                    <Item.Description>
-                      <Rating
-                        icon="star"
-                        defaultRating={selectItem.rating}
-                        maxRating={5}
-                        disabled
-                        size="huge"
-                      />
-                    </Item.Description>
-                  </Item.Content>
-                </Item>
+                <ItemTitle
+                  selectItem={selectItem}
+                  titleFontSize={"30px"}
+                  width={"100%"}
+                  overflow={""}
+                  textOverflow={""}
+                  whiteSpace={""}
+                />
                 <Price
                   selectItem={selectItem}
                   count={count}
