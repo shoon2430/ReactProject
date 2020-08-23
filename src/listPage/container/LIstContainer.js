@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Grid } from "semantic-ui-react";
 import qs from "qs";
 import { withRouter } from "react-router-dom";
-import FilterContainer from "./FilterContainer";
-import ResultContainer from "./ResultContainer";
-import CategoryMainContainer from "./CategoryMainContainer";
+import FilterContainer from "../container/FilterContainer";
+import ResultContainer from "../container/ResultContainer";
+import CategoryMainContainer from "../container/CategoryMainContainer";
 import { inject, observer } from "mobx-react";
 
 @withRouter

@@ -11,6 +11,7 @@ import Footer from "./footer/Footer";
 import MyMonpang from "./user/container/MyMonpangContainer";
 import BasketList from "./user/container/BasketListContainer";
 import NewItems from "./header/NewItems";
+import QnA from "./qnaPage/container/QnAContainer";
 
 import { Container } from "semantic-ui-react";
 import { observer, inject } from "mobx-react";
@@ -35,29 +36,34 @@ class App extends Component {
     const { user } = this.props.Store;
 
     const nomalState = (
-      <Container style={loginContainerStyle}>
+      <div>
         <Label as="a" href="/login">
           로그인
         </Label>
         <Label as="a" href="/signup">
           회원가입
         </Label>
-      </Container>
+      </div>
     );
 
     const loginState = (
-      <Container style={loginContainerStyle}>
+      <div>
         <Label>{user.getLoginUser}(님)</Label>
         <Label onClick={() => user.logOut()}>로그아웃</Label>
-      </Container>
+      </div>
     );
 
     return (
       <>
-        <div className="monpangBanner" style={monpangBanner}>
-          {user.getLoginUser !== "null" ? loginState : nomalState}
-          {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
-        </div>
+        <Container className="monpangBanner" style={monpangBanner}>
+          <Container style={loginContainerStyle}>
+            {user.getLoginUser !== "null" ? loginState : nomalState}
+            {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
+            <Label as="a" href="/qna">
+              <QnA />
+            </Label>
+          </Container>
+        </Container>
 
         <NewItems />
 
@@ -68,6 +74,7 @@ class App extends Component {
           <Route path="/detail" component={DetailPage} exact={true} />
           <Route path="/myMonpang" component={MyMonpang} exact={true} />
           <Route path="/basket" component={BasketList} exact={true} />
+          <Route path="/qna" component={QnA} exact={true} />
         </Container>
         <Footer />
       </>

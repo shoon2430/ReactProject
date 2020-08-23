@@ -13,8 +13,18 @@ const railDiscount = {
   fontSize: "16px",
 };
 
-class ResultInnerContainer extends Component {
-  results = this.props.resultList.map((item) => {
+class ResultInner extends Component {
+  starCount = (rating) => {
+    let start = [];
+    for (var i = 0; i < rating; i++) {
+      start = start.concat(<Icon name="star" color="yellow" />);
+    }
+    return start;
+  };
+  
+  render() {
+    const item = this.props.item; 
+
     return (
       <Grid.Column key={item.id}>
         <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
@@ -68,10 +78,10 @@ class ResultInnerContainer extends Component {
                     <Icon name="shipping fast"></Icon>무료배송
                   </span>
                 ) : (
-                  ""
-                )}
+                    ""
+                  )}
               </span>
-              　
+
             </Card.Content>
 
             <Rail
@@ -91,11 +101,7 @@ class ResultInnerContainer extends Component {
         </Card>
       </Grid.Column>
     );
-  });
-
-  render() {
-    return <div>{this.results}</div>;
   }
 }
 
-export default ResultInnerContainer;
+export default ResultInner;
