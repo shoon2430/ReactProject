@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ItemInfoContainer from "./container/ItemInfoContainer";
-import SameCategoryListContainer from "./container/SameCategoryListContainer";
+import RecommendContainer from "./container/RecommendContainer";
 
 // const example = {
 //   background: "honeydew",
@@ -13,7 +13,7 @@ class DetailPage extends Component {
       <div>
         {/* <div style={example} /> */}
         <ItemInfoContainer />
-        <SameCategoryListContainer />
+        <RecommendContainer />
       </div>
     );
   }

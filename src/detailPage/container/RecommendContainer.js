@@ -5,7 +5,7 @@ import sub from "../../data/category/sub";
 
 @inject("Store")
 @observer
-class SameCategoryItemContainer extends Component {
+class RecommendContainer extends Component {
   render() {
     const { detail, item } = this.props.Store;
     const bestDiscount = item.getCateDiscountItems;
@@ -25,4 +25,4 @@ class SameCategoryItemContainer extends Component {
   }
 }
 
-export default SameCategoryItemContainer;
+export default RecommendContainer;

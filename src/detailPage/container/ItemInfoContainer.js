@@ -9,10 +9,7 @@ import { withRouter } from "react-router-dom";
 @inject("Store")
 @observer
 class ItemInfoContainer extends Component {
-  movePage = (e) => {
-    this.props.Store.page.moveToPage(e);
-  };
-
+  // 제품 구매 수량을 더하는 함수
   onPlus = () => {
     const { selectItem } = this.props.Store.detail;
     if (this.props.Store.detail.count < selectItem.stock) {
@@ -20,6 +17,7 @@ class ItemInfoContainer extends Component {
     }
   };
 
+  // 제품 구매 수량을 빼는 함수
   onMinus = () => {
     if (this.props.Store.detail.count > 0) {
       this.props.Store.detail.count -= 1;
@@ -66,7 +64,6 @@ class ItemInfoContainer extends Component {
         onMinus={this.onMinus}
         count={detail.count}
         subCate={detail.subCate}
-        // subCateText={subCateText}
         addItemToBasket={this.addItemToBasket}
       />
     );

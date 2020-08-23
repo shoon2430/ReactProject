@@ -22,7 +22,6 @@ class ItemTitle extends Component {
               overflow: overflow,
               textOverflow: textOverflow,
               whiteSpace: whiteSpace,
-              //   height: "20px",
             }}
           >
             {selectItem.name}

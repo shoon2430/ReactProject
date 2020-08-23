@@ -7,12 +7,14 @@ import {
   Icon,
   Button,
   Input,
-  Rating,
 } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
 import Price from "./ItemInfomation/Price";
 import ItemTitle from "./ItemInfomation/ItemTitle";
+import PlusMinus from "./ItemInfomation/PlusMinus";
+// import PlusMinus from "./ItemInfomation/PlusMinus";
 
+// 제품의 상세 정보를 보여줌
 class ItemInfoView extends Component {
   render() {
     const { selectItem, onPlus, onMinus, count, addItemToBasket } = this.props;
@@ -22,6 +24,7 @@ class ItemInfoView extends Component {
         <CategoryLineContainer />
         <Grid style={{ marginTop: "15px" }}>
           <Grid.Row>
+            {/* 화면 왼쪽에는 제품의 이미지 */}
             <Grid.Column style={{ width: "50%" }}>
               <Card style={{ width: "100%" }}>
                 <Image
@@ -33,8 +36,10 @@ class ItemInfoView extends Component {
                 />
               </Card>
             </Grid.Column>
+            {/* 화면 우측에는 제품의 상세 정보 */}
             <Grid.Column style={{ width: "50%", lineHeight: "32px" }}>
               <Item.Group divided>
+                {/* 제품의 이름, 별점 뷰를 불러옴 */}
                 <ItemTitle
                   selectItem={selectItem}
                   titleFontSize={"30px"}
@@ -43,6 +48,7 @@ class ItemInfoView extends Component {
                   textOverflow={""}
                   whiteSpace={""}
                 />
+                {/* 제품의 가격 뷰를 불러옴 */}
                 <Price
                   selectItem={selectItem}
                   count={count}
@@ -99,50 +105,12 @@ class ItemInfoView extends Component {
                 <Item>
                   <Item.Content style={{ marginTop: "10px", fontSize: "16px" }}>
                     <Item.Description>제품 구매수량</Item.Description>
-                    <Item.Description
-                      style={{
-                        marginTop: "-15px",
-                        textAlignLast: "right",
-                        color: "#FF6600",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {count === 0 ? (
-                        <Icon
-                          onClick={onMinus}
-                          name="minus square outline"
-                          color="grey"
-                          size="big"
-                        />
-                      ) : (
-                        <Icon
-                          onClick={onMinus}
-                          name="minus square outline"
-                          color="orange"
-                          size="big"
-                        />
-                      )}
-
-                      <Input type="number" defaultValue={count} size="huge">
-                        &emsp;{count}&emsp;
-                      </Input>
-                      {selectItem.stock === count ? (
-                        <Icon
-                          onClick={onPlus}
-                          name="plus square outline"
-                          color="grey"
-                          size="big"
-                        />
-                      ) : (
-                        <Icon
-                          onClick={onPlus}
-                          name="plus square outline"
-                          color="orange"
-                          size="big"
-                        />
-                      )}
-                    </Item.Description>
-
+                    <PlusMinus
+                      selectItem={selectItem}
+                      count={count}
+                      onMinus={onMinus}
+                      onPlus={onPlus}
+                    />
                     <Item.Description style={{ marginTop: "20px" }}>
                       총 상품금액
                     </Item.Description>
