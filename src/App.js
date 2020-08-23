@@ -11,6 +11,9 @@ import Footer from "./footer/Footer";
 import MyMonpang from "./user/container/MyMonpangContainer";
 import BasketList from "./user/container/BasketListContainer";
 import NewItems from "./header/NewItems";
+import QnAButton from "./qnaPage/view/QnAButton";
+import QnA1to1 from "./qnaPage/container/QnA1to1Container";
+import QnABoard from "./qnaPage/container/QnABoardContainer";
 import QnA from "./qnaPage/container/QnAContainer";
 
 import { Container } from "semantic-ui-react";
@@ -60,7 +63,7 @@ class App extends Component {
             {user.getLoginUser !== "null" ? loginState : nomalState}
             {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
             <Label as="a" href="/qna">
-              <QnA />
+              <QnAButton />
             </Label>
           </Container>
         </Container>
@@ -75,6 +78,8 @@ class App extends Component {
           <Route path="/myMonpang" component={MyMonpang} exact={true} />
           <Route path="/basket" component={BasketList} exact={true} />
           <Route path="/qna" component={QnA} exact={true} />
+          <Route path="/qna/1to1" component={QnA1to1} exact={true} />
+          <Route path="/qna/userboard" component={QnABoard} exact={true} />
         </Container>
         <Footer />
       </>
