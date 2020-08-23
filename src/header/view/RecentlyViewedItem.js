@@ -21,45 +21,43 @@ class RecentlyViewedItem extends Component {
   render() {
     const { item, removeNewSearchItems } = this.props;
     return (
-      <div>
-        <Card style={cardStyle}>
-          <Image
-            src={item.imgUrl}
-            style={imageStyle}
+      <Card style={cardStyle}>
+        <Image
+          src={item.imgUrl}
+          style={imageStyle}
+          as="a"
+          href={`/detail?id=${item.id}`}
+        />
+        <Card.Content>
+          <Card.Description style={cardDescriptionStyle}>
+            {item.name}
+            <br />
+            <Rating
+              disabled="true"
+              className="item__rating"
+              icon="star"
+              defaultRating={item.rating}
+              maxRating={5}
+            />
+          </Card.Description>
+        </Card.Content>
+        <Rail
+          attached
+          internal
+          position="left"
+          style={{ top: "0px", left: "130px" }}
+        >
+          <Label
             as="a"
-            href={`/detail?id=${item.id}`}
-          />
-          <Card.Content>
-            <Card.Description style={cardDescriptionStyle}>
-              {item.name}
-              <br />
-              <Rating
-                disabled="true"
-                className="item__rating"
-                icon="star"
-                defaultRating={item.rating}
-                maxRating={5}
-              />
-            </Card.Description>
-          </Card.Content>
-          <Rail
-            attached
-            internal
-            position="left"
-            style={{ top: "0px", left: "130px" }}
+            onClick={() => {
+              removeNewSearchItems(item.id);
+            }}
+            style={{ background: "#F32020", color: "white", zIndex: "10" }}
           >
-            <Label
-              as="a"
-              onClick={() => {
-                removeNewSearchItems(item.id);
-              }}
-              style={{ background: "#F32020", color: "white", zIndex: "10" }}
-            >
-              X
-            </Label>
-          </Rail>
-        </Card>
-      </div>
+            X
+          </Label>
+        </Rail>
+      </Card>
     );
   }
 }

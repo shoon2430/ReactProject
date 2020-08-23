@@ -22,11 +22,7 @@ class RecentlyViewedItemContainer extends Component {
     ));
 
     return (
-      <div>
-        <RecentlyViewedList
-          recentlyViewedItems={recentlyViewedItemComponents}
-        />
-      </div>
+      <RecentlyViewedList recentlyViewedItems={recentlyViewedItemComponents} />
     );
   }
 }
