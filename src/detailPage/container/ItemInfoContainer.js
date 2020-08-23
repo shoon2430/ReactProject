@@ -9,17 +9,6 @@ import { withRouter } from "react-router-dom";
 @inject("Store")
 @observer
 class ItemInfoContainer extends Component {
-  starCount = (rating) => {
-    let start = [];
-    for (var i = 0; i < rating; i++) {
-      start = start.concat(<Icon name="star" color="yellow" size="large" />);
-    }
-    for (var j = 0; j < 5 - rating; j++) {
-      start = start.concat(<Icon name="star" color="grey" size="large" />);
-    }
-    return start;
-  };
-
   movePage = (e) => {
     this.props.Store.page.moveToPage(e);
   };

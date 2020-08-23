@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Item, Image, Grid, Icon } from "semantic-ui-react";
+import Price from "./ItemInfomation/Price";
 
 class RecommendItemView extends Component {
   render() {
-    const { selectItem } = this.props;
+    const { selectItem, count } = this.props;
 
     return (
       <Grid.Column
@@ -25,7 +26,15 @@ class RecommendItemView extends Component {
             >
               {selectItem.name}
             </Item.Header>
-            <Item.Content>
+            <Price
+              selectItem={selectItem}
+              count={count}
+              beforePriceFontSize={"18px"}
+              priceFontSize={"25px"}
+              wonFontSize={"10px"}
+              priceMarginTop={"10px"}
+            />
+            {/* <Item.Content>
               <span style={{ color: "#B90000", fontWeight: "bold" }}>
                 {selectItem.discount}%&nbsp;
               </span>
@@ -55,7 +64,7 @@ class RecommendItemView extends Component {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
               <span>&nbsp;원</span>
-            </Item.Content>
+            </Item.Content> */}
           </Item.Group>
         </Item>
       </Grid.Column>

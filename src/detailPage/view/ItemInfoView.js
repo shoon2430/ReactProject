@@ -7,55 +7,32 @@ import {
   Icon,
   Button,
   Input,
+  Rating,
 } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
+import Price from "./ItemInfomation/Price";
 
 class ItemInfoView extends Component {
   render() {
-    const {
-      selectItem,
-      star,
-      onPlus,
-      onMinus,
-      count,
-      addItemToBasket,
-    } = this.props;
+    const { selectItem, onPlus, onMinus, count, addItemToBasket } = this.props;
 
     return (
       <div>
         <CategoryLineContainer />
-        <Grid style={{ marginTop: "10px" }}>
+        <Grid style={{ marginTop: "15px" }}>
           <Grid.Row>
             <Grid.Column style={{ width: "50%" }}>
               <Card style={{ width: "100%" }}>
-                <Card.Content style={{ fontSize: "15px" }}>
-                  {/* <Label basic as="a" href={`/`}>
-                    <Icon name="home" /> 홈
-                  </Label> */}
-                  {/* &nbsp;&nbsp;{">"}&nbsp;&nbsp;
-                  <Label basic as="a" href={`/list`}>
-                    {selectItem.category}
-                  </Label>
-                  &nbsp;&nbsp;{">"}&nbsp;&nbsp;
-                  <Label basic as="a" href={`/list`}>
-                    {subCateText}
-                  </Label> */}
-                </Card.Content>
-                <Card.Content extra>
-                  <Image
-                    src={selectItem.imgUrl}
-                    wrapped
-                    ui={false}
-                    width="100%"
-                    height="100%"
-                  />
-                </Card.Content>
+                <Image
+                  src={selectItem.imgUrl}
+                  wrapped
+                  ui={false}
+                  width="100%"
+                  height="100%"
+                />
               </Card>
             </Grid.Column>
-
-            <Grid.Column
-              style={{ marginTop: "10px", width: "50%", lineHeight: "32px" }}
-            >
+            <Grid.Column style={{ width: "50%", lineHeight: "32px" }}>
               <Item.Group divided>
                 <Item>
                   <Item.Content>
@@ -63,116 +40,45 @@ class ItemInfoView extends Component {
                       {selectItem.name}
                     </Item.Header>
                     <Item.Description>
-                      {star(selectItem.rating)}
+                      <Rating
+                        icon="star"
+                        defaultRating={selectItem.rating}
+                        maxRating={5}
+                        disabled
+                        size="huge"
+                      />
                     </Item.Description>
                   </Item.Content>
                 </Item>
-                <Item>
-                  <Item.Content>
-                    <Item.Meta>
-                      <span style={{ fontSize: "20px" }}>
-                        {selectItem.discount}%
-                      </span>
-                      <span
-                        style={{
-                          fontSize: "20px",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        &nbsp;
-                        {selectItem.price
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                        원
-                      </span>
-                    </Item.Meta>
-                    <Item.Description
-                      style={{
-                        color: "#B90000",
-                        fontWeight: "bold",
-                        marginTop: "30px",
-                      }}
-                    >
-                      {selectItem.stock - count === 0 ? (
-                        <div>
-                          <span style={{ marginLeft: "10px" }}>
-                            <Icon
-                              disabled
-                              name="level up alternate"
-                              rotated="clockwise"
-                              color="black"
-                              size="big"
-                            />
-                          </span>
-                          <span
-                            style={{
-                              textDecoration: "line-through",
-                              textDecorationColor: "black",
-                              fontSize: "45px",
-                            }}
-                          >
-                            &nbsp;
-                            {(
-                              selectItem.price *
-                              (100 - selectItem.discount) *
-                              0.01
-                            )
-                              .toString()
-                              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                            &nbsp;원
-                            <Button
-                              secondary
-                              style={{ marginLeft: "3px", marginTop: "-3px" }}
-                            >
-                              품절
-                            </Button>
-                          </span>
-                        </div>
-                      ) : (
-                        <div>
-                          <span style={{ marginLeft: "10px" }}>
-                            <Icon
-                              disabled
-                              name="level up alternate"
-                              rotated="clockwise"
-                              color="black"
-                            />
-                          </span>
-                          <span style={{ fontSize: "40px" }}>
-                            {(
-                              selectItem.price *
-                              (100 - selectItem.discount) *
-                              0.01
-                            )
-                              .toString()
-                              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                          </span>
-                          <span style={{ fontSize: "25px" }}>&nbsp;원</span>
-                        </div>
-                      )}
-                      <div
-                        style={{
-                          color: "grey",
-                          fontSize: "16px",
-                          marginTop: "30px",
-                          fontWeight: "normal",
-                        }}
-                      >
-                        (&nbsp;재고&emsp;&emsp;{selectItem.stock - count}&nbsp;)
-                      </div>
-                      <div
-                        style={{
-                          color: "grey",
-                          fontSize: "16px",
-                          marginTop: "5px",
-                          fontWeight: "normal",
-                        }}
-                      >
-                        (&nbsp;판매량&emsp;{selectItem.sale}&nbsp;)
-                      </div>
-                    </Item.Description>
-                  </Item.Content>
-                </Item>
+                <Price
+                  selectItem={selectItem}
+                  count={count}
+                  beforePriceFontSize={"20px"}
+                  priceFontSize={"45px"}
+                  wonFontSize={"25px"}
+                  priceMarginTop={"30px"}
+                />
+                <div
+                  style={{
+                    color: "grey",
+                    fontSize: "16px",
+                    marginTop: "30px",
+                    fontWeight: "normal",
+                  }}
+                >
+                  (&nbsp;재고&emsp;&emsp;{selectItem.stock - count}&nbsp;)
+                </div>
+                <div
+                  style={{
+                    color: "grey",
+                    fontSize: "16px",
+                    marginTop: "5px",
+                    fontWeight: "normal",
+                  }}
+                >
+                  (&nbsp;판매량&emsp;{selectItem.sale}&nbsp;)
+                </div>
+
                 <Item>
                   <Item.Content>
                     <Item.Description

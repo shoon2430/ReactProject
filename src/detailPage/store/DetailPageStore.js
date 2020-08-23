@@ -18,6 +18,15 @@ export default class DetailPageStore {
   @observable
   count = 0;
 
+  // @observable
+  // beforePriceFontSize = "";
+  // @observable
+  // priceFontSize = "";
+  // @observable
+  // wonFontSize = "";
+  // @observable
+  // priceMarginTop = "";
+
   @observable
   subCate = "";
 

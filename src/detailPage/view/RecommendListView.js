@@ -4,7 +4,7 @@ import RecommendItemView from "./RecommendItemView";
 
 class RecommendListView extends Component {
   render() {
-    const { selectItem, bestDiscount, items, subCateText } = this.props;
+    const { selectItem, bestDiscount, items, subCateText, count } = this.props;
 
     const subitems = items.filter(
       (item) => selectItem.subCategory === item.subCategory
