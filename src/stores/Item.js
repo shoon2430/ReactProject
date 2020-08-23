@@ -42,12 +42,14 @@ export default class Item {
     return this.newSearchItems ? this.newSearchItems.slice("") : [];
   }
 
+  /* 최근본 상품에 추가
+     detail페이지에 들어갈시 get요청의 파라미터에서 id값을 취득하여 추가한다. */
   @action addNewSearchItems(newItem) {
     const itemCheck = this.newSearchItems.find(
       (item) => item.id === newItem.id
     );
 
-    // 동일한 아이템이없으면
+    // 동일한 아이템이 없을 경우
     if (!itemCheck) {
       this.newSearchItems.unshift(newItem);
       this.newSearchItems = this.newSearchItems.slice(0, 3);
@@ -55,6 +57,8 @@ export default class Item {
     }
   }
 
+  /* 최근본 상품 아이템 삭제
+    id값에 맞는 아이템을 삭제한다. */
   @action removeNewSearchItems(id) {
     this.newSearchItems = this.newSearchItems.filter((item) => item.id !== id);
     localStorage.NEW = JSON.stringify(this.newSearchItems);

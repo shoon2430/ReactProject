@@ -18,11 +18,12 @@ class MyMonpangContainer extends Component {
     const { user } = this.props.Store;
     const userInfo = user.loginUserInfo;
     const userShoppingList = userInfo.shoppingList.slice("");
-    let buyPrice = 0;
+
+    let totalBuyPrice = 0;
     const userShoppingListComponent = userShoppingList.map((shopping) => {
       let price =
         Number(this.getItemInfo([shopping[0]]).price) * Number(shopping[1]);
-      buyPrice += price;
+      totalBuyPrice += price;
       return (
         <MyMonpang
           key={shopping[0]}
@@ -51,7 +52,7 @@ class MyMonpangContainer extends Component {
             <Header.Content>
               총 주문금액{" "}
               <b>
-                {String(buyPrice)
+                {String(totalBuyPrice)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               </b>
