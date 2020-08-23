@@ -6,27 +6,7 @@ import main from "../../data/category/main";
 import "react-slideshow-image/dist/styles.css";
 import ResultInner from "../view/ResultInner";
 
-import {
-  Grid,
-  Image,
-  Card,
-  Icon,
-  Rail,
-  Label,
-  Header,
-  Pagination,
-} from "semantic-ui-react";
-
-const imageSize = {
-  width: "100%",
-  height: "170px",
-};
-
-const railDiscount = {
-  background: "red",
-  color: "#ffffff",
-  fontSize: "16px",
-};
+import { Grid, Header, Pagination } from "semantic-ui-react";
 
 @withRouter
 @inject("Store")

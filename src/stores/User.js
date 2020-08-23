@@ -122,4 +122,19 @@ export default class User {
       localStorage.BASKET = JSON.stringify(this.localBasket);
     }
   }
+
+  // 장바구니의 아이템 구매
+  @action buyItems() {
+    const userInfo = this.loginUserInfo;
+
+    const newUsers = this.users.map((user) => {
+      if (user.id === userInfo.id) {
+        user.shoppingList = userInfo.shoppingList.concat(user.eyeShoppingList);
+        user.eyeShoppingList = [];
+      }
+      return user;
+    });
+    this.users = newUsers;
+    localStorage.DB = JSON.stringify(newUsers);
+  }
 }

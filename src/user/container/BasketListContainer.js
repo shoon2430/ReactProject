@@ -24,7 +24,8 @@ class BasketListContainer extends Component {
   createEyeShopping = (baskets) => {
     let totalBuyPrice = 0;
     const basketComponents = baskets.map((eyeShopping) => {
-      let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
+      const item = this.getItemInfo([eyeShopping[0]]);
+      const price = item.price * (100 - item.discount) * 0.01 * eyeShopping[1];
       totalBuyPrice += price;
 
       return (
@@ -38,6 +39,17 @@ class BasketListContainer extends Component {
     });
 
     return { component: basketComponents, totalPrice: totalBuyPrice };
+  };
+
+  // 장바구니의 아이템들 구매
+  buyItems = () => {
+    const { user } = this.props.Store;
+    if (user.getLoginUser === "null") {
+      alert("로그인이 필요한 서비스 입니다.");
+      window.location = "/login";
+    } else {
+      user.buyItems();
+    }
   };
 
   render() {
@@ -61,8 +73,11 @@ class BasketListContainer extends Component {
       eyeShopping = this.createEyeShopping(localBasket);
     }
 
-    const userEyeShoppingListComponent = eyeShopping.component;
-    const totalBuyPrice = eyeShopping.totalBuyPrice;
+    const userEyeShoppingListComponent = eyeShopping.component
+      ? eyeShopping.component
+      : [];
+
+    const totalBuyPrice = eyeShopping.totalPrice ? eyeShopping.totalPrice : 0;
 
     return (
       <div>
@@ -109,7 +124,7 @@ class BasketListContainer extends Component {
                 color="blue"
                 style={{ width: "150px" }}
                 onClick={() => {
-                  window.confirm("주문하시겠습니까?");
+                  if (window.confirm("주문하시겠습니까?")) this.buyItems();
                 }}
               >
                 주문하기

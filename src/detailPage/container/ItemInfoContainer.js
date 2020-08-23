@@ -54,7 +54,6 @@ class ItemInfoContainer extends Component {
     return (
       <ItemInfoView
         selectItem={detail.selectItem}
-        star={this.starCount}
         goHome={this.movePage}
         onPlus={this.onPlus}
         onMinus={this.onMinus}
