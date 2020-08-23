@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Dropdown, Menu } from "semantic-ui-react";
-import main from "../../data/category/main";
-import sub from "../../data/category/sub";
 import { Link } from "react-router-dom";
-
-//import MainCategoryBox from "./MainSubCategoryView";
 
 const headerMenu = {
   marginRight: "30px",
@@ -16,6 +12,7 @@ const headerMenu = {
   alignItems: "center",
   boxSizing: "border-box",
 };
+
 const headerDropdown = {
   width: "120px",
   height: "115px",
@@ -32,39 +29,50 @@ const hearDropdownicon = {
   color: "grey",
 };
 
-class CategoryView extends Component {
-  innerDrop = () => {
-    let list = [];
+class MainCategoryView extends Component {
+  /* 드롭박스 생성 함수
+     메인카테고리 리스트와 서브카테고리 리스트 데이터를 가지고
+     드롭박스를 생성한다. */
+  createInnerDrop = () => {
+    const { MainCategorys, subCategorys } = this.props;
 
-    for (let i = 0; i < main.length; i++) {
-      let subList = sub.filter((subObj) => subObj.main === main[i].value);
-      let dropdownList = [];
-      subList.map((subListObj) =>
-        dropdownList.push(
+    const innerDrop = MainCategorys.map((mainObj) => {
+      const subCategoryList = subCategorys.map((subObj) =>
+        subObj.main === mainObj.value ? (
           <Dropdown.Item
-            text={subListObj.text}
+            key={subObj.key}
+            text={subObj.text}
             as={Link}
-            to={`/list?category=${main[i].value}&subCategory=${subListObj.value}`}
+            to={`/list?category=${mainObj.value}&subCategory=${subObj.value}`}
           />
-        )
+        ) : null
       );
-      list.push(
-        <Dropdown item simple text={main[i].text} style={{ width: "150px" }}>
-          <Dropdown.Menu>{dropdownList}</Dropdown.Menu>
+
+      return (
+        <Dropdown
+          item
+          simple
+          key={mainObj.key}
+          text={mainObj.text}
+          style={{ width: "150px" }}
+        >
+          <Dropdown.Menu>{subCategoryList}</Dropdown.Menu>
         </Dropdown>
       );
-    }
-    return list;
+    });
+
+    return innerDrop;
   };
+
   render() {
     return (
       <Menu style={headerMenu}>
         <Dropdown item icon={hearDropdownicon} style={headerDropdown}>
-          <Dropdown.Menu>{this.innerDrop()}</Dropdown.Menu>
+          <Dropdown.Menu>{this.createInnerDrop()}</Dropdown.Menu>
         </Dropdown>
       </Menu>
     );
   }
 }
 
-export default CategoryView;
+export default MainCategoryView;

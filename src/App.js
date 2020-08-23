@@ -58,18 +58,8 @@ class App extends Component {
           {user.getLoginUser !== "null" ? loginState : nomalState}
           {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
         </div>
-        <div
-          style={{
-            width: "150px",
-            position: "fixed",
 
-            top: "13%",
-            left: "81%",
-            zIndex: "10",
-          }}
-        >
-          <NewItems />
-        </div>
+        <NewItems />
 
         <Container>
           <Header />

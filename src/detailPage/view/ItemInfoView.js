@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Grid,
-  Image,
-  Item,
-  Card,
-  Icon,
-  Button,
-  Input,
-} from "semantic-ui-react";
+import { Grid, Image, Item, Card, Icon, Button } from "semantic-ui-react";
 import CategoryLineContainer from "../../listPage/container/CategoryLineContainer";
 import Price from "./ItemInfomation/Price";
 import ItemTitle from "./ItemInfomation/ItemTitle";

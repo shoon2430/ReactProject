@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
-import RecommendListView from "../view/RecommendListView";
+import RecommendBestDiscountView from "../view/RecommendBestDiscountView";
 import sub from "../../data/category/sub";
+import RecommendSameSubCateListView from "../view/RecommendSameSubCateListView";
 
 @inject("Store")
 @observer
@@ -17,12 +18,17 @@ class RecommendContainer extends Component {
 
     const subCateText = { ...subCateObj }.text;
     return (
-      <RecommendListView
-        selectItem={detail.selectItem}
-        bestDiscount={bestDiscount}
-        items={item.items}
-        subCateText={subCateText}
-      />
+      <div>
+        <RecommendBestDiscountView
+          selectItem={detail.selectItem}
+          bestDiscount={bestDiscount}
+        />
+        <RecommendSameSubCateListView
+          selectItem={detail.selectItem}
+          subCateText={subCateText}
+          items={item.items}
+        />
+      </div>
     );
   }
 }

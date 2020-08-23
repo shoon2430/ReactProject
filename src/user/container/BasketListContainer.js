@@ -6,6 +6,7 @@ import { Item, Button, Icon, Header } from "semantic-ui-react";
 @inject("Store")
 @observer
 class BasketListContainer extends Component {
+  // 아이템의 속성값 추출
   getItemInfo = (id) => {
     const allItem = this.props.Store.item.getItems;
     const item = allItem.find((item) => String(item.id) === String(id));
@@ -19,6 +20,26 @@ class BasketListContainer extends Component {
     }
   };
 
+  // 장바구니에 담긴 아이템 컴포넌트 리스트와 총 가격을 구한다.
+  createEyeShopping = (baskets) => {
+    let totalBuyPrice = 0;
+    const basketComponents = baskets.map((eyeShopping) => {
+      let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
+      totalBuyPrice += price;
+
+      return (
+        <BasketList
+          key={eyeShopping[0]}
+          shoppingItem={this.getItemInfo([eyeShopping[0]])}
+          buyCount={eyeShopping[1]}
+          onRemoveBasketItem={this.removeBasketItem}
+        />
+      );
+    });
+
+    return { component: basketComponents, totalPrice: totalBuyPrice };
+  };
+
   render() {
     const { user } = this.props.Store;
     const userInfo = user.loginUserInfo;
@@ -29,38 +50,19 @@ class BasketListContainer extends Component {
 
     const localBasket = user.getLocalBasket;
 
-    let buyPrice = 0;
-    let userEyeShoppingListComponent = "";
+    let eyeShopping = {};
 
+    // 로그인 후 장바구니를 이용한 경우
     if (eyeShoppingList.length > 0) {
-      userEyeShoppingListComponent = eyeShoppingList.map((eyeShopping) => {
-        let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
-        buyPrice += price;
-
-        return (
-          <BasketList
-            key={eyeShopping[0]}
-            shoppingItem={this.getItemInfo([eyeShopping[0]])}
-            buyCount={eyeShopping[1]}
-            onRemoveBasketItem={this.removeBasketItem}
-          />
-        );
-      });
-    } else if (localBasket.length > 0 && !userInfo.id) {
-      userEyeShoppingListComponent = localBasket.map((eyeShopping) => {
-        let price = this.getItemInfo([eyeShopping[0]]).price * eyeShopping[1];
-        buyPrice += price;
-
-        return (
-          <BasketList
-            key={eyeShopping[0]}
-            shoppingItem={this.getItemInfo([eyeShopping[0]])}
-            buyCount={eyeShopping[1]}
-            onRemoveBasketItem={this.removeBasketItem}
-          />
-        );
-      });
+      eyeShopping = this.createEyeShopping(eyeShoppingList);
     }
+    // 비 로그인시 장바구니를 이용한 경우
+    else if (localBasket.length > 0 && !userInfo.id) {
+      eyeShopping = this.createEyeShopping(localBasket);
+    }
+
+    const userEyeShoppingListComponent = eyeShopping.component;
+    const totalBuyPrice = eyeShopping.totalBuyPrice;
 
     return (
       <div>
@@ -97,7 +99,7 @@ class BasketListContainer extends Component {
             >
               총 금액{" "}
               <b>
-                {String(buyPrice)
+                {String(totalBuyPrice)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               </b>

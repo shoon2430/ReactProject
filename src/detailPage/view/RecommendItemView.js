@@ -3,6 +3,7 @@ import { Item, Image, Grid } from "semantic-ui-react";
 import Price from "./ItemInfomation/Price";
 import ItemTitle from "./ItemInfomation/ItemTitle";
 
+// 추천 상품으로 보여줄 하나의 아이템 구성
 class RecommendItemView extends Component {
   render() {
     const { selectItem, count } = this.props;
