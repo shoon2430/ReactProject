@@ -30,7 +30,10 @@ class Item extends Component {
               <span className="item__delivery">{item.name}</span>
               <br />
               <b className="item__price" style={{ fontSize: "15px" }}>
-                {item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+                {(item.price * (100 - item.discount) * 0.01)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
               </b>
               <b className="item__delivery" style={{ color: "RoyalBlue" }}>
                 {item.delivery === 1 ? (
