@@ -46,7 +46,8 @@ class BestDiscountItem extends Component {
               <Rating
                 icon="star"
                 defaultRating={bestDiscountItem.rating}
-                maxRating={bestDiscountItem.rating}
+                maxRating={5}
+                disabled={true}
               />
             </Card.Description>
           </Card.Content>

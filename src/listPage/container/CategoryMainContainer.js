@@ -149,16 +149,22 @@ class CategoryMainContainer extends Component {
       ignoreQueryPrefix: true,
     });
     const mainCategory = main.find((data) => data.value === urlParams.category);
-    let bestItems = this.props.Store.item.categoryBestItemSort(resultList);
 
-    // 가장 할인률이 높은 아이템을 BEST로
-    bestItems = bestItems.sort((a, b) => {
-      const d1 = a["discount"];
-      const d2 = b["discount"];
-      if (d1 < d2) return 1;
-      if (d1 > d2) return -1;
-      return 0;
-    });
+    const sortObj = [
+      {
+        key: "rating",
+        option: 1,
+      },
+      {
+        key: "discount",
+        option: 1,
+      },
+    ];
+
+    const bestItems = this.props.Store.item.categoryItemSort(
+      resultList,
+      sortObj
+    );
 
     const bestList = bestItems.slice(0, 3);
 
