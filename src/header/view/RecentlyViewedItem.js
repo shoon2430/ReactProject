@@ -3,7 +3,7 @@ import { Image, Card, Rating, Rail, Label } from "semantic-ui-react";
 
 const imageStyle = {
   width: "100%",
-  height: "150px",
+  height: "160px",
 };
 
 const cardStyle = {

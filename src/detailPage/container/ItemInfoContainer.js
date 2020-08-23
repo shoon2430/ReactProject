@@ -41,12 +41,9 @@ class ItemInfoContainer extends Component {
     }
 
     const { user } = this.props.Store;
-    const userInfo = user.getLoginUser !== "null" ? user.loginUserInfo : null;
 
-    if (userInfo === null) {
-      user.addItemToBasket(id, count);
-    }
     user.addItemToBasket(id, count);
+
     alert("장바구니 등록에 성공했습니다. \n장바구니로 이동합니다.");
     window.location = "/basket";
   };
