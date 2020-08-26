@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.ed7ca718.chunk.css",
-    "main.js": "/static/js/main.037f768f.chunk.js",
-    "main.js.map": "/static/js/main.037f768f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.8874d388.js",
-    "runtime-main.js.map": "/static/js/runtime-main.8874d388.js.map",
-    "static/css/2.6d0d8877.chunk.css": "/static/css/2.6d0d8877.chunk.css",
-    "static/js/2.4b7f88c8.chunk.js": "/static/js/2.4b7f88c8.chunk.js",
-    "static/js/2.4b7f88c8.chunk.js.map": "/static/js/2.4b7f88c8.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.0011644b2815fae9d5eebd6001a67070.js": "/precache-manifest.0011644b2815fae9d5eebd6001a67070.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.6d0d8877.chunk.css.map": "/static/css/2.6d0d8877.chunk.css.map",
-    "static/css/main.ed7ca718.chunk.css.map": "/static/css/main.ed7ca718.chunk.css.map",
-    "static/js/2.4b7f88c8.chunk.js.LICENSE.txt": "/static/js/2.4b7f88c8.chunk.js.LICENSE.txt",
-    "static/media/semantic.min.css": "/static/media/outline-icons.ef60a4f6.woff"
+    "main.css": "/ReactProject/static/css/main.ed7ca718.chunk.css",
+    "main.js": "/ReactProject/static/js/main.a5341384.chunk.js",
+    "main.js.map": "/ReactProject/static/js/main.a5341384.chunk.js.map",
+    "runtime-main.js": "/ReactProject/static/js/runtime-main.373fb678.js",
+    "runtime-main.js.map": "/ReactProject/static/js/runtime-main.373fb678.js.map",
+    "static/css/2.52395345.chunk.css": "/ReactProject/static/css/2.52395345.chunk.css",
+    "static/js/2.b179f8c6.chunk.js": "/ReactProject/static/js/2.b179f8c6.chunk.js",
+    "static/js/2.b179f8c6.chunk.js.map": "/ReactProject/static/js/2.b179f8c6.chunk.js.map",
+    "index.html": "/ReactProject/index.html",
+    "precache-manifest.8ce43b830b6a9eb8228ffca5a96a99c3.js": "/ReactProject/precache-manifest.8ce43b830b6a9eb8228ffca5a96a99c3.js",
+    "service-worker.js": "/ReactProject/service-worker.js",
+    "static/css/2.52395345.chunk.css.map": "/ReactProject/static/css/2.52395345.chunk.css.map",
+    "static/css/main.ed7ca718.chunk.css.map": "/ReactProject/static/css/main.ed7ca718.chunk.css.map",
+    "static/js/2.b179f8c6.chunk.js.LICENSE.txt": "/ReactProject/static/js/2.b179f8c6.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/ReactProject/static/media/outline-icons.ef60a4f6.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.8874d388.js",
-    "static/css/2.6d0d8877.chunk.css",
-    "static/js/2.4b7f88c8.chunk.js",
+    "static/js/runtime-main.373fb678.js",
+    "static/css/2.52395345.chunk.css",
+    "static/js/2.b179f8c6.chunk.js",
     "static/css/main.ed7ca718.chunk.css",
-    "static/js/main.037f768f.chunk.js"
+    "static/js/main.a5341384.chunk.js"
   ]
 }
