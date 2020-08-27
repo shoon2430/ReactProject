@@ -1,14 +1,12 @@
 # React& Mobx Project
 
-!["Logo"](/public/images/readmeImages/logo.png)
+[!["Logo"](/public/images/readmeImages/logo.png)](https://shoon2430.github.io/ReactProject/)
 
-> 리액트와 Mobx를 공부한 내용을 바탕으로 
+> 리액트와 Mobx를 공부한 내용을 바탕으로
 >
 > 실제 운영되고 있는 커머스 사이트를 구현해보자!
 >
 > TI **MON** + CU **PANG** === **MONPANG**
-
-
 
 ## 🙋 Project Member
 
@@ -16,17 +14,15 @@
 
 **개발기간 : 2020. 08. 14 ~ 2020. 08. 23 (약10일) **
 
-* 역할
+- 역할
 
-  * 👦 정승훈 [**shoon2430**](https://github.com/shoon2430) : 메인 페이지, 로그인/회원가입, 장바구니 기능 구현
-  * 👧 문소민 [**dalsomin**](https://github.com/dalsomin) : 리스트 페이지, 헤더의 카테고리 기능 구현
-  * 👩 이은송 [**eunsongsong**](https://github.com/eunsongsong) : 디테일 페이지, 검색 기능 구현
-
-  
+  - 👦 정승훈 [**shoon2430**](https://github.com/shoon2430) : 메인 페이지, 로그인/회원가입, 장바구니 기능 구현
+  - 👧 문소민 [**dalsomin**](https://github.com/dalsomin) : 리스트 페이지, 헤더의 카테고리 기능 구현
+  - 👩 이은송 [**eunsongsong**](https://github.com/eunsongsong) : 디테일 페이지, 검색 기능 구현
 
 ## 🔨개발 환경
 
-## 
+##
 
 ## 📁 폴더 구조
 
