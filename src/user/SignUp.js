@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import {
   Button,
@@ -17,9 +18,9 @@ const SignUp = inject("Store")(
     const [pass2, setPass2] = useState(null);
     const [name, setName] = useState(null);
 
-    const goBack = () => {
-      history.goBack();
-    };
+    // const goBack = () => {
+    //   history.goBack();
+    // };
 
     const onChangeId = (e) => {
       setId(e.target.value);
@@ -53,7 +54,6 @@ const SignUp = inject("Store")(
       if (validCheck()) {
         Store.user.signUp(id, pass1, name);
         alert("회원가입 성공");
-        window.location = "/login";
       }
     };
 
@@ -66,7 +66,8 @@ const SignUp = inject("Store")(
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="orange" textAlign="center">
             <Image
-              href="/"
+              as={Link}
+              to="/"
               src="images/logo/logo.png"
               style={{ width: "150px", height: "50px" }}
             />{" "}
@@ -109,7 +110,9 @@ const SignUp = inject("Store")(
               </Button>
             </Segment>
           </Form>
-          <Message onClick={goBack}>뒤로가기</Message>
+          <Message>
+            <Link to="/login">뒤로가기</Link>
+          </Message>
         </Grid.Column>
       </Grid>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Image, Card, Rating, Rail, Label } from "semantic-ui-react";
 
 const imageStyle = {
@@ -25,8 +26,8 @@ class RecentlyViewedItem extends Component {
         <Image
           src={item.imgUrl}
           style={imageStyle}
-          as="a"
-          href={`/detail?id=${item.id}`}
+          as={Link}
+          to={`/detail?id=${item.id}`}
         />
         <Card.Content>
           <Card.Description style={cardDescriptionStyle}>

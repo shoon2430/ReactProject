@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./App.css";
 import { Route } from "react-router-dom";
 import { Label } from "semantic-ui-react";
@@ -40,10 +41,10 @@ class App extends Component {
 
     const nomalState = (
       <div>
-        <Label as="a" href="/login">
+        <Label as={Link} to="/login">
           로그인
         </Label>
-        <Label as="a" href="/signup">
+        <Label as={Link} to="/signup">
           회원가입
         </Label>
       </div>
@@ -62,7 +63,7 @@ class App extends Component {
           <Container style={loginContainerStyle}>
             {user.getLoginUser !== "null" ? loginState : nomalState}
             {/* 쿠팡 홈페이지의 상단 2번째에 보이는 즐겨찾기, 로그인, 회원가입, 고객센터 부분의 크기를 임시로 잡아두었습니다. */}
-            <Label as="a" href="/qna">
+            <Label as={Link} to={`/qna`}>
               <QnAButton />
             </Label>
           </Container>

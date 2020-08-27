@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Header, Label } from "semantic-ui-react";
 
 const categoryStyle = {
@@ -40,8 +41,8 @@ class Category extends Component {
 
     const label = hotKeywords[categoryNumber].map((key) => (
       <Label
-        as="a"
-        href={`/list?search=${key}`}
+        as={Link}
+        to={`/list?search=${key}`}
         style={{ ...labelStyle, color: color, border: `solid ${color} 1px` }}
       >
         #{key}
@@ -53,12 +54,12 @@ class Category extends Component {
         <Header style={{ ...headerStyle, color: color }}>
           {mainText[categoryNumber]}
           <br />
-          <a
+          <Link
             style={{ fontSize: "15px", color: "black" }}
-            href={`/list?category=${mainCode[categoryNumber]}`}
+            to={`/list?category=${mainCode[categoryNumber]}`}
           >
             바로가기
-          </a>
+          </Link>
         </Header>
         <div
           style={{

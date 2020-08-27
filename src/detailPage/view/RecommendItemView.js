@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Item, Image, Grid } from "semantic-ui-react";
 import Price from "./ItemInfomation/Price";
 import ItemTitle from "./ItemInfomation/ItemTitle";
@@ -12,8 +13,8 @@ class RecommendItemView extends Component {
       <Grid.Column
         celled
         style={{ width: "20%" }}
-        as="a"
-        href={`/detail?id=${selectItem.id}`}
+        as={Link}
+        to={`/detail?id=${selectItem.id}`}
       >
         <Item>
           <Image src={selectItem.imgUrl} style={{ height: "200px" }} />

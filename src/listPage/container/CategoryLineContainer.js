@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import qs from "qs";
 import { withRouter } from "react-router-dom";
 import main from "../../data/category/main";
@@ -13,14 +14,14 @@ class CategoryLineContainer extends Component {
 
   categoryDiv = (mainCategory, subCategory) => (
     <div>
-      <a href={`/list?category=${mainCategory.value}`}>
+      <Link to={`/list?category=${mainCategory.value}`}>
         》　{mainCategory.text}　-　
-      </a>
-      <a
-        href={`/list?category=${mainCategory.value}&subCategory=${subCategory.value}`}
+      </Link>
+      <Link
+        to={`/list?category=${mainCategory.value}&subCategory=${subCategory.value}`}
       >
         {subCategory.text}
-      </a>
+      </Link>
     </div>
   );
 
@@ -38,7 +39,6 @@ class CategoryLineContainer extends Component {
     return subObj;
   };
 
-  
   setCategoryLine = (urlParams) => {
     var mainCategory = {};
     var subCategory = {};
@@ -68,9 +68,9 @@ class CategoryLineContainer extends Component {
       mainCategory = this.setMain(urlParams);
       return (
         <div>
-          <a href={`/list?category=${mainCategory.value}`}>
+          <Link to={`/list?category=${mainCategory.value}`}>
             》　{mainCategory.text}
-          </a>
+          </Link>
           　-　"{urlParams.search}"　검색
         </div>
       );
@@ -80,22 +80,20 @@ class CategoryLineContainer extends Component {
       mainCategory = this.setMain(item);
       subCategory = this.setSub(item);
       return this.categoryDiv(mainCategory, subCategory);
-
     } else if (urlParams.category && urlParams.subCategory && !urlParams.id) {
       // console.log("메인o 서브o id x");
       mainCategory = this.setMain(urlParams);
       subCategory = this.setSub(urlParams);
       return this.categoryDiv(mainCategory, subCategory);
-
     } else if (urlParams.category && !urlParams.subCategory && !urlParams.id) {
       // console.log("메인o 서브x id x");
       mainCategory = this.setMain(urlParams);
 
       return (
         <div>
-          <a href={`/list?category=${mainCategory.value}`}>
+          <Link to={`/list?category=${mainCategory.value}`}>
             》　{mainCategory.text}
-          </a>
+          </Link>
         </div>
       );
     }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Table } from "semantic-ui-react";
 
 import ItemPaging from "./ItemPaging";
@@ -42,7 +43,7 @@ class CategoryBestItemList extends Component {
     // 리액트 슬라이드 쇼 적용
     const slides = showItems.map((item) => (
       <div className="each-slide">
-        <a href={`/detail?id=${item.id}`}>
+        <Link to={`/detail?id=${item.id}`}>
           <div
             style={{
               backgroundImage: `url(${item.imgUrl})`,
@@ -51,7 +52,7 @@ class CategoryBestItemList extends Component {
               backgroundSize: "cover",
             }}
           ></div>
-        </a>
+        </Link>
       </div>
     ));
 

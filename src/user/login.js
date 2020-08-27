@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import {
   Button,
@@ -53,7 +54,8 @@ const Login = inject("Store")(
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" color="orange" textAlign="center">
             <Image
-              href="/"
+              as={Link}
+              to="/"
               src="images/logo/logo.png"
               style={{ width: "150px", height: "50px" }}
             />{" "}
@@ -83,7 +85,7 @@ const Login = inject("Store")(
             </Segment>
           </Form>
           <Message>
-            New to us? <a href="/signup">Sign Up</a>
+            New to us? <Link to={`/signup`}>Sign Up</Link>
           </Message>
         </Grid.Column>
       </Grid>

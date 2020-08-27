@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Table, Image, Icon, Card, Rating } from "semantic-ui-react";
 
 const imageStyle = {
@@ -21,8 +22,8 @@ class Item extends Component {
         <Card
           className="item"
           style={{ width: "190px" }}
-          as="a"
-          href={`/detail?id=${item.id}`}
+          as={Link}
+          to={`/detail?id=${item.id}`}
         >
           <Image className="item__image" src={item.imgUrl} style={imageStyle} />
           <Card.Content>

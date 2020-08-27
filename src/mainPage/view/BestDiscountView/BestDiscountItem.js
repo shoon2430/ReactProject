@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Grid, Image, Card, Rail, Label, Rating } from "semantic-ui-react";
 
 const imageSize = {
@@ -18,7 +19,7 @@ class BestDiscountItem extends Component {
 
     return (
       <Grid.Column key={bestDiscountItem.id}>
-        <Card color="orange" as="a" href={`/detail?id=${bestDiscountItem.id}`}>
+        <Card color="orange" as={Link} to={`/detail?id=${bestDiscountItem.id}`}>
           <Card.Content>
             <Card.Header
               style={{

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Item, Header } from "semantic-ui-react";
 
 const priceStyle = {
@@ -12,7 +13,7 @@ class MyMonpang extends Component {
     const price = shoppingItem.price * (100 - shoppingItem.discount) * 0.01;
     const sumPrice = price * buyCount;
     return (
-      <Item href={`/detail?id=${shoppingItem.id}`}>
+      <Item as={Link} to={`/detail?id=${shoppingItem.id}`}>
         <Item.Image size="tiny" src={shoppingItem.imgUrl} />
         <Item.Content verticalAlign="middle">
           <Header.Content as="h4">

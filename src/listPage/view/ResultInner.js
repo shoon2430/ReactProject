@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
 import { Grid, Image, Card, Icon, Rail, Label } from "semantic-ui-react";
 
 const imageSize = {
@@ -21,13 +21,13 @@ class ResultInner extends Component {
     }
     return start;
   };
-  
+
   render() {
-    const item = this.props.item; 
+    const item = this.props.item;
 
     return (
       <Grid.Column key={item.id}>
-        <Card color="#f5e5d5" as="a" href={`/detail?id=${item.id}`}>
+        <Card color="#f5e5d5" as={Link} to={`/detail?id=${item.id}`}>
           <Card.Content>
             <Image src={item.imgUrl} style={imageSize} />
             <Card.Header
@@ -78,10 +78,9 @@ class ResultInner extends Component {
                     <Icon name="shipping fast"></Icon>무료배송
                   </span>
                 ) : (
-                    ""
-                  )}
+                  ""
+                )}
               </span>
-
             </Card.Content>
 
             <Rail

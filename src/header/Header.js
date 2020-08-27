@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import CategoryContainer from "./container/CategoryContainer";
 import SearchContainer from "./container/SearchContainer";
 import LoginContainer from "./container/LoginContainer";
@@ -33,7 +34,12 @@ class Header extends Component {
         <CategoryContainer />
         <div style={{ width: "100%" }}>
           <div className="headerMain" style={headerMain}>
-            <Image src="images/logo/logo.png" style={headerLogo} href="/" />
+            <Image
+              src="images/logo/logo.png"
+              style={headerLogo}
+              as={Link}
+              to={`/`}
+            />
             <SearchContainer />
             <LoginContainer />
           </div>

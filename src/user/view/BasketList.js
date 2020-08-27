@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Item, Header, Label } from "semantic-ui-react";
 
 const priceStyle = {
@@ -19,7 +20,8 @@ class BasketList extends Component {
           <Header.Content as="h4">
             <Header.Content
               style={{ color: "#273746", fontSize: "20px" }}
-              href={`/detail?id=${shoppingItem.id}`}
+              as={Link}
+              to={`/detail?id=${shoppingItem.id}`}
             >
               {shoppingItem.name}
             </Header.Content>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import sub from "../../data/category/sub";
+import { Link } from "react-router-dom";
 import { List } from "semantic-ui-react";
 
 class SubCategoryBox extends Component {
@@ -12,11 +13,11 @@ class SubCategoryBox extends Component {
       list = list.concat(
         <List.Item
           content={
-            <a
-              href={`/list?category=${main}&subCategory=${subCategoryList[i].value}`}
+            <Link
+              to={`/list?category=${main}&subCategory=${subCategoryList[i].value}`}
             >
               {subCategoryList[i].text}
-            </a>
+            </Link>
           }
         />
       );

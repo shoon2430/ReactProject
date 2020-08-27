@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
 
 const headerIconBox = {
@@ -22,16 +23,16 @@ class LoginView extends Component {
     const { login } = this.props;
     return (
       <div style={headerIconBox}>
-        <a style={iconLabel} href="/myMonpang">
+        <Link style={iconLabel} to={`/myMonpang`}>
           {login !== "null" && <Icon name="user" size="big" />}
           {login !== "null" && (
             <p style={{ fontSize: "12px", marginTop: "3px" }}>마이몬팡</p>
           )}
-        </a>
-        <a style={iconLabel} href="/basket">
+        </Link>
+        <Link style={iconLabel} to={`/basket`}>
           <Icon name="shop" size="big" />
           <p style={{ fontSize: "12px", marginTop: "3px" }}>장바구니</p>
-        </a>
+        </Link>
       </div>
     );
   }
