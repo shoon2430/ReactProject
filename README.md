@@ -1,5 +1,7 @@
 # React& Mobx Project
 
+### MONPANG 페이지 바로가기 아래 로고 클릭 ! ! ! ! ​:arrow_down:​​:arrow_down:​
+
 [!["Logo"](/public/images/readmeImages/logo.png)](https://shoon2430.github.io/ReactProject/)
 
 > 리액트와 Mobx를 공부한 내용을 바탕으로
